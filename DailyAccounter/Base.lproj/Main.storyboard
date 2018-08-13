@@ -61,8 +61,8 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="U1W-Tr-Gqr"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="Cost"/>
                                     <segment title="Income"/>
+                                    <segment title="Cost"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentChanged:" destination="CLG-pn-Xur" eventType="valueChanged" id="cnS-Jx-UhF"/>
@@ -84,17 +84,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dcW-dM-qKP">
-                                <rect key="frame" x="144" y="99.5" width="223" height="60"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rL8-vk-yKD">
+                                <rect key="frame" x="136" y="99" width="231" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="MEK-Od-RzV"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="231" id="T2a-AJ-VWd"/>
+                                    <constraint firstAttribute="height" constant="60" id="zWF-lS-xm8"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="30"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done"/>
-                            </textField>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qqn-JE-yt4">
-                                <rect key="frame" x="0.0" y="169.5" width="375" height="497.5"/>
+                                <rect key="frame" x="0.0" y="169" width="375" height="498"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Wjs-pL-fWp">
                                     <size key="itemSize" width="50" height="50"/>
@@ -117,23 +118,51 @@
                                     <outlet property="delegate" destination="CLG-pn-Xur" id="0rn-qy-cdu"/>
                                 </connections>
                             </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Fys-5K-mBL">
+                                <rect key="frame" x="0.0" y="169" width="375" height="498"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JLv-gW-Qxf">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="EqY-C7-XlN">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="CLG-pn-Xur" id="7pO-BD-7Gs"/>
+                                    <outlet property="delegate" destination="CLG-pn-Xur" id="rFL-EE-q4A"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Fys-5K-mBL" firstAttribute="leading" secondItem="JFO-5r-Gl4" secondAttribute="leading" id="0x3-pq-Kb4"/>
                             <constraint firstItem="JFO-5r-Gl4" firstAttribute="trailing" secondItem="Qqn-JE-yt4" secondAttribute="trailing" id="0zj-vH-AzK"/>
+                            <constraint firstItem="rL8-vk-yKD" firstAttribute="leading" secondItem="efZ-EL-XtC" secondAttribute="trailing" id="2Mj-ko-Ey3"/>
                             <constraint firstItem="efZ-EL-XtC" firstAttribute="leading" secondItem="lDS-He-UOT" secondAttribute="trailing" constant="8" id="3JB-ct-A9E"/>
                             <constraint firstItem="jRy-rT-cuu" firstAttribute="leading" secondItem="JFO-5r-Gl4" secondAttribute="leading" constant="127" id="4rU-kH-4nH"/>
+                            <constraint firstItem="rL8-vk-yKD" firstAttribute="centerY" secondItem="efZ-EL-XtC" secondAttribute="centerY" id="KGa-BC-7go"/>
                             <constraint firstItem="lDS-He-UOT" firstAttribute="leading" secondItem="AAN-tm-sw3" secondAttribute="leading" constant="8" id="O6x-Fr-aoH"/>
                             <constraint firstItem="lDS-He-UOT" firstAttribute="top" secondItem="jRy-rT-cuu" secondAttribute="bottom" constant="15" id="Pc4-pF-Tf8"/>
-                            <constraint firstItem="dcW-dM-qKP" firstAttribute="centerY" secondItem="efZ-EL-XtC" secondAttribute="centerY" id="QTv-yE-CVh"/>
-                            <constraint firstItem="Qqn-JE-yt4" firstAttribute="top" secondItem="dcW-dM-qKP" secondAttribute="bottom" constant="10" id="Sig-sn-Htk"/>
+                            <constraint firstItem="Qqn-JE-yt4" firstAttribute="top" secondItem="rL8-vk-yKD" secondAttribute="bottom" constant="10" id="TKa-eX-bNP"/>
+                            <constraint firstItem="JFO-5r-Gl4" firstAttribute="trailing" secondItem="Fys-5K-mBL" secondAttribute="trailing" id="Uvz-3e-Fsz"/>
                             <constraint firstItem="JFO-5r-Gl4" firstAttribute="trailing" secondItem="jRy-rT-cuu" secondAttribute="trailing" constant="127" id="X30-gn-Q5f"/>
                             <constraint firstItem="jRy-rT-cuu" firstAttribute="top" secondItem="JFO-5r-Gl4" secondAttribute="top" id="XKn-mx-G0S"/>
-                            <constraint firstItem="dcW-dM-qKP" firstAttribute="leading" secondItem="efZ-EL-XtC" secondAttribute="trailing" constant="8" id="aif-fp-loL"/>
                             <constraint firstItem="efZ-EL-XtC" firstAttribute="centerY" secondItem="lDS-He-UOT" secondAttribute="centerY" id="f2X-0K-aAJ"/>
+                            <constraint firstItem="JFO-5r-Gl4" firstAttribute="trailing" secondItem="rL8-vk-yKD" secondAttribute="trailing" constant="8" id="j1y-D5-hPZ"/>
+                            <constraint firstItem="Fys-5K-mBL" firstAttribute="bottom" secondItem="JFO-5r-Gl4" secondAttribute="bottom" id="kuQ-Lh-RxK"/>
                             <constraint firstItem="Qqn-JE-yt4" firstAttribute="leading" secondItem="JFO-5r-Gl4" secondAttribute="leading" id="t9X-GK-rxZ"/>
+                            <constraint firstItem="Fys-5K-mBL" firstAttribute="top" secondItem="rL8-vk-yKD" secondAttribute="bottom" constant="10" id="tUd-9k-p7j"/>
                             <constraint firstItem="JFO-5r-Gl4" firstAttribute="bottom" secondItem="Qqn-JE-yt4" secondAttribute="bottom" id="wUe-4S-Ox8"/>
-                            <constraint firstItem="JFO-5r-Gl4" firstAttribute="trailing" secondItem="dcW-dM-qKP" secondAttribute="trailing" constant="8" id="xwP-7s-Z7q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JFO-5r-Gl4"/>
                     </view>
@@ -141,14 +170,30 @@
                     <connections>
                         <outlet property="categoryLabel" destination="efZ-EL-XtC" id="3up-Pg-i8N"/>
                         <outlet property="categorymageView" destination="lDS-He-UOT" id="er6-Ji-YCm"/>
-                        <outlet property="collectionView" destination="Qqn-JE-yt4" id="Z7Z-xd-OJu"/>
+                        <outlet property="costCollectionView" destination="Qqn-JE-yt4" id="Z7Z-xd-OJu"/>
+                        <outlet property="digitLabel" destination="rL8-vk-yKD" id="zYk-bx-sSA"/>
+                        <outlet property="incomeCollectionView" destination="Fys-5K-mBL" id="tH7-NC-6th"/>
                         <outlet property="segmentedControl" destination="jRy-rT-cuu" id="6sI-fz-2Vi"/>
-                        <outlet property="textField" destination="dcW-dM-qKP" id="OGq-Tf-Nc6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5NR-AO-1Ea" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1933.5999999999999" y="792.95352323838085"/>
+        </scene>
+        <!--Editing View Controller-->
+        <scene sceneID="oEf-zQ-jiU">
+            <objects>
+                <viewController id="Fyg-tk-Fc2" customClass="EditingViewController" customModule="DailyAccounter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8mY-oa-q7c">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="GLc-qZ-OZs"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sZQ-qg-n41" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2575" y="793"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="y6Y-g3-Cho">

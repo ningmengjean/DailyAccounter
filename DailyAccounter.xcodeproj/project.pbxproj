@@ -17,6 +17,9 @@
 		728C9E85211B27BA00AFD98D /* AddCostOrIncomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C9E84211B27BA00AFD98D /* AddCostOrIncomeDetailViewController.swift */; };
 		728C9E88211C1B3600AFD98D /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C9E86211C1B3600AFD98D /* CategoryCollectionViewCell.swift */; };
 		728C9E89211C1B3600AFD98D /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 728C9E87211C1B3600AFD98D /* CategoryCollectionViewCell.xib */; };
+		728C9E8B21203ECB00AFD98D /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C9E8A21203ECB00AFD98D /* EditingViewController.swift */; };
+		728C9E8D2121B5DF00AFD98D /* NumberKeyboardUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C9E8C2121B5DF00AFD98D /* NumberKeyboardUIView.swift */; };
+		728C9E8F2121B60D00AFD98D /* NumberKeyboardUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 728C9E8E2121B60D00AFD98D /* NumberKeyboardUIView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		728C9E84211B27BA00AFD98D /* AddCostOrIncomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCostOrIncomeDetailViewController.swift; sourceTree = "<group>"; };
 		728C9E86211C1B3600AFD98D /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		728C9E87211C1B3600AFD98D /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
+		728C9E8A21203ECB00AFD98D /* EditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingViewController.swift; sourceTree = "<group>"; };
+		728C9E8C2121B5DF00AFD98D /* NumberKeyboardUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberKeyboardUIView.swift; sourceTree = "<group>"; };
+		728C9E8E2121B60D00AFD98D /* NumberKeyboardUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberKeyboardUIView.xib; sourceTree = "<group>"; };
 		E1ECA3F2A82E785D5B03B460 /* Pods-DailyAccounter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyAccounter.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailyAccounter/Pods-DailyAccounter.release.xcconfig"; sourceTree = "<group>"; };
 		EBB95B635FB6EE1BB642C10B /* Pods_DailyAccounter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailyAccounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -82,6 +88,9 @@
 				728C9E84211B27BA00AFD98D /* AddCostOrIncomeDetailViewController.swift */,
 				728C9E6421188BF100AFD98D /* AccountData.swift */,
 				728C9E542118717400AFD98D /* Main.storyboard */,
+				728C9E8C2121B5DF00AFD98D /* NumberKeyboardUIView.swift */,
+				728C9E8E2121B60D00AFD98D /* NumberKeyboardUIView.xib */,
+				728C9E8A21203ECB00AFD98D /* EditingViewController.swift */,
 				728C9E86211C1B3600AFD98D /* CategoryCollectionViewCell.swift */,
 				728C9E87211C1B3600AFD98D /* CategoryCollectionViewCell.xib */,
 				728C9E572118717700AFD98D /* Assets.xcassets */,
@@ -164,6 +173,7 @@
 				728C9E89211C1B3600AFD98D /* CategoryCollectionViewCell.xib in Resources */,
 				728C9E5B2118717700AFD98D /* LaunchScreen.storyboard in Resources */,
 				728C9E582118717700AFD98D /* Assets.xcassets in Resources */,
+				728C9E8F2121B60D00AFD98D /* NumberKeyboardUIView.xib in Resources */,
 				728C9E562118717400AFD98D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,8 +242,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				728C9E85211B27BA00AFD98D /* AddCostOrIncomeDetailViewController.swift in Sources */,
+				728C9E8B21203ECB00AFD98D /* EditingViewController.swift in Sources */,
 				728C9E88211C1B3600AFD98D /* CategoryCollectionViewCell.swift in Sources */,
 				728C9E532118717400AFD98D /* MainViewController.swift in Sources */,
+				728C9E8D2121B5DF00AFD98D /* NumberKeyboardUIView.swift in Sources */,
 				728C9E6521188BF100AFD98D /* AccountData.swift in Sources */,
 				728C9E512118717400AFD98D /* AppDelegate.swift in Sources */,
 			);

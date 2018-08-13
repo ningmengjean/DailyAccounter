@@ -9,25 +9,35 @@
 import UIKit
 
 class AddCostOrIncomeDetailViewController: UIViewController {
+    
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    @IBOutlet weak var categorymageView: UIImageView!
+    @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var textField: UITextField!
+  
+    @IBOutlet weak var digitLabel: UILabel!
     
-    @IBOutlet weak var collectionView: UICollectionView! {
+    @IBOutlet weak var costCollectionView: UICollectionView! {
         didSet {
-            collectionView.delegate = self
-            collectionView.dataSource = self
+            costCollectionView.delegate = self
+            costCollectionView.dataSource = self
         }
     }
     
+    @IBOutlet weak var incomeCollectionView: UICollectionView! {
+        didSet {
+            incomeCollectionView.delegate = self
+            incomeCollectionView.dataSource = self
+        }
+    }
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            collectionView.isHidden = false
+            costCollectionView.isHidden = true
+            incomeCollectionView.isHidden = false
         default:
-            collectionView.isHidden = true
+            costCollectionView.isHidden = false
+            incomeCollectionView.isHidden = true
         }
     }
     
@@ -35,26 +45,38 @@ class AddCostOrIncomeDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "CategoryCollectionViewCell")
+        costCollectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "CategoryCollectionViewCell")
+        incomeCollectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "CategoryCollectionViewCell")
         
     }
 
-     var category = ["Food","Lifestuff","Makeup","Babystuff","Clothes","Travel","More"]
+     var costCategory = ["Food","Lifestuff","Makeup","Babystuff","Clothes","Travel"]
+     var incomeCategory = ["Salary","PinMoney","RedPocket","Alimony","Part-time","Investment","Bravo","Reimbursement","Cash","Refund","Others"]
 
 }
 
 extension AddCostOrIncomeDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return category.count
+        if collectionView == costCollectionView {
+            return costCategory.count
+        } else {
+            return incomeCategory.count
+        }
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let categoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCollectionViewCell", for: indexPath) as! CategoryCollectionViewCell
-        categoryCell.categoryLabel.text = category[indexPath.row]
-        categoryCell.categoryImageView.image = UIImage(named: category[indexPath.row])
-        return categoryCell
+        if collectionView == costCollectionView {
+            categoryCell.categoryLabel.text = costCategory[indexPath.row]
+            categoryCell.categoryImageView.image = UIImage(named: costCategory[indexPath.row])
+            return categoryCell
+        } else {
+            categoryCell.categoryLabel.text = incomeCategory[indexPath.row]
+            categoryCell.categoryImageView.image = UIImage(named: incomeCategory[indexPath.row])
+            return categoryCell
+        }
         
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -63,7 +85,7 @@ extension AddCostOrIncomeDetailViewController: UICollectionViewDataSource, UICol
             return
         }
         categoryLabel.text = text
-        categorymageView.image = image
+        categoryImageView.image = image
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
@@ -76,6 +98,8 @@ extension AddCostOrIncomeDetailViewController : UICollectionViewDelegateFlowLayo
         return CGSize(width: 90.0, height: 96.0)
     }
 }
+
+
 
 
 
