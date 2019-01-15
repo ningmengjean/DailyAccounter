@@ -20,6 +20,10 @@
 		728C9E8B21203ECB00AFD98D /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C9E8A21203ECB00AFD98D /* EditingViewController.swift */; };
 		728C9E8D2121B5DF00AFD98D /* NumberKeyboardUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C9E8C2121B5DF00AFD98D /* NumberKeyboardUIView.swift */; };
 		728C9E8F2121B60D00AFD98D /* NumberKeyboardUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 728C9E8E2121B60D00AFD98D /* NumberKeyboardUIView.xib */; };
+		728C9E91212EF30900AFD98D /* HalfSizePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C9E90212EF30900AFD98D /* HalfSizePresentationController.swift */; };
+		72925F7821E88686003C1F39 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72925F7721E88686003C1F39 /* AlertService.swift */; };
+		72C3275821DDF40C00C4456A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C3275721DDF40C00C4456A /* RealmService.swift */; };
+		72C3275B21DE249000C4456A /* AddPersonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C3275921DE249000C4456A /* AddPersonTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,10 @@
 		728C9E8A21203ECB00AFD98D /* EditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingViewController.swift; sourceTree = "<group>"; };
 		728C9E8C2121B5DF00AFD98D /* NumberKeyboardUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberKeyboardUIView.swift; sourceTree = "<group>"; };
 		728C9E8E2121B60D00AFD98D /* NumberKeyboardUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberKeyboardUIView.xib; sourceTree = "<group>"; };
+		728C9E90212EF30900AFD98D /* HalfSizePresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSizePresentationController.swift; sourceTree = "<group>"; };
+		72925F7721E88686003C1F39 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
+		72C3275721DDF40C00C4456A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		72C3275921DE249000C4456A /* AddPersonTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonTableViewController.swift; sourceTree = "<group>"; };
 		E1ECA3F2A82E785D5B03B460 /* Pods-DailyAccounter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyAccounter.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailyAccounter/Pods-DailyAccounter.release.xcconfig"; sourceTree = "<group>"; };
 		EBB95B635FB6EE1BB642C10B /* Pods_DailyAccounter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailyAccounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -87,10 +95,14 @@
 				728C9E522118717400AFD98D /* MainViewController.swift */,
 				728C9E84211B27BA00AFD98D /* AddCostOrIncomeDetailViewController.swift */,
 				728C9E6421188BF100AFD98D /* AccountData.swift */,
+				72C3275721DDF40C00C4456A /* RealmService.swift */,
 				728C9E542118717400AFD98D /* Main.storyboard */,
+				72C3275921DE249000C4456A /* AddPersonTableViewController.swift */,
+				728C9E90212EF30900AFD98D /* HalfSizePresentationController.swift */,
 				728C9E8C2121B5DF00AFD98D /* NumberKeyboardUIView.swift */,
 				728C9E8E2121B60D00AFD98D /* NumberKeyboardUIView.xib */,
 				728C9E8A21203ECB00AFD98D /* EditingViewController.swift */,
+				72925F7721E88686003C1F39 /* AlertService.swift */,
 				728C9E86211C1B3600AFD98D /* CategoryCollectionViewCell.swift */,
 				728C9E87211C1B3600AFD98D /* CategoryCollectionViewCell.xib */,
 				728C9E572118717700AFD98D /* Assets.xcassets */,
@@ -144,6 +156,7 @@
 				TargetAttributes = {
 					728C9E4C2118717400AFD98D = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -241,13 +254,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72925F7821E88686003C1F39 /* AlertService.swift in Sources */,
 				728C9E85211B27BA00AFD98D /* AddCostOrIncomeDetailViewController.swift in Sources */,
 				728C9E8B21203ECB00AFD98D /* EditingViewController.swift in Sources */,
 				728C9E88211C1B3600AFD98D /* CategoryCollectionViewCell.swift in Sources */,
 				728C9E532118717400AFD98D /* MainViewController.swift in Sources */,
+				72C3275821DDF40C00C4456A /* RealmService.swift in Sources */,
 				728C9E8D2121B5DF00AFD98D /* NumberKeyboardUIView.swift in Sources */,
 				728C9E6521188BF100AFD98D /* AccountData.swift in Sources */,
 				728C9E512118717400AFD98D /* AppDelegate.swift in Sources */,
+				72C3275B21DE249000C4456A /* AddPersonTableViewController.swift in Sources */,
+				728C9E91212EF30900AFD98D /* HalfSizePresentationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,7 +418,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ping.DailyAccounter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -420,7 +437,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ping.DailyAccounter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

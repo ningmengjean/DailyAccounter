@@ -8,11 +8,12 @@
 
 import UIKit
 
-class AddCostOrIncomeDetailViewController: UIViewController {
+class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIViewDelegate,UIViewControllerTransitioningDelegate {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     @IBOutlet weak var categoryImageView: UIImageView!
+    
     @IBOutlet weak var categoryLabel: UILabel!
   
     @IBOutlet weak var digitLabel: UILabel!
@@ -41,18 +42,97 @@ class AddCostOrIncomeDetailViewController: UIViewController {
         }
     }
     
-    
+    let numberKeyboardUIView = gk_initViewFromNib(withType: NumberKeyboardUIView.self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         costCollectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "CategoryCollectionViewCell")
         incomeCollectionView.register(UINib(nibName: "CategoryCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "CategoryCollectionViewCell")
+        numberKeyboardUIView.delegate = self
+        numberKeyboardUIView.frame = CGRect(x: 0, y: self.view.bounds.height, width:self.view.bounds.width, height: 290)
+        numberKeyboardUIView.backgroundColor = UIColor.lightGray
+        self.view.insertSubview(numberKeyboardUIView, aboveSubview: incomeCollectionView)
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showNumberKeyboardUIView()
     }
 
      var costCategory = ["Food","Lifestuff","Makeup","Babystuff","Clothes","Travel"]
      var incomeCategory = ["Salary","PinMoney","RedPocket","Alimony","Part-time","Investment","Bravo","Reimbursement","Cash","Refund","Others"]
-
+     var peopleInTheMiddleOfTyping = false
+    
+    func showNumberKeyboardUIView() {
+        UIView.animate(withDuration: 0.2, delay: 0, options:.transitionCurlUp ,animations: {
+            self.view.layoutIfNeeded()
+            self.numberKeyboardUIView.frame = CGRect(x: 0, y: self.view.bounds.height - 290, width: self.view.bounds.width, height: 290)
+        },
+            completion: nil)
+    }
+    
+    func hideNumberKeyboardUIView() {
+        UIView.animate(withDuration: 0.2, delay:0, options: .curveEaseOut,animations: {
+            self.view.layoutIfNeeded()
+            self.numberKeyboardUIView.frame = CGRect(x: 0, y: self.view.bounds.height, width: self.view.bounds.width, height: 290)
+            }, completion: nil)
+    }
+    
+    func changeDigitalLabelText(label: UILabel) {
+        let textCurrentInDisplay = digitLabel.text!
+        let digit = label.text!
+        if textCurrentInDisplay.contains(".") {
+            if digit == "." {
+                return
+            }
+        }
+        if textCurrentInDisplay == "0" {
+            if digit == "0" {
+                return
+            }
+        }
+        if peopleInTheMiddleOfTyping {
+            digitLabel.text = textCurrentInDisplay + digit
+        } else if (digit == ".") && (peopleInTheMiddleOfTyping == false) {
+            digitLabel.text = "0" + "."
+            peopleInTheMiddleOfTyping = true
+        } else {
+            digitLabel.text = digit
+            
+        }
+        peopleInTheMiddleOfTyping = true
+    }
+    
+    func cleanDigitalLabelText() {
+        digitLabel.text = "0"
+        peopleInTheMiddleOfTyping = false
+    }
+    
+    func deleteOneDigitalOnTheLabelText() {
+        digitLabel.text = String(digitLabel.text!.dropLast())
+        if digitLabel.text == "" {
+            digitLabel.text = "0"
+            peopleInTheMiddleOfTyping = false
+        }
+    }
+    
+    func presentPersonViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let pvc = storyboard.instantiateViewController(withIdentifier: "AddPersonTableViewController") as! UITableViewController
+        
+        pvc.modalPresentationStyle = UIModalPresentationStyle.custom
+        pvc.transitioningDelegate = self
+        pvc.view.backgroundColor = UIColor.white
+        
+        self.present(pvc, animated: true, completion: nil)
+    }
+    
+    func presentationController(forPresented presented: UIViewController,
+                                presenting: UIViewController?,
+                                source: UIViewController) -> UIPresentationController? {
+        return HalfSizePresentationController(presentedViewController: presented, presenting: presenting)
+    }
 }
 
 extension AddCostOrIncomeDetailViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -88,6 +168,17 @@ extension AddCostOrIncomeDetailViewController: UICollectionViewDataSource, UICol
         categoryImageView.image = image
         collectionView.deselectItem(at: indexPath, animated: true)
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView === incomeCollectionView || scrollView === costCollectionView {
+            let translation = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+            if translation.y > 0{
+                hideNumberKeyboardUIView()
+            } else {
+                showNumberKeyboardUIView()
+            }
+        }
+    }
 }
 
 extension AddCostOrIncomeDetailViewController : UICollectionViewDelegateFlowLayout {
@@ -98,6 +189,9 @@ extension AddCostOrIncomeDetailViewController : UICollectionViewDelegateFlowLayo
         return CGSize(width: 90.0, height: 96.0)
     }
 }
+
+
+
 
 
 

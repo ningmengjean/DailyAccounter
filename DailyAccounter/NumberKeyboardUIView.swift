@@ -6,16 +6,63 @@
 //  Copyright © 2018年 Zhu xiaojin. All rights reserved.
 //
 
+public func gk_initViewFromNib<T: UIView>(withType type: T.Type) -> T {
+    return (Bundle.main.loadNibNamed(String(describing: type.self), owner: nil, options: nil)!.first as? T)!
+}
+
+protocol NumberKeyboardUIViewDelegate: class {
+    func changeDigitalLabelText(label: UILabel)
+    func cleanDigitalLabelText()
+    func deleteOneDigitalOnTheLabelText()
+    func presentPersonViewController()
+}
+
 import UIKit
 
 class NumberKeyboardUIView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    @IBOutlet weak var dateButton: UIButton! {
+        didSet {
+            dateButton.setTitle(AccountData.defaultDay(), for: .normal) 
+        }
     }
-    */
-
+    @IBOutlet weak var personButton: UIButton!
+    @IBOutlet weak var detailButton: UIButton!
+    
+    @IBAction func presentCalenderViewController(_ sender: UIButton) {
+    }
+    
+    @IBAction func presentPersonViewController(_ sender: UIButton) {
+        delegate?.presentPersonViewController()
+    }
+    
+    @IBAction func presentDetailViewController(_ sender: UIButton) {
+    }
+    
+    @IBAction func touchDigit(_ sender: UIButton) {
+        if let digit = sender.titleLabel {
+            delegate?.changeDigitalLabelText(label: digit)
+        }
+    }
+    
+    @IBAction func touchDelete(_ sender: UIButton) {
+        delegate?.deleteOneDigitalOnTheLabelText()
+    }
+    
+    @IBAction func touchConform(_ sender: UIButton) {
+    }
+    
+    @IBAction func touchClear(_ sender: UIButton) {
+        delegate?.cleanDigitalLabelText()
+    }
+    
+    var delegate: NumberKeyboardUIViewDelegate?
+    
+    
+    
+    
+    
+    
+    
+    
 }
