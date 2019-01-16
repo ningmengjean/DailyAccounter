@@ -8,23 +8,35 @@
 
 
 import UIKit
+import RealmSwift
 
 class AddPersonTableViewController: UITableViewController,GetMemberListDelegate{
-
     func getMemberList(arr: [String]?) {
-        memberList = arr ?? ["Me","Mother","Father"]
+        if let arr = arr, arr.count != 0 {
+            memberList = arr
+            UserDefaults.standard.set(memberList, forKey: "Members")
+        } else {
+            memberList = []
+        }
         tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        controller.delegate = self
+        
     }
 
-    var memberList = [String]()
-    let controller = EditingViewController()
+    var memberList = UserDefaults.standard.stringArray(forKey: "Members") ?? ["Me","Father","Mother"]{
+        didSet {
+            UserDefaults.standard.set(memberList, forKey: "Members")
+            tableView.reloadData()
+        }
+    }
+
     @objc func touchEditButton(_ sender: UIButton) {
-        let nav: UINavigationController = UINavigationController(rootViewController: self.storyboard!.instantiateViewController(withIdentifier: "EditingViewController") )
+        let controller = self.storyboard!.instantiateViewController(withIdentifier: "EditingViewController") as! EditingViewController
+        let nav: UINavigationController = UINavigationController(rootViewController: controller)
+        controller.delegate = self
         self.present(nav, animated: true, completion: nil)
     }
     

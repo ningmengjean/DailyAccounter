@@ -118,5 +118,13 @@ class EditingViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.textLabel?.text = memberArray[indexPath.row]
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            memberArray.remove(at: indexPath.row)
+            tableView.deselectRow(at: indexPath, animated: true)
+            UserDefaults.standard.set(memberArray, forKey:"Members")
+        }
+    }
 }
 

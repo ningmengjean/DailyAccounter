@@ -70,6 +70,13 @@ class Category: Object {
     @objc dynamic var imageView: UIImageView?
 }
 
+class MemberList: Object {
+    @objc dynamic var memberList = ["Me","Father","Mother"]
+    convenience init(memberList: [String]) {
+        self.init()
+        self.memberList = memberList
+    }
+}
 
 
 
