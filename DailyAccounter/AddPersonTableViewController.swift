@@ -34,7 +34,7 @@ class AddPersonTableViewController: UITableViewController,GetMemberListDelegate{
     }
 
     @objc func touchEditButton(_ sender: UIButton) {
-        let controller = self.storyboard!.instantiateViewController(withIdentifier: "EditingViewController") as! EditingViewController
+        let controller = self.storyboard!.instantiateViewController(withIdentifier: "ManageMembersViewController") as! ManageMembersViewController
         let nav: UINavigationController = UINavigationController(rootViewController: controller)
         controller.delegate = self
         self.present(nav, animated: true, completion: nil)

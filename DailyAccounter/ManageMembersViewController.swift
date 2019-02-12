@@ -1,5 +1,5 @@
 //
-//  EditingViewController.swift
+//  ManageMembersViewController.swift
 //  DailyAccounter
 //
 //  Created by wangchi on 2018/8/12.
@@ -11,11 +11,11 @@ protocol GetMemberListDelegate: class {
 
 import UIKit
 
-class EditingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class ManageMembersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var tableview: UITableView!
     var textField = UITextField()
-    var memberArray = UserDefaults.standard.array(forKey: "Members") as![String] {
+    var memberArray = UserDefaults.standard.array(forKey: "Members") as?[String] ?? ["Me","Father","Mother"] {
         didSet {
             UserDefaults.standard.set(memberArray, forKey: "Members")
             tableview.reloadData()
@@ -43,6 +43,7 @@ class EditingViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Member", style: .plain, target: self, action: #selector(touchMemberButton(_:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Default", style: .plain, target: self, action: #selector(touchDefaultButton(_:)))
         self.textField.frame = CGRect(x: 0, y: UIScreen.main.bounds.height-60, width: UIScreen.main.bounds.width, height: 60)
         textField.placeholder = "Add Memebers"
         textField.textAlignment = .center
@@ -57,6 +58,13 @@ class EditingViewController: UIViewController, UITableViewDelegate, UITableViewD
         dismiss(animated: true, completion:{
             self.delegate?.getMemberList(arr: self.memberArray)
         })
+    }
+    
+    @objc func touchDefaultButton(_ sender: UINavigationItem) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "SetDefaultMemberViewController") as! SetDefaultMemberViewController
+        controller.memberArray = memberArray
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func getKeyboardHeight(_ notification: Notification) -> CGFloat {
@@ -126,5 +134,21 @@ class EditingViewController: UIViewController, UITableViewDelegate, UITableViewD
             UserDefaults.standard.set(memberArray, forKey:"Members")
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        let controller = self.storyboard!.instantiateViewController(withIdentifier: "EditMemberViewController") as! EditMemberViewController
+		
+		let nav: UINavigationController = UINavigationController(rootViewController: controller)
+		guard let text = cell?.textLabel?.text else { return }
+		controller.currentIndex = indexPath.row
+		controller.currentText = text
+		self.present(nav, animated: true, completion: nil)
+		controller.sendMemberBack = { [weak self] text, index in
+			self?.memberArray.remove(at: index)
+			self?.memberArray.insert(text, at: index)
+			self?.tableview.reloadData()
+		}
+	}
 }
 

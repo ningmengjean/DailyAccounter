@@ -18,6 +18,8 @@ class RealmService {
     
     func create<T: Object>(_ object: T) {
         do {
+            
+            
             try realm.write {
                 realm.add(object)
             }
@@ -46,6 +48,11 @@ class RealmService {
         } catch {
             post(error)
         }
+    }
+    
+    
+    func object<T: Object>(_ type: T.Type) -> Results<T> {
+        return realm.objects(T.self)
     }
     
     func post(_ error: Error) {

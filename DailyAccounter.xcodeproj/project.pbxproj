@@ -17,13 +17,15 @@
 		728C9E85211B27BA00AFD98D /* AddCostOrIncomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C9E84211B27BA00AFD98D /* AddCostOrIncomeDetailViewController.swift */; };
 		728C9E88211C1B3600AFD98D /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C9E86211C1B3600AFD98D /* CategoryCollectionViewCell.swift */; };
 		728C9E89211C1B3600AFD98D /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 728C9E87211C1B3600AFD98D /* CategoryCollectionViewCell.xib */; };
-		728C9E8B21203ECB00AFD98D /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C9E8A21203ECB00AFD98D /* EditingViewController.swift */; };
+		728C9E8B21203ECB00AFD98D /* ManageMembersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C9E8A21203ECB00AFD98D /* ManageMembersViewController.swift */; };
 		728C9E8D2121B5DF00AFD98D /* NumberKeyboardUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C9E8C2121B5DF00AFD98D /* NumberKeyboardUIView.swift */; };
 		728C9E8F2121B60D00AFD98D /* NumberKeyboardUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 728C9E8E2121B60D00AFD98D /* NumberKeyboardUIView.xib */; };
 		728C9E91212EF30900AFD98D /* HalfSizePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C9E90212EF30900AFD98D /* HalfSizePresentationController.swift */; };
 		72925F7821E88686003C1F39 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72925F7721E88686003C1F39 /* AlertService.swift */; };
+		72A21D2421F05BAE00143C5F /* EditMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A21D2321F05BAE00143C5F /* EditMemberViewController.swift */; };
 		72C3275821DDF40C00C4456A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C3275721DDF40C00C4456A /* RealmService.swift */; };
 		72C3275B21DE249000C4456A /* AddPersonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C3275921DE249000C4456A /* AddPersonTableViewController.swift */; };
+		72CE694622009390001E3260 /* SetDefaultMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CE694522009390001E3260 /* SetDefaultMemberViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,13 +41,15 @@
 		728C9E84211B27BA00AFD98D /* AddCostOrIncomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCostOrIncomeDetailViewController.swift; sourceTree = "<group>"; };
 		728C9E86211C1B3600AFD98D /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		728C9E87211C1B3600AFD98D /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
-		728C9E8A21203ECB00AFD98D /* EditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingViewController.swift; sourceTree = "<group>"; };
+		728C9E8A21203ECB00AFD98D /* ManageMembersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageMembersViewController.swift; sourceTree = "<group>"; };
 		728C9E8C2121B5DF00AFD98D /* NumberKeyboardUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberKeyboardUIView.swift; sourceTree = "<group>"; };
 		728C9E8E2121B60D00AFD98D /* NumberKeyboardUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberKeyboardUIView.xib; sourceTree = "<group>"; };
 		728C9E90212EF30900AFD98D /* HalfSizePresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSizePresentationController.swift; sourceTree = "<group>"; };
 		72925F7721E88686003C1F39 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
+		72A21D2321F05BAE00143C5F /* EditMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMemberViewController.swift; sourceTree = "<group>"; };
 		72C3275721DDF40C00C4456A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		72C3275921DE249000C4456A /* AddPersonTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonTableViewController.swift; sourceTree = "<group>"; };
+		72CE694522009390001E3260 /* SetDefaultMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDefaultMemberViewController.swift; sourceTree = "<group>"; };
 		E1ECA3F2A82E785D5B03B460 /* Pods-DailyAccounter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyAccounter.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailyAccounter/Pods-DailyAccounter.release.xcconfig"; sourceTree = "<group>"; };
 		EBB95B635FB6EE1BB642C10B /* Pods_DailyAccounter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailyAccounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -97,11 +101,13 @@
 				728C9E6421188BF100AFD98D /* AccountData.swift */,
 				72C3275721DDF40C00C4456A /* RealmService.swift */,
 				728C9E542118717400AFD98D /* Main.storyboard */,
+				72CE694522009390001E3260 /* SetDefaultMemberViewController.swift */,
+				72A21D2321F05BAE00143C5F /* EditMemberViewController.swift */,
 				72C3275921DE249000C4456A /* AddPersonTableViewController.swift */,
 				728C9E90212EF30900AFD98D /* HalfSizePresentationController.swift */,
 				728C9E8C2121B5DF00AFD98D /* NumberKeyboardUIView.swift */,
 				728C9E8E2121B60D00AFD98D /* NumberKeyboardUIView.xib */,
-				728C9E8A21203ECB00AFD98D /* EditingViewController.swift */,
+				728C9E8A21203ECB00AFD98D /* ManageMembersViewController.swift */,
 				72925F7721E88686003C1F39 /* AlertService.swift */,
 				728C9E86211C1B3600AFD98D /* CategoryCollectionViewCell.swift */,
 				728C9E87211C1B3600AFD98D /* CategoryCollectionViewCell.xib */,
@@ -256,10 +262,12 @@
 			files = (
 				72925F7821E88686003C1F39 /* AlertService.swift in Sources */,
 				728C9E85211B27BA00AFD98D /* AddCostOrIncomeDetailViewController.swift in Sources */,
-				728C9E8B21203ECB00AFD98D /* EditingViewController.swift in Sources */,
+				728C9E8B21203ECB00AFD98D /* ManageMembersViewController.swift in Sources */,
 				728C9E88211C1B3600AFD98D /* CategoryCollectionViewCell.swift in Sources */,
 				728C9E532118717400AFD98D /* MainViewController.swift in Sources */,
+				72CE694622009390001E3260 /* SetDefaultMemberViewController.swift in Sources */,
 				72C3275821DDF40C00C4456A /* RealmService.swift in Sources */,
+				72A21D2421F05BAE00143C5F /* EditMemberViewController.swift in Sources */,
 				728C9E8D2121B5DF00AFD98D /* NumberKeyboardUIView.swift in Sources */,
 				728C9E6521188BF100AFD98D /* AccountData.swift in Sources */,
 				728C9E512118717400AFD98D /* AppDelegate.swift in Sources */,
