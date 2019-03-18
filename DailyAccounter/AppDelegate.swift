@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let memberResult = RealmService.shared.object(Member.self)
+        if memberResult?.count == 0 {
+            let member0 = Member(id: 0, memberName: "Me", isDefault: true)
+            
+            let member1 = Member(id: 1, memberName: "Mother", isDefault: false)
+            
+            let member2 = Member(id: 2, memberName: "Father", isDefault: false)
+            
+            RealmService.shared.saveObject(member0)
+            RealmService.shared.saveObject(member1)
+            RealmService.shared.saveObject(member2)
+        }
         
         return true
     }

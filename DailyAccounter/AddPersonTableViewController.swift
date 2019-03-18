@@ -11,28 +11,30 @@ import UIKit
 import RealmSwift
 
 class AddPersonTableViewController: UITableViewController,GetMemberListDelegate{
-    func getMemberList(arr: [String]?) {
+    
+    func getMemberList(arr: Results<Member>?) {
         if let arr = arr, arr.count != 0 {
-            memberList = arr
-            UserDefaults.standard.set(memberList, forKey: "Members")
-        } else {
-            memberList = []
+            memberList = arr.toArray(ofType: Member.self)
         }
-        tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
-
-    var memberList = UserDefaults.standard.stringArray(forKey: "Members") ?? ["Me","Father","Mother"]{
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        memberList = RealmService.shared.object(Member.self)?.toArray(ofType: Member.self)
+        tableView.reloadData()
+    }
+    
+    var memberList = RealmService.shared.object(Member.self)?.toArray(ofType: Member.self) {
         didSet {
-            UserDefaults.standard.set(memberList, forKey: "Members")
             tableView.reloadData()
         }
     }
-
+    
     @objc func touchEditButton(_ sender: UIButton) {
         let controller = self.storyboard!.instantiateViewController(withIdentifier: "ManageMembersViewController") as! ManageMembersViewController
         let nav: UINavigationController = UINavigationController(rootViewController: controller)
@@ -48,7 +50,7 @@ class AddPersonTableViewController: UITableViewController,GetMemberListDelegate{
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return memberList.count
+        return memberList?.count ?? 3
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -79,7 +81,7 @@ class AddPersonTableViewController: UITableViewController,GetMemberListDelegate{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = memberList[indexPath.row]
+        cell.textLabel?.text = memberList?[indexPath.row].memberName
         return cell
     }
 }

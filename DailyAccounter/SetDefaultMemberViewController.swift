@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class SetDefaultMemberViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
    
     
     @IBOutlet weak var tableView: UITableView!
     
-    var memberArray = [String]()
+    var memberArray = [Member]()
     var isDefault = false
     
     override func viewDidLoad() {
@@ -27,7 +28,8 @@ class SetDefaultMemberViewController: UIViewController,UITableViewDelegate,UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = memberArray[indexPath.row]
+        let member = memberArray[indexPath.row]
+        cell.textLabel?.text = member.memberName
         return cell
     }
     
@@ -39,7 +41,8 @@ class SetDefaultMemberViewController: UIViewController,UITableViewDelegate,UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        let attributCellText = NSMutableAttributedString(string: memberArray[indexPath.row])
+        let member = memberArray[indexPath.row]
+        let attributCellText = NSMutableAttributedString(string: member.memberName ?? "")
         let attributDefaultText = NSMutableAttributedString(string: "   (Default)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.blue])
         let combination = NSMutableAttributedString()
         combination.append(attributCellText)
@@ -52,7 +55,8 @@ class SetDefaultMemberViewController: UIViewController,UITableViewDelegate,UITab
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        cell?.textLabel?.text = memberArray[indexPath.row]
+        let member = memberArray[indexPath.row]
+        cell?.textLabel?.text = member.memberName
         cell?.accessoryType = .none
         isDefault = false
     }

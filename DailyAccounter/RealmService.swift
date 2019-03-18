@@ -9,31 +9,51 @@
 import Foundation
 import RealmSwift
 
-class RealmService {
+class RealmService: NSObject {
     
-    private init() {}
+    override init() {
+        super.init()
+        
+        let config = Realm.Configuration(
+            // Set the new schema version. This must be greater than the previously used
+            // version (if you've never set a schema version before, the version is 0).
+            schemaVersion: 1,
+            
+            // Set the block which will be called automatically when opening a Realm with
+            // a schema version lower than the one set above
+            migrationBlock: { migration, oldSchemaVersion in
+                // We haven’t migrated anything yet, so oldSchemaVersion == 0
+                if (oldSchemaVersion < 1) {
+                    // Nothing to do!
+                    // Realm will automatically detect new properties and removed properties
+                    // And will update the schema on disk automatically
+                }
+        })
+        
+        Realm.Configuration.defaultConfiguration = config
+        
+        realm = try! Realm()
+    }
     static let shared = RealmService()
     
-    var realm = try! Realm()
+    var realm: Realm!
     
-    func create<T: Object>(_ object: T) {
+    func saveObject<T: Object>(_ object: T) {
         do {
             
             
             try realm.write {
-                realm.add(object)
+                realm.add(object, update: false)
             }
         } catch {
             post(error)
         }
     }
     
-    func update<T: Object>(_ object: T, with dictionary: [String: Any?]) {
+    func update<T: Object>(_ object: T) {
         do {
             try realm.write {
-                for (key, value) in dictionary {
-                    object.setValue(value, forKey: key)
-                }
+                realm.add(object, update: true)
             }
         } catch {
             post(error)
@@ -51,7 +71,7 @@ class RealmService {
     }
     
     
-    func object<T: Object>(_ type: T.Type) -> Results<T> {
+    func object<T: Object>(_ type: T.Type) -> Results<T>? {
         return realm.objects(T.self)
     }
     
@@ -71,4 +91,17 @@ class RealmService {
         NotificationCenter.default.removeObserver(vc, name: NSNotification.Name("RealmError"), object: nil)
     }
     
+}
+
+extension Results {
+    func toArray<T>(ofType: T.Type) -> [T] {
+        var array = [T]()
+        for i in 0 ..< count {
+            if let result = self[i] as? T {
+                array.append(result)
+            }
+        }
+        
+        return array
+    }
 }

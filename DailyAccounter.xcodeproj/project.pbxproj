@@ -26,6 +26,7 @@
 		72C3275821DDF40C00C4456A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C3275721DDF40C00C4456A /* RealmService.swift */; };
 		72C3275B21DE249000C4456A /* AddPersonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C3275921DE249000C4456A /* AddPersonTableViewController.swift */; };
 		72CE694622009390001E3260 /* SetDefaultMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CE694522009390001E3260 /* SetDefaultMemberViewController.swift */; };
+		72F728912223D3E1004520DA /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F728902223D3E1004520DA /* Member.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		72C3275721DDF40C00C4456A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		72C3275921DE249000C4456A /* AddPersonTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonTableViewController.swift; sourceTree = "<group>"; };
 		72CE694522009390001E3260 /* SetDefaultMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDefaultMemberViewController.swift; sourceTree = "<group>"; };
+		72F728902223D3E1004520DA /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		E1ECA3F2A82E785D5B03B460 /* Pods-DailyAccounter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyAccounter.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailyAccounter/Pods-DailyAccounter.release.xcconfig"; sourceTree = "<group>"; };
 		EBB95B635FB6EE1BB642C10B /* Pods_DailyAccounter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailyAccounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -108,6 +110,7 @@
 				728C9E8C2121B5DF00AFD98D /* NumberKeyboardUIView.swift */,
 				728C9E8E2121B60D00AFD98D /* NumberKeyboardUIView.xib */,
 				728C9E8A21203ECB00AFD98D /* ManageMembersViewController.swift */,
+				72F728902223D3E1004520DA /* Member.swift */,
 				72925F7721E88686003C1F39 /* AlertService.swift */,
 				728C9E86211C1B3600AFD98D /* CategoryCollectionViewCell.swift */,
 				728C9E87211C1B3600AFD98D /* CategoryCollectionViewCell.xib */,
@@ -265,6 +268,7 @@
 				728C9E8B21203ECB00AFD98D /* ManageMembersViewController.swift in Sources */,
 				728C9E88211C1B3600AFD98D /* CategoryCollectionViewCell.swift in Sources */,
 				728C9E532118717400AFD98D /* MainViewController.swift in Sources */,
+				72F728912223D3E1004520DA /* Member.swift in Sources */,
 				72CE694622009390001E3260 /* SetDefaultMemberViewController.swift in Sources */,
 				72C3275821DDF40C00C4456A /* RealmService.swift in Sources */,
 				72A21D2421F05BAE00143C5F /* EditMemberViewController.swift in Sources */,

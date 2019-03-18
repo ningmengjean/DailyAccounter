@@ -67,7 +67,7 @@ class Income: Object {
 
 class Category: Object {
     @objc dynamic var name: String?
-    @objc dynamic var imageView: UIImageView?
+    @objc dynamic var imageView: String?
 }
 
 
