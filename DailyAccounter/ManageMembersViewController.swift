@@ -168,7 +168,7 @@ class ManageMembersViewController: UIViewController, UITableViewDelegate, UITabl
 		controller.currentText = text
 		self.present(nav, animated: true, completion: nil)
 		controller.sendMemberBack = { [weak self] text, index in
-            if self!.filterTextInRealmMemberArray(text) {
+            if self?.filterTextInRealmMemberArray(text) == true {
                 AlertService.addAlert(in: self!) {
                     controller.sendMemberBackWithNoChange = { [weak self] text, index in
                         self?.tableview.reloadData()
@@ -176,15 +176,11 @@ class ManageMembersViewController: UIViewController, UITableViewDelegate, UITabl
                 }
             } else {
                 guard let oldMember = self?.memberArray[index] else { return }
-//                self?.memberArray.remove(at: index)
-                RealmService.shared.delete(oldMember)
-                let newMember = Member()
-                newMember.id = newMember.incrementID()
-                newMember.memberName = text
-                newMember.isDefault = false
-//                self?.memberArray.insert(newMember, at: index)
-                RealmService.shared.update(newMember)
-                self?.tableview.reloadData()
+                RealmService.shared.update() {
+                    oldMember.memberName = text
+                    oldMember.isDefault = false
+                    return oldMember
+                }
             }
 		}
         controller.sendMemberBackWithNoChange = { [weak self] text, index in

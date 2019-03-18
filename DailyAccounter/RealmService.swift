@@ -50,10 +50,12 @@ class RealmService: NSObject {
         }
     }
     
-    func update<T: Object>(_ object: T) {
+    
+    // Realm need use to change anything in write transaction, or it will crash
+    func update<T: Object>(_ changing: @escaping ()->T) {
         do {
             try realm.write {
-                realm.add(object, update: true)
+                realm.add(changing(), update: true)
             }
         } catch {
             post(error)
