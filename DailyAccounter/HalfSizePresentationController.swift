@@ -40,7 +40,7 @@ class HalfSizePresentationController: UIPresentationController{
         self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) in
             self.blurEffectView.alpha = 1
         }, completion: { (UIViewControllerTransitionCoordinatorContext) in
-            
+       
         })
     }
     override func containerViewWillLayoutSubviews() {

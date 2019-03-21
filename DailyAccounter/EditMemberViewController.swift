@@ -12,9 +12,7 @@ import UIKit
 class EditMemberViewController: UIViewController,UITextFieldDelegate {
    
     @IBOutlet weak var textField: UITextField!
-    var sendMemberBack: ((String, Int)-> Void)?
-    var sendMemberBackWithNoChange: ((String, Int)-> Void)?
-	
+    var sendMemberBack: ((String, Int)-> Void)?	
 	var currentIndex = 0
 	var currentText = ""
     var initText = ""
@@ -32,9 +30,6 @@ class EditMemberViewController: UIViewController,UITextFieldDelegate {
     
     @objc func touchBackButton(_ sender: UINavigationItem) {
         textField.resignFirstResponder()
-        if let sendMemberBackWithNoChange = self.sendMemberBackWithNoChange {
-            sendMemberBackWithNoChange(self.initText, self.currentIndex)
-        }
         dismiss(animated: true, completion: nil)
     }
 

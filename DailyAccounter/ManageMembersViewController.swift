@@ -143,7 +143,15 @@ class ManageMembersViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         let member = memberArray[indexPath.row]
-        cell.textLabel?.text = member.memberName
+        let setDefaultMemberViewController = SetDefaultMemberViewController()
+        if member.isDefault == true {
+            cell.textLabel?.attributedText = setDefaultMemberViewController.changeStringNSMutableAttributedString(text: member.memberName)
+            cell.selectionStyle = .none
+            cell.accessoryType = .checkmark
+            cell.setSelected(true, animated: false)
+        } else {
+            cell.textLabel?.text = member.memberName
+        }
         return cell
     }
     
@@ -154,7 +162,6 @@ class ManageMembersViewController: UIViewController, UITableViewDelegate, UITabl
             memberArray.remove(at: indexPath.row)
             RealmService.shared.delete(member)
             tableView.deselectRow(at: indexPath, animated: true)
-//            UserDefaults.standard.set(memberArray, forKey:"Members")
         }
     }
     
@@ -169,11 +176,7 @@ class ManageMembersViewController: UIViewController, UITableViewDelegate, UITabl
 		self.present(nav, animated: true, completion: nil)
 		controller.sendMemberBack = { [weak self] text, index in
             if self?.filterTextInRealmMemberArray(text) == true {
-                AlertService.addAlert(in: self!) {
-                    controller.sendMemberBackWithNoChange = { [weak self] text, index in
-                        self?.tableview.reloadData()
-                    }
-                }
+                AlertService.addAlert(in: self!){ }
             } else {
                 guard let oldMember = self?.memberArray[index] else { return }
                 RealmService.shared.update() {
@@ -183,9 +186,6 @@ class ManageMembersViewController: UIViewController, UITableViewDelegate, UITabl
                 }
             }
 		}
-        controller.sendMemberBackWithNoChange = { [weak self] text, index in
-            self?.tableview.reloadData()
-        }
 	}
 }
 

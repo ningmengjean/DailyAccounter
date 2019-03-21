@@ -20,20 +20,27 @@ class AddPersonTableViewController: UITableViewController,GetMemberListDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        memberList = RealmService.shared.object(Member.self)?.toArray(ofType: Member.self)
+        memberList = (RealmService.shared.object(Member.self)?.toArray(ofType: Member.self)) ?? [Member]()
         tableView.reloadData()
     }
     
-    var memberList = RealmService.shared.object(Member.self)?.toArray(ofType: Member.self) {
-        didSet {
-            tableView.reloadData()
+    var memberList = [Member]()
+    lazy var selectedIndex = returnDefaultIndex(arr: memberList)
+    
+    func returnDefaultIndex(arr:[Member]) -> Int? {
+        for idx in arr.indices {
+            if arr[idx].isDefault == true {
+                return idx
+            }
         }
+        return nil
     }
+
     
     @objc func touchEditButton(_ sender: UIButton) {
         let controller = self.storyboard!.instantiateViewController(withIdentifier: "ManageMembersViewController") as! ManageMembersViewController
@@ -50,7 +57,7 @@ class AddPersonTableViewController: UITableViewController,GetMemberListDelegate{
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return memberList?.count ?? 3
+        return memberList.count 
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -81,7 +88,23 @@ class AddPersonTableViewController: UITableViewController,GetMemberListDelegate{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = memberList?[indexPath.row].memberName
+        let member = memberList[indexPath.row]
+        let setDefaultMemberViewController = SetDefaultMemberViewController()
+        if member.isDefault == true {
+            cell.textLabel?.attributedText = setDefaultMemberViewController.changeStringNSMutableAttributedString(text: member.memberName)
+            cell.selectionStyle = .none
+            cell.accessoryType = .checkmark
+            cell.setSelected(true, animated: false)
+        } else {
+            cell.textLabel?.text = member.memberName
+        }
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == selectedIndex {
+            cell.setSelected(true, animated: false)
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        }
     }
 }
