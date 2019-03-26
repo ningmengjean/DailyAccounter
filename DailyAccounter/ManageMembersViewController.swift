@@ -186,35 +186,20 @@ class ManageMembersViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         let controller = self.storyboard!.instantiateViewController(withIdentifier: "EditMemberViewController") as! EditMemberViewController
-		
-		let nav: UINavigationController = UINavigationController(rootViewController: controller)
-		guard let text = cell?.textLabel?.text else { return }
-		controller.currentIndex = indexPath.row
-		controller.currentText = text
-		self.present(nav, animated: true, completion: nil)
-		controller.sendMemberBack = { [weak self] text, index in
-            if self?.filterTextInRealmMemberArray(text) == true {
-                AlertService.addAlert(in: controller.self){ }
-                
-            } else {
-                guard let oldMember = self?.memberArray[index] else { return }
-                RealmService.shared.update() {
-                    oldMember.memberName = text
-                    oldMember.isDefault = false
-                    return oldMember
-                }
+        
+        let nav: UINavigationController = UINavigationController(rootViewController: controller)
+        guard let text = cell?.textLabel?.text else { return }
+        controller.currentIndex = indexPath.row
+        controller.currentText = text
+        self.present(nav, animated: true, completion: nil)
+        controller.sendMemberBack = { [weak self] text, index in
+            guard let oldMember = self?.memberArray[index] else { return }
+            RealmService.shared.update() {
+                oldMember.memberName = text
+                oldMember.isDefault = false
+                return oldMember
             }
-		}
-	}
-//
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let footerView = UIView()
-//        footerView.frame = CGRect(x: 0, y: ((self.view.bounds.height) - 60 - (self.textFieldFrameY+0.1)), width: self.view.bounds.width, height: 0.1)
-//        return footerView
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 0.1
-//    }
+        }
+    }
 }
 

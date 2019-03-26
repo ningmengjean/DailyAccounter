@@ -35,9 +35,22 @@ class EditMemberViewController: UIViewController,UITextFieldDelegate {
 
     @objc func touchCompleteButton(_ sender: UINavigationItem) {
         textField.resignFirstResponder()
-        if let text = self.textField.text, let sendMemberBack = self.sendMemberBack {
+        if let text = self.textField.text, let sendMemberBack = self.sendMemberBack, !filterTextInRealmMemberArray(text) {
             sendMemberBack(text, self.currentIndex)
+            dismiss(animated: true, completion: nil)
+        } else {
+            AlertService.addAlert(in: self, completion:{})
+            textField.text = nil
         }
-        dismiss(animated: true, completion: nil)
+    }
+    
+    func filterTextInRealmMemberArray(_ text: String) -> Bool {
+        guard let members = RealmService.shared.object(Member.self)?.toArray(ofType: Member.self) else { return false }
+        for member in members {
+            if member.memberName == text {
+                return true
+            }
+        }
+        return false
     }
 }
