@@ -14,12 +14,12 @@ import RealmSwift
 
 class ManageMembersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
-    @IBOutlet weak var tableview: UITableView!
+    var tableView = UITableView(frame: .zero, style: .plain)
     var textField = UITextField()
 
     var memberArray = [Member]() {
         didSet{
-            tableview.reloadData()
+            tableView.reloadData()
         }
     }
     var textFieldFrameY = CGFloat()
@@ -30,11 +30,11 @@ class ManageMembersViewController: UIViewController, UITableViewDelegate, UITabl
         subscribeToKeyboardNotification()
         textField.becomeFirstResponder()
         memberArray = RealmService.shared.object(Member.self)!.toArray(ofType: Member.self)
-        self.tableview.reloadData()
+        self.tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewDidAppear(animated)
         upTextFieldWhenKeyboardShowed()
     }
     
@@ -52,16 +52,26 @@ class ManageMembersViewController: UIViewController, UITableViewDelegate, UITabl
         textField.textAlignment = .center
         textField.backgroundColor = UIColor.lightGray
         textField.delegate = self
+        
+        tableView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height:(UIScreen.main.bounds.height - 60))
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = .white
+        
+        self.view.addSubview(tableView)
         self.view.addSubview(textField)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.sectionFooterHeight = 0.1
     }
     
     @objc func touchMemberButton(_ sender: UINavigationItem)  {
         textField.resignFirstResponder()
-       
-        dismiss(animated: true, completion:{
-            let memberResults = RealmService.shared.object(Member.self)
-            self.delegate?.getMemberList(arr: memberResults)
-        })
+        let memberResults = RealmService.shared.object(Member.self)
+        self.delegate?.getMemberList(arr: memberResults)
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func touchDefaultButton(_ sender: UINavigationItem) {
@@ -92,6 +102,13 @@ class ManageMembersViewController: UIViewController, UITableViewDelegate, UITabl
         UIView.animate(withDuration: 0.2, delay: 0, options:.transitionCurlUp ,animations: {
             self.view.layoutIfNeeded()
             self.textField.frame = CGRect(x: 0, y: ((self.view.bounds.height) - 60 - (self.textFieldFrameY)), width: self.view.bounds.width, height: 60)
+            self.tableView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: (UIScreen.main.bounds.height - 60 - self.textFieldFrameY))
+            let numberOfRows = self.tableView.numberOfRows(inSection: 0)
+            
+            if numberOfRows > 0 {
+                let indexPath = IndexPath(row: numberOfRows-1, section: 0)
+                self.tableView.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.top, animated: true)
+            }
         }, completion: nil)
     }
     
@@ -128,6 +145,7 @@ class ManageMembersViewController: UIViewController, UITableViewDelegate, UITabl
         UIView.animate(withDuration: 0.2, delay: 0, options:.transitionCurlUp ,animations: {
             self.view.layoutIfNeeded()
             self.textField.frame = CGRect(x: 0, y: UIScreen.main.bounds.height-60, width: UIScreen.main.bounds.width, height: 60)
+            self.tableView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: (UIScreen.main.bounds.height - 60))
         }, completion: nil)
     }
     
@@ -176,7 +194,8 @@ class ManageMembersViewController: UIViewController, UITableViewDelegate, UITabl
 		self.present(nav, animated: true, completion: nil)
 		controller.sendMemberBack = { [weak self] text, index in
             if self?.filterTextInRealmMemberArray(text) == true {
-                AlertService.addAlert(in: self!){ }
+                AlertService.addAlert(in: controller.self){ }
+                
             } else {
                 guard let oldMember = self?.memberArray[index] else { return }
                 RealmService.shared.update() {
@@ -187,5 +206,15 @@ class ManageMembersViewController: UIViewController, UITableViewDelegate, UITabl
             }
 		}
 	}
+//
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let footerView = UIView()
+//        footerView.frame = CGRect(x: 0, y: ((self.view.bounds.height) - 60 - (self.textFieldFrameY+0.1)), width: self.view.bounds.width, height: 0.1)
+//        return footerView
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 0.1
+//    }
 }
 

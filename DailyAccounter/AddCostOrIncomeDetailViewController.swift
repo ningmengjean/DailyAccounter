@@ -52,6 +52,7 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
         numberKeyboardUIView.frame = CGRect(x: 0, y: self.view.bounds.height, width:self.view.bounds.width, height: 290)
         numberKeyboardUIView.backgroundColor = UIColor.lightGray
         self.view.insertSubview(numberKeyboardUIView, aboveSubview: incomeCollectionView)
+        self.modalPresentationStyle = .currentContext
         
     }
     
@@ -117,21 +118,31 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
         }
     }
     
+//    func presentPersonViewController() {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let pvc = storyboard.instantiateViewController(withIdentifier: "AddPersonTableViewController") as! UITableViewController
+//
+//        pvc.modalPresentationStyle = UIModalPresentationStyle.custom
+//        pvc.transitioningDelegate = self
+//        pvc.view.backgroundColor = UIColor.white
+//
+//        self.present(pvc, animated: true, completion: nil)
+//    }
+//
+//    func presentationController(forPresented presented: UIViewController,
+//                                presenting: UIViewController?,
+//                                source: UIViewController) -> UIPresentationController? {
+//        return HalfSizePresentationController(presentedViewController: presented, presenting: presenting)
+//    }
+    
     func presentPersonViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let pvc = storyboard.instantiateViewController(withIdentifier: "AddPersonTableViewController") as! UITableViewController
-        
-        pvc.modalPresentationStyle = UIModalPresentationStyle.custom
-        pvc.transitioningDelegate = self
-        pvc.view.backgroundColor = UIColor.white
-        
+        let pvc = storyboard.instantiateViewController(withIdentifier: "AddPersonTableViewController")
+        pvc.view.backgroundColor = UIColor.clear
+        pvc.view.isOpaque = false
+        pvc.modalPresentationStyle = .overCurrentContext
+
         self.present(pvc, animated: true, completion: nil)
-    }
-    
-    func presentationController(forPresented presented: UIViewController,
-                                presenting: UIViewController?,
-                                source: UIViewController) -> UIPresentationController? {
-        return HalfSizePresentationController(presentedViewController: presented, presenting: presenting)
     }
 }
 
