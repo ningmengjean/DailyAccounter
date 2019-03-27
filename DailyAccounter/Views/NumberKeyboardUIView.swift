@@ -57,12 +57,4 @@ class NumberKeyboardUIView: UIView {
     }
     
     var delegate: NumberKeyboardUIViewDelegate?
-    
-    
-    
-    
-    
-    
-    
-    
 }

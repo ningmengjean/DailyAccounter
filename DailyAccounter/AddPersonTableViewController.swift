@@ -10,7 +10,17 @@
 import UIKit
 import RealmSwift
 
-class AddPersonTableViewController: UITableViewController,GetMemberListDelegate{
+class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,GetMemberListDelegate{
+    
+    @IBOutlet weak var blurView: UIView!
+
+    var tableView = UITableView(frame: .zero, style: .plain)
+    var maskLayer = CAShapeLayer()
+    var headerButtonView = UIView()
+    
+    @objc func dismissViewController() {
+        dismiss(animated: true, completion: nil)
+    }
     
     func getMemberList(arr: Results<Member>?) {
         if let arr = arr, arr.count != 0 {
@@ -20,16 +30,72 @@ class AddPersonTableViewController: UITableViewController,GetMemberListDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.reloadData()
+        blurView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissViewController))
+        blurView.addGestureRecognizer(tapRecognizer)
+        tableView.backgroundColor = .white
+        headerButtonView.backgroundColor = .white
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewWillAppear(animated)
         memberList = (RealmService.shared.object(Member.self)?.toArray(ofType: Member.self)) ?? [Member]()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.backgroundColor = UIColor.white
+        tableView.frame = CGRect(x: 0, y: max(UIScreen.main.bounds.height / 3, UIScreen.main.bounds.height -  CGFloat(44*memberList.count)), width: UIScreen.main.bounds.width, height: min(UIScreen.main.bounds.height * 2 / 3, CGFloat(44*memberList.count)))
+        self.view.addSubview(tableView)
+        
+        let frame = tableView.frame
+        let editButton = UIButton(frame: CGRect(x:8, y: 8, width: 80, height: 50))
+        editButton.setTitle("Edite", for: .normal)
+        editButton.setTitleColor(UIColor.blue, for: .normal)
+        
+        editButton.addTarget(self, action: #selector(self.touchEditButton(_:)), for: .touchUpInside)
+        
+        let completeButton = UIButton(frame: CGRect(x:frame.width-95, y: 8, width: 80, height: 50))
+        completeButton.setTitle("Complete", for: .normal)
+        completeButton.setTitleColor(UIColor.blue, for: .normal)
+        
+        let titleLabel = UILabel(frame: CGRect(x:frame.width/2-40, y: 8, width: 80, height: 50))
+        titleLabel.text = "Members"
+        
+        headerButtonView.backgroundColor = UIColor.white
+        headerButtonView.addSubview(editButton)
+        headerButtonView.addSubview(titleLabel)
+        headerButtonView.addSubview(completeButton)
+       
+        self.view.addSubview(headerButtonView)
+
+        headerButtonView.translatesAutoresizingMaskIntoConstraints = false
+        headerButtonView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        headerButtonView.bottomAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
+        headerButtonView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        headerButtonView.heightAnchor.constraint(equalToConstant: 66).isActive = true
+        
         tableView.reloadData()
     }
     
-    var memberList = [Member]()
+    override func viewDidLayoutSubviews(){
+        super.viewDidLayoutSubviews()
+        let cornerRadius: CGFloat = 10
+        let maskLayer = CAShapeLayer()
+        
+        maskLayer.path = UIBezierPath(
+            roundedRect: headerButtonView.bounds,
+            byRoundingCorners: [.topLeft, .topRight],
+            cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)
+            ).cgPath
+        
+        headerButtonView.layer.mask = maskLayer
+    }
+    
+    var memberList = [Member]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     lazy var selectedIndex = returnDefaultIndex(arr: memberList)
     
     func returnDefaultIndex(arr:[Member]) -> Int? {
@@ -40,7 +106,6 @@ class AddPersonTableViewController: UITableViewController,GetMemberListDelegate{
         }
         return nil
     }
-
     
     @objc func touchEditButton(_ sender: UIButton) {
         let controller = self.storyboard!.instantiateViewController(withIdentifier: "ManageMembersViewController") as! ManageMembersViewController
@@ -52,47 +117,21 @@ class AddPersonTableViewController: UITableViewController,GetMemberListDelegate{
     
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return memberList.count 
     }
-
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let frame = tableView.frame
-        
-        let editButton = UIButton(frame: CGRect(x:8, y: 8, width: 80, height: 50))
-        editButton.setTitle("Edite", for: .normal)
-        editButton.setTitleColor(UIColor.blue, for: .normal)
-        editButton.addTarget(self, action: #selector(self.touchEditButton(_:)), for: .touchUpInside)
-
-        let completeButton = UIButton(frame: CGRect(x:frame.width-95, y: 8, width: 80, height: 50))
-        completeButton.setTitle("Complete", for: .normal)
-        completeButton.setTitleColor(UIColor.blue, for: .normal)
-        
-        let titleLabel = UILabel(frame: CGRect(x:frame.width/2-40, y: 8, width: 80, height: 50))
-        titleLabel.text = "Members"
-        
-        let headerView = UIView(frame: CGRect(x:0, y:0, width:frame.size.width, height:frame.size.height))
-        headerView.addSubview(editButton)
-        headerView.addSubview(titleLabel)
-        headerView.addSubview(completeButton)
-        return headerView
-    }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 66
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
+        cell.selectionStyle = .none
         let member = memberList[indexPath.row]
         let setDefaultMemberViewController = SetDefaultMemberViewController()
         if member.isDefault == true {
             cell.textLabel?.attributedText = setDefaultMemberViewController.changeStringNSMutableAttributedString(text: member.memberName)
-            cell.selectionStyle = .none
             cell.accessoryType = .checkmark
             cell.setSelected(true, animated: false)
         } else {
@@ -101,10 +140,20 @@ class AddPersonTableViewController: UITableViewController,GetMemberListDelegate{
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == selectedIndex {
             cell.setSelected(true, animated: false)
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+//        cell?.selectionStyle = .none
+        if cell?.accessoryType == .checkmark{
+            cell?.accessoryType = .none
+        } else {
+            cell?.accessoryType = .checkmark
         }
     }
 }

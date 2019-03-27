@@ -39,16 +39,14 @@ class SetDefaultMemberViewController: UIViewController,UITableViewDelegate,UITab
     }
     
     @objc func touchBackButton(_ sender: UINavigationItem)  {
-       
-        dismiss(animated: true, completion:{
-            if self.isDefault {
-                let oldMember = self.memberArray[self.selectedIndex!]
-                RealmService.shared.update() {
-                    oldMember.isDefault = true
-                    return oldMember
-                }
+        if self.isDefault {
+            let oldMember = self.memberArray[self.selectedIndex!]
+            RealmService.shared.update() {
+                oldMember.isDefault = true
+                return oldMember
             }
-        })
+        }
+        dismiss(animated: true, completion: nil)
     }
     
     func changeStringNSMutableAttributedString(text: String?) -> NSMutableAttributedString? {
