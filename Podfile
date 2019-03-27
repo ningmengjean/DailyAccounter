@@ -5,5 +5,6 @@ use_frameworks!
 target 'DailyAccounter' do
 
  pod 'RealmSwift'
+ pod 'FSCalendar'
 
 end
