@@ -35,12 +35,19 @@ class EditMemberViewController: UIViewController,UITextFieldDelegate {
 
     @objc func touchCompleteButton(_ sender: UINavigationItem) {
         textField.resignFirstResponder()
-        if let text = self.textField.text, let sendMemberBack = self.sendMemberBack, !filterTextInRealmMemberArray(text) {
+        if textField.text == ""  {
+            let alert = UIAlertController(
+                title: "Member text can't be nil",
+                message: nil,
+                preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        } else if let text = self.textField.text, let sendMemberBack = self.sendMemberBack, !filterTextInRealmMemberArray(text) {
             sendMemberBack(text, self.currentIndex)
             dismiss(animated: true, completion: nil)
         } else {
             AlertService.addAlert(in: self, completion:{})
-            textField.text = nil
         }
     }
     
