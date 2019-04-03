@@ -23,7 +23,6 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "DailyCostTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "DailyCostTableViewCell")
         tableView.register(UINib(nibName: "DailyIncomeTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "DailyIncomeTableViewCell")
-        tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
     }
 }
 
