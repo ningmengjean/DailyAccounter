@@ -15,6 +15,9 @@ protocol NumberKeyboardUIViewDelegate: class {
     func cleanDigitalLabelText()
     func deleteOneDigitalOnTheLabelText()
     func presentPersonViewController()
+    func presentCalenderViewController()
+    func presentDetailViewController()
+    func touchConformButton()
 }
 
 import UIKit
@@ -30,6 +33,7 @@ class NumberKeyboardUIView: UIView {
     @IBOutlet weak var detailButton: UIButton!
     
     @IBAction func presentCalenderViewController(_ sender: UIButton) {
+        delegate?.presentCalenderViewController()
     }
     
     @IBAction func presentPersonViewController(_ sender: UIButton) {
@@ -37,6 +41,7 @@ class NumberKeyboardUIView: UIView {
     }
     
     @IBAction func presentDetailViewController(_ sender: UIButton) {
+        delegate?.presentDetailViewController()
     }
     
     @IBAction func touchDigit(_ sender: UIButton) {
@@ -50,6 +55,7 @@ class NumberKeyboardUIView: UIView {
     }
     
     @IBAction func touchConform(_ sender: UIButton) {
+        delegate?.touchConformButton()
     }
     
     @IBAction func touchClear(_ sender: UIButton) {

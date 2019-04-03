@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,8 +22,9 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iNF-Ai-FSU">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="54.5"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6D-Gs-TCp">
-                                    <rect key="frame" x="23" y="0.0" width="93" height="54.5"/>
+                                <button opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6D-Gs-TCp">
+                                    <rect key="frame" x="8" y="0.0" width="108" height="54.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <state key="normal" title="Date"/>
                                     <connections>
                                         <action selector="presentCalenderViewController:" destination="iN0-l3-epB" eventType="touchUpInside" id="3Ow-L3-3OA"/>
@@ -51,7 +52,7 @@
                                 <constraint firstItem="hGI-mM-oTD" firstAttribute="centerY" secondItem="iNF-Ai-FSU" secondAttribute="centerY" id="Ni3-Cj-9RT"/>
                                 <constraint firstItem="n6D-Gs-TCp" firstAttribute="top" secondItem="iNF-Ai-FSU" secondAttribute="top" id="Nq0-XH-PCj"/>
                                 <constraint firstItem="UUu-Z7-agy" firstAttribute="leading" secondItem="hGI-mM-oTD" secondAttribute="trailing" constant="34" id="NqC-OZ-JQf"/>
-                                <constraint firstItem="n6D-Gs-TCp" firstAttribute="leading" secondItem="iNF-Ai-FSU" secondAttribute="leading" constant="23" id="OYt-qF-liy"/>
+                                <constraint firstItem="n6D-Gs-TCp" firstAttribute="leading" secondItem="iNF-Ai-FSU" secondAttribute="leading" constant="8" id="OYt-qF-liy"/>
                                 <constraint firstItem="UUu-Z7-agy" firstAttribute="top" secondItem="iNF-Ai-FSU" secondAttribute="top" id="TmX-W9-KS2"/>
                                 <constraint firstItem="UUu-Z7-agy" firstAttribute="centerY" secondItem="iNF-Ai-FSU" secondAttribute="centerY" id="bOM-AM-qf3"/>
                                 <constraint firstItem="hGI-mM-oTD" firstAttribute="top" secondItem="iNF-Ai-FSU" secondAttribute="top" id="eWm-Jw-smx"/>

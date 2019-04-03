@@ -28,37 +28,37 @@ class AccountData: Object {
 }
 
 class Cost: Object {
-    @objc dynamic var date = AccountData.defaultDay()
+    @objc dynamic var date = Date()
     @objc dynamic var cost: Float = 0.0
     @objc dynamic var detail: String?
-    @objc dynamic var budget: Float = 5000
-    @objc dynamic var isBeyondBudgeting = false
+//    @objc dynamic var budget: Float = 5000
+//    @objc dynamic var isBeyondBudgeting = false
     @objc dynamic var person: String?
-    let category = List<Category>()
+    @objc dynamic var category: String?
     
-    class func defaultDay() -> String {
-        let dateFormat = DateFormatter()
-        dateFormat.dateFormat = "YYYY-MM-dd"
-        return dateFormat.string(from: Date())
-    }
-    
+//    class func defaultDay() -> String {
+//        let dateFormat = DateFormatter()
+//        dateFormat.dateFormat = "YYYY-MM-dd"
+//        return dateFormat.string(from: Date())
+//    }
+//
     override open class func primaryKey() -> String {
         return "date"
     }
 }
 
 class Income: Object {
-    @objc dynamic var date = AccountData.defaultDay()
+    @objc dynamic var date = Date()
     @objc dynamic var income: Float = 0.0
     @objc dynamic var detail: String?
     @objc dynamic var person: String?
-    let category = List<Category>()
+    @objc dynamic var categroy: String?
     
-    class func defaultDay() -> String {
-        let dateFormat = DateFormatter()
-        dateFormat.dateFormat = "YYYY-MM-dd"
-        return dateFormat.string(from: Date())
-    }
+//    class func defaultDay() -> String {
+//        let dateFormat = DateFormatter()
+//        dateFormat.dateFormat = "YYYY-MM-dd"
+//        return dateFormat.string(from: Date())
+//    }
     
     override open class func primaryKey() -> String {
         return "date"

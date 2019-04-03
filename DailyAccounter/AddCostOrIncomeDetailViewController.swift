@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIViewDelegate,UIViewControllerTransitioningDelegate {
+class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIViewDelegate {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
@@ -17,6 +17,8 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
     @IBOutlet weak var categoryLabel: UILabel!
   
     @IBOutlet weak var digitLabel: UILabel!
+    
+    var detailText: String?
     
     @IBOutlet weak var costCollectionView: UICollectionView! {
         didSet {
@@ -53,7 +55,6 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
         numberKeyboardUIView.backgroundColor = UIColor.lightGray
         self.view.insertSubview(numberKeyboardUIView, aboveSubview: incomeCollectionView)
         self.modalPresentationStyle = .currentContext
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -118,31 +119,45 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
         }
     }
     
-//    func presentPersonViewController() {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let pvc = storyboard.instantiateViewController(withIdentifier: "AddPersonTableViewController") as! UITableViewController
-//
-//        pvc.modalPresentationStyle = UIModalPresentationStyle.custom
-//        pvc.transitioningDelegate = self
-//        pvc.view.backgroundColor = UIColor.white
-//
-//        self.present(pvc, animated: true, completion: nil)
-//    }
-//
-//    func presentationController(forPresented presented: UIViewController,
-//                                presenting: UIViewController?,
-//                                source: UIViewController) -> UIPresentationController? {
-//        return HalfSizePresentationController(presentedViewController: presented, presenting: presenting)
-//    }
-    
     func presentPersonViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let pvc = storyboard.instantiateViewController(withIdentifier: "AddPersonTableViewController")
+        let pvc = storyboard.instantiateViewController(withIdentifier: "AddPersonTableViewController") as! AddPersonTableViewController
         pvc.view.backgroundColor = UIColor.clear
         pvc.view.isOpaque = false
         pvc.modalPresentationStyle = .overCurrentContext
 
         self.present(pvc, animated: true, completion: nil)
+    }
+    
+    func presentCalenderViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let pvc = storyboard.instantiateViewController(withIdentifier: "CalenderViewController") as! CalenderViewController
+        pvc.view.backgroundColor = UIColor.clear
+        pvc.view.isOpaque = false
+        pvc.modalPresentationStyle = .overCurrentContext
+        
+        pvc.sendSelectedDay = { day in
+            self.numberKeyboardUIView.dateButton.titleLabel?.text = day
+        }
+        self.present(pvc, animated: true, completion: nil)
+    }
+    
+    func presentDetailViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let pvc = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        pvc.view.backgroundColor = UIColor.clear
+        pvc.view.isOpaque = false
+        pvc.modalPresentationStyle = .overCurrentContext
+        pvc.sendDetailText = { text in
+            self.detailText = text
+        }
+      
+        self.present(pvc, animated: true, completion: nil)
+    }
+    
+    func touchConformButton() {
+        
+        dismiss(animated: true, completion: nil)
     }
 }
 

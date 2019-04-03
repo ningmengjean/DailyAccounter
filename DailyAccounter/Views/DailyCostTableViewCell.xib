@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="DailyCostTableViewCell" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="DailyCostTableViewCell" customModule="DailyAccounter" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rvu-Gf-iVt">
+                        <rect key="frame" x="159.5" y="0.0" width="1" height="43.5"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="edD-pS-3X8"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NGQ-Ik-SL5">
+                        <rect key="frame" x="145" y="7" width="30" height="30"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="0Ts-6u-k83"/>
+                            <constraint firstAttribute="height" constant="30" id="Dve-7x-Irf"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lki-Ai-XeO">
+                        <rect key="frame" x="177" y="5" width="63" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Mount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ebn-Ph-PsS">
+                        <rect key="frame" x="242" y="-25" width="78" height="84"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PT9-Y4-fqT">
+                        <rect key="frame" x="177" y="29" width="143" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="lki-Ai-XeO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="FZF-iN-Qp4"/>
+                    <constraint firstItem="Rvu-Gf-iVt" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="HPv-XE-gPd"/>
+                    <constraint firstItem="Ebn-Ph-PsS" firstAttribute="centerY" secondItem="lki-Ai-XeO" secondAttribute="centerY" id="JOf-vX-KbM"/>
+                    <constraint firstAttribute="bottom" secondItem="PT9-Y4-fqT" secondAttribute="bottom" id="M4T-y1-lND"/>
+                    <constraint firstItem="NGQ-Ik-SL5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="QXv-bw-JnH"/>
+                    <constraint firstAttribute="trailing" secondItem="PT9-Y4-fqT" secondAttribute="trailing" id="TaL-AQ-Y3Q"/>
+                    <constraint firstItem="Ebn-Ph-PsS" firstAttribute="trailing" secondItem="PT9-Y4-fqT" secondAttribute="trailing" id="U0q-fR-Rza"/>
+                    <constraint firstItem="Rvu-Gf-iVt" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="a74-gE-Tsr"/>
+                    <constraint firstItem="PT9-Y4-fqT" firstAttribute="top" secondItem="lki-Ai-XeO" secondAttribute="bottom" id="glk-xO-UYI"/>
+                    <constraint firstItem="Ebn-Ph-PsS" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="26" id="iS2-2e-09d"/>
+                    <constraint firstItem="NGQ-Ik-SL5" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="kpq-qe-E8q"/>
+                    <constraint firstAttribute="bottom" secondItem="Rvu-Gf-iVt" secondAttribute="bottom" id="mOX-72-S5s"/>
+                    <constraint firstItem="Ebn-Ph-PsS" firstAttribute="leading" secondItem="lki-Ai-XeO" secondAttribute="trailing" constant="2" id="pCo-ig-mVY"/>
+                    <constraint firstItem="lki-Ai-XeO" firstAttribute="leading" secondItem="NGQ-Ik-SL5" secondAttribute="trailing" constant="2" id="rYS-ZK-s1r"/>
+                    <constraint firstItem="PT9-Y4-fqT" firstAttribute="leading" secondItem="lki-Ai-XeO" secondAttribute="leading" id="sPg-Ni-TYX"/>
+                    <constraint firstItem="Rvu-Gf-iVt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uAD-q6-5i9"/>
+                    <constraint firstItem="Rvu-Gf-iVt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="vwZ-Rx-hYi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="categoryImageView" destination="NGQ-Ik-SL5" id="Kk4-4f-Bs1"/>
+                <outlet property="categoryLabel" destination="lki-Ai-XeO" id="lM7-ft-nKP"/>
+                <outlet property="detailLabel" destination="PT9-Y4-fqT" id="TfI-b7-lXX"/>
+                <outlet property="mountLabel" destination="Ebn-Ph-PsS" id="sKJ-Qy-OHm"/>
+            </connections>
+            <point key="canvasLocation" x="153.62318840579712" y="34.821428571428569"/>
+        </tableViewCell>
+    </objects>
+</document>

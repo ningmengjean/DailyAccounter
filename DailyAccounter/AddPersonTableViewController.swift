@@ -12,8 +12,9 @@ import RealmSwift
 
 class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,GetMemberListDelegate{
     
-    @IBOutlet weak var blurView: UIView!
 
+    @IBOutlet weak var blurView: UIView!
+    
     var tableView = UITableView(frame: .zero, style: .plain)
     var maskLayer = CAShapeLayer()
     var headerButtonView = UIView()
@@ -35,7 +36,6 @@ class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITable
         blurView.addGestureRecognizer(tapRecognizer)
         tableView.backgroundColor = .white
         headerButtonView.backgroundColor = .white
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +58,8 @@ class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITable
         completeButton.setTitle("Complete", for: .normal)
         completeButton.setTitleColor(UIColor.blue, for: .normal)
         
+        completeButton.addTarget(self, action: #selector(self.touchCompleteButton(_:)), for: .touchUpInside)
+        
         let titleLabel = UILabel(frame: CGRect(x:frame.width/2-40, y: 8, width: 80, height: 50))
         titleLabel.text = "Members"
         
@@ -67,7 +69,6 @@ class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITable
         headerButtonView.addSubview(completeButton)
        
         self.view.addSubview(headerButtonView)
-
         headerButtonView.translatesAutoresizingMaskIntoConstraints = false
         headerButtonView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         headerButtonView.bottomAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
@@ -81,14 +82,26 @@ class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITable
         super.viewDidLayoutSubviews()
         let cornerRadius: CGFloat = 10
         let maskLayer = CAShapeLayer()
-        
+
         maskLayer.path = UIBezierPath(
             roundedRect: headerButtonView.bounds,
             byRoundingCorners: [.topLeft, .topRight],
             cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)
             ).cgPath
-        
+
         headerButtonView.layer.mask = maskLayer
+        
+        headerButtonView.transform = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
+        headerButtonView.alpha = 0
+        tableView.transform = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
+        tableView.alpha = 0
+        
+        UIView.animate(withDuration: 0.4) {
+            self.headerButtonView.alpha = 1
+            self.headerButtonView.transform = CGAffineTransform.identity
+            self.tableView.alpha = 1
+            self.tableView.transform = CGAffineTransform.identity
+        }
     }
     
     var memberList = [Member]() {
@@ -96,6 +109,9 @@ class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITable
             tableView.reloadData()
         }
     }
+    
+    var selectedItem = [String]()
+    
     lazy var selectedIndex = returnDefaultIndex(arr: memberList)
     
     func returnDefaultIndex(arr:[Member]) -> Int? {
@@ -114,6 +130,11 @@ class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITable
         self.present(nav, animated: true, completion: nil)
     }
     
+    @objc func touchCompleteButton(_ sender: UIButton) {
+        
+        dismissViewController()
+        print(selectedItem.joined(separator: ","))
+    }
     
     // MARK: - Table view data source
 
@@ -144,16 +165,26 @@ class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITable
         if indexPath.row == selectedIndex {
             cell.setSelected(true, animated: false)
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            if let memberName = memberList[indexPath.row].memberName, !selectedItem.contains(memberName) {
+                selectedItem.append(memberName)
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-//        cell?.selectionStyle = .none
+        guard let memberName = memberList[indexPath.row].memberName else { return }
         if cell?.accessoryType == .checkmark{
             cell?.accessoryType = .none
+            if selectedItem.contains(memberName) {
+                guard let indx = selectedItem.firstIndex(of: memberName) else { return }
+                selectedItem.remove(at: indx)
+            }
         } else {
             cell?.accessoryType = .checkmark
+            if !selectedItem.contains(memberName) {
+                selectedItem.append(memberName)
+            }
         }
     }
 }
