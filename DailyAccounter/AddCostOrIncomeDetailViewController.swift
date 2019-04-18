@@ -19,6 +19,18 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
     @IBOutlet weak var digitLabel: UILabel!
     
     var detailText: String?
+    var selectedPerson = [String]()
+    
+    func savePersonCost(arr: [String]?, cost: Float) {
+        if arr?.count != 0 {
+            for name in arr! {
+                let person = PersonCost()
+                person.name = name
+                person.perPersonCost = cost/Float((arr!.count))
+                RealmService.shared.saveObject(person)
+            }
+        }
+    }
     
     @IBOutlet weak var costCollectionView: UICollectionView! {
         didSet {
@@ -62,8 +74,8 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
         showNumberKeyboardUIView()
     }
 
-     var costCategory = ["Food","Lifestuff","Makeup","Babystuff","Clothes","Travel"]
-     var incomeCategory = ["Salary","PinMoney","RedPocket","Alimony","Part-time","Investment","Bravo","Reimbursement","Cash","Refund","Others"]
+     var costCategory = ["食品","生活费","彩妆","儿童用品","衣服","旅游"]
+     var incomeCategory = ["工资","生活费","红包","零花钱","兼职","投资收入","奖金","报销","现金","退款","其它"]
      var peopleInTheMiddleOfTyping = false
     
     func showNumberKeyboardUIView() {
@@ -125,6 +137,7 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
         pvc.view.backgroundColor = UIColor.clear
         pvc.view.isOpaque = false
         pvc.modalPresentationStyle = .overCurrentContext
+        selectedPerson = pvc.selectedItem
 
         self.present(pvc, animated: true, completion: nil)
     }
@@ -156,8 +169,44 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
     }
     
     func touchConformButton() {
-        
-        dismiss(animated: true, completion: nil)
+        if digitLabel.text == "0" {
+            let alert = UIAlertController(
+                title: "Amount can't be 0",
+                message: nil,
+                preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        } else {
+            if segmentedControl.selectedSegmentIndex == 0 {
+                let newIncome = Amount()
+                newIncome.category = categoryLabel.text
+                newIncome.date = self.numberKeyboardUIView.dateButton.titleLabel?.text
+                newIncome.detail = detailText
+                newIncome.amount = Float(digitLabel.text!)!
+                newIncome.isCost = false
+                savePersonCost(arr: selectedPerson, cost: Float(digitLabel.text!)!)
+                let persons = RealmService.shared.object(PersonCost.self)?.toArray(ofType: PersonCost.self)
+                for person in persons! {
+                    newIncome.persons.append(person)
+                }
+                RealmService.shared.saveObject(newIncome)
+            } else {
+                let newCost = Amount()
+                newCost.category = categoryLabel.text
+                newCost.date = self.numberKeyboardUIView.dateButton.titleLabel?.text
+                newCost.detail = detailText
+                newCost.amount = Float(digitLabel.text!)!
+                newCost.isCost = true
+                savePersonCost(arr: selectedPerson, cost: Float(digitLabel.text!)!)
+                let persons = RealmService.shared.object(PersonCost.self)?.toArray(ofType: PersonCost.self)
+                for person in persons! {
+                    newCost.persons.append(person)
+                }
+                RealmService.shared.saveObject(newCost)
+            }
+            navigationController?.popViewController(animated: true)
+        }
     }
 }
 
@@ -212,7 +261,7 @@ extension AddCostOrIncomeDetailViewController : UICollectionViewDelegateFlowLayo
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        return CGSize(width: 90.0, height: 96.0)
+        return CGSize(width: UIScreen.main.bounds.width/5, height: 80)
     }
 }
 

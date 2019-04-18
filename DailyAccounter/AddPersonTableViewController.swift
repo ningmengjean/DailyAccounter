@@ -110,7 +110,7 @@ class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITable
         }
     }
     
-    var selectedItem = [String]()
+    var selectedItem: [String] = []
     
     lazy var selectedIndex = returnDefaultIndex(arr: memberList)
     
@@ -131,9 +131,7 @@ class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITable
     }
     
     @objc func touchCompleteButton(_ sender: UIButton) {
-        
         dismissViewController()
-        print(selectedItem.joined(separator: ","))
     }
     
     // MARK: - Table view data source
@@ -165,7 +163,7 @@ class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITable
         if indexPath.row == selectedIndex {
             cell.setSelected(true, animated: false)
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-            if let memberName = memberList[indexPath.row].memberName, !selectedItem.contains(memberName) {
+            if let memberName = memberList[indexPath.row].memberName, !(selectedItem.contains(memberName)) {
                 selectedItem.append(memberName)
             }
         }

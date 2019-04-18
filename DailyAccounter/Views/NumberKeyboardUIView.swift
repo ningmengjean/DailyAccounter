@@ -26,7 +26,7 @@ class NumberKeyboardUIView: UIView {
     
     @IBOutlet weak var dateButton: UIButton! {
         didSet {
-            dateButton.setTitle(AccountData.defaultDay(), for: .normal) 
+            dateButton.setTitle(Amount.defaultDay(), for: .normal) 
         }
     }
     @IBOutlet weak var personButton: UIButton!
@@ -55,6 +55,7 @@ class NumberKeyboardUIView: UIView {
     }
     
     @IBAction func touchConform(_ sender: UIButton) {
+       
         delegate?.touchConformButton()
     }
     

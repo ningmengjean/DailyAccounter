@@ -30,6 +30,7 @@ class CalenderViewController: UIViewController {
         let calendar = FSCalendar(frame: CGRect(x: 0, y: UIScreen.main.bounds.height-350, width: UIScreen.main.bounds.width, height: 350))
         calendar.dataSource = self as? FSCalendarDataSource
         calendar.delegate = self as? FSCalendarDelegate
+        
         view.addSubview(calendar)
         self.calendar = calendar
     }

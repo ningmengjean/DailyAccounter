@@ -8,7 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		6CEECB064EEF2B3EBEE65C16 /* Pods_DailyAccounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB95B635FB6EE1BB642C10B /* Pods_DailyAccounter.framework */; };
+		720D4F6222588B1D00C834DB /* DailyIncomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720D4F6022588B1D00C834DB /* DailyIncomeTableViewCell.swift */; };
+		720D4F6322588B1D00C834DB /* DailyIncomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 720D4F6122588B1D00C834DB /* DailyIncomeTableViewCell.xib */; };
 		725EFA75224CB98E00C88A31 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725EFA74224CB98E00C88A31 /* CalenderViewController.swift */; };
+		7280E897225D99EE00B349A7 /* PersonCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7280E896225D99EE00B349A7 /* PersonCost.swift */; };
+		7280E89A225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7280E898225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift */; };
+		7280E89B225F204B00B349A7 /* DailyBillSummaryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7280E899225F204B00B349A7 /* DailyBillSummaryTableViewCell.xib */; };
 		728C9E512118717400AFD98D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C9E502118717400AFD98D /* AppDelegate.swift */; };
 		728C9E532118717400AFD98D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728C9E522118717400AFD98D /* MainViewController.swift */; };
 		728C9E562118717400AFD98D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 728C9E542118717400AFD98D /* Main.storyboard */; };
@@ -23,8 +28,7 @@
 		728C9E8F2121B60D00AFD98D /* NumberKeyboardUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 728C9E8E2121B60D00AFD98D /* NumberKeyboardUIView.xib */; };
 		72925F7821E88686003C1F39 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72925F7721E88686003C1F39 /* AlertService.swift */; };
 		72A21D2421F05BAE00143C5F /* EditMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A21D2321F05BAE00143C5F /* EditMemberViewController.swift */; };
-		72A7050C22549BA300B54FDA /* DailyIncomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A7050A22549BA300B54FDA /* DailyIncomeTableViewCell.swift */; };
-		72A7050D22549BA300B54FDA /* DailyIncomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72A7050B22549BA300B54FDA /* DailyIncomeTableViewCell.xib */; };
+		72B238E12267621D0062FA24 /* ArrayExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B238E02267621D0062FA24 /* ArrayExtention.swift */; };
 		72C3275821DDF40C00C4456A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C3275721DDF40C00C4456A /* RealmService.swift */; };
 		72C3275B21DE249000C4456A /* AddPersonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C3275921DE249000C4456A /* AddPersonTableViewController.swift */; };
 		72CE694622009390001E3260 /* SetDefaultMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CE694522009390001E3260 /* SetDefaultMemberViewController.swift */; };
@@ -37,7 +41,12 @@
 
 /* Begin PBXFileReference section */
 		4E707AEC2943095CC91C5F03 /* Pods-DailyAccounter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyAccounter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DailyAccounter/Pods-DailyAccounter.debug.xcconfig"; sourceTree = "<group>"; };
+		720D4F6022588B1D00C834DB /* DailyIncomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyIncomeTableViewCell.swift; sourceTree = "<group>"; };
+		720D4F6122588B1D00C834DB /* DailyIncomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyIncomeTableViewCell.xib; sourceTree = "<group>"; };
 		725EFA74224CB98E00C88A31 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
+		7280E896225D99EE00B349A7 /* PersonCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCost.swift; sourceTree = "<group>"; };
+		7280E898225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBillSummaryTableViewCell.swift; sourceTree = "<group>"; };
+		7280E899225F204B00B349A7 /* DailyBillSummaryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyBillSummaryTableViewCell.xib; sourceTree = "<group>"; };
 		728C9E4D2118717400AFD98D /* DailyAccounter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyAccounter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		728C9E502118717400AFD98D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		728C9E522118717400AFD98D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -54,8 +63,7 @@
 		728C9E8E2121B60D00AFD98D /* NumberKeyboardUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberKeyboardUIView.xib; sourceTree = "<group>"; };
 		72925F7721E88686003C1F39 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		72A21D2321F05BAE00143C5F /* EditMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMemberViewController.swift; sourceTree = "<group>"; };
-		72A7050A22549BA300B54FDA /* DailyIncomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyIncomeTableViewCell.swift; sourceTree = "<group>"; };
-		72A7050B22549BA300B54FDA /* DailyIncomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyIncomeTableViewCell.xib; sourceTree = "<group>"; };
+		72B238E02267621D0062FA24 /* ArrayExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtention.swift; sourceTree = "<group>"; };
 		72C3275721DDF40C00C4456A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		72C3275921DE249000C4456A /* AddPersonTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonTableViewController.swift; sourceTree = "<group>"; };
 		72CE694522009390001E3260 /* SetDefaultMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDefaultMemberViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +102,7 @@
 				72C3275721DDF40C00C4456A /* RealmService.swift */,
 				72925F7721E88686003C1F39 /* AlertService.swift */,
 				72DC8B34224F3A8600F5CD91 /* DateExtention.swift */,
+				72B238E02267621D0062FA24 /* ArrayExtention.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -103,6 +112,7 @@
 			children = (
 				728C9E6421188BF100AFD98D /* AccountData.swift */,
 				72F728902223D3E1004520DA /* Member.swift */,
+				7280E896225D99EE00B349A7 /* PersonCost.swift */,
 			);
 			name = Models;
 			path = "New Group";
@@ -117,8 +127,10 @@
 				728C9E87211C1B3600AFD98D /* CategoryCollectionViewCell.xib */,
 				72DC8B3822534EB900F5CD91 /* DailyCostTableViewCell.swift */,
 				72DC8B3922534EB900F5CD91 /* DailyCostTableViewCell.xib */,
-				72A7050A22549BA300B54FDA /* DailyIncomeTableViewCell.swift */,
-				72A7050B22549BA300B54FDA /* DailyIncomeTableViewCell.xib */,
+				720D4F6022588B1D00C834DB /* DailyIncomeTableViewCell.swift */,
+				720D4F6122588B1D00C834DB /* DailyIncomeTableViewCell.xib */,
+				7280E898225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift */,
+				7280E899225F204B00B349A7 /* DailyBillSummaryTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -235,11 +247,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72A7050D22549BA300B54FDA /* DailyIncomeTableViewCell.xib in Resources */,
+				720D4F6322588B1D00C834DB /* DailyIncomeTableViewCell.xib in Resources */,
 				72DC8B3B22534EB900F5CD91 /* DailyCostTableViewCell.xib in Resources */,
 				728C9E89211C1B3600AFD98D /* CategoryCollectionViewCell.xib in Resources */,
 				728C9E5B2118717700AFD98D /* LaunchScreen.storyboard in Resources */,
 				728C9E582118717700AFD98D /* Assets.xcassets in Resources */,
+				7280E89B225F204B00B349A7 /* DailyBillSummaryTableViewCell.xib in Resources */,
 				728C9E8F2121B60D00AFD98D /* NumberKeyboardUIView.xib in Resources */,
 				728C9E562118717400AFD98D /* Main.storyboard in Resources */,
 			);
@@ -314,15 +327,18 @@
 				728C9E85211B27BA00AFD98D /* AddCostOrIncomeDetailViewController.swift in Sources */,
 				72DC8B35224F3A8600F5CD91 /* DateExtention.swift in Sources */,
 				728C9E8B21203ECB00AFD98D /* ManageMembersViewController.swift in Sources */,
+				7280E897225D99EE00B349A7 /* PersonCost.swift in Sources */,
 				728C9E88211C1B3600AFD98D /* CategoryCollectionViewCell.swift in Sources */,
 				725EFA75224CB98E00C88A31 /* CalenderViewController.swift in Sources */,
 				728C9E532118717400AFD98D /* MainViewController.swift in Sources */,
 				72DC8B37224F42D700F5CD91 /* DetailViewController.swift in Sources */,
 				72DC8B3A22534EB900F5CD91 /* DailyCostTableViewCell.swift in Sources */,
 				72F728912223D3E1004520DA /* Member.swift in Sources */,
+				7280E89A225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift in Sources */,
+				72B238E12267621D0062FA24 /* ArrayExtention.swift in Sources */,
 				72CE694622009390001E3260 /* SetDefaultMemberViewController.swift in Sources */,
 				72C3275821DDF40C00C4456A /* RealmService.swift in Sources */,
-				72A7050C22549BA300B54FDA /* DailyIncomeTableViewCell.swift in Sources */,
+				720D4F6222588B1D00C834DB /* DailyIncomeTableViewCell.swift in Sources */,
 				72A21D2421F05BAE00143C5F /* EditMemberViewController.swift in Sources */,
 				728C9E8D2121B5DF00AFD98D /* NumberKeyboardUIView.swift in Sources */,
 				728C9E6521188BF100AFD98D /* AccountData.swift in Sources */,

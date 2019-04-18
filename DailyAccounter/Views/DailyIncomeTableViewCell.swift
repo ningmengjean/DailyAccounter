@@ -2,17 +2,18 @@
 //  DailyIncomeTableViewCell.swift
 //  DailyAccounter
 //
-//  Created by wangchi on 2019/4/3.
+//  Created by wangchi on 2019/4/6.
 //  Copyright © 2019 Zhu xiaojin. All rights reserved.
 //
 
 import UIKit
 
 class DailyIncomeTableViewCell: UITableViewCell {
-    @IBOutlet weak var CategoryLabel: UILabel!
-    @IBOutlet weak var mountLabel: UILabel!
-    @IBOutlet weak var detailLabel: UILabel!
-    @IBOutlet weak var categoryImageView: UIView!
+    @IBOutlet weak var categoryImageView: UIImageView!
+    @IBOutlet weak var inCategory: UILabel!
+    @IBOutlet weak var inAmount: UILabel!
+    @IBOutlet weak var inDetail: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

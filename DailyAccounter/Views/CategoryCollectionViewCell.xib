@@ -19,18 +19,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="90" height="96"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Alimony" translatesAutoresizingMaskIntoConstraints="NO" id="6gO-Ro-2IU">
-                        <rect key="frame" x="20" y="10" width="50" height="50"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="工资" translatesAutoresizingMaskIntoConstraints="NO" id="6gO-Ro-2IU">
+                        <rect key="frame" x="25" y="10" width="40" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="vhV-Fj-fef"/>
-                            <constraint firstAttribute="width" constant="50" id="wyY-uh-A38"/>
+                            <constraint firstAttribute="height" constant="40" id="vhV-Fj-fef"/>
+                            <constraint firstAttribute="width" constant="40" id="wyY-uh-A38"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3C-aL-Af1">
-                        <rect key="frame" x="5" y="70" width="80" height="26"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="80" id="faz-lK-Qct"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="工资" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3C-aL-Af1">
+                        <rect key="frame" x="29.5" y="60" width="31" height="36"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -54,6 +51,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="Alimony" width="82" height="82"/>
+        <image name="工资" width="80" height="80"/>
     </resources>
 </document>

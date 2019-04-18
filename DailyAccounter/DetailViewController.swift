@@ -34,6 +34,7 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
     @objc func dismissViewController() {
         textField.resignFirstResponder()
         if let sendDetailText = sendDetailText {
+            detailText = textField.text
             sendDetailText(detailText)
         }
         dismiss(animated: true, completion: nil)

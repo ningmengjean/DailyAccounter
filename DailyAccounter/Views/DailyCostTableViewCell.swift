@@ -9,10 +9,12 @@
 import UIKit
 
 class DailyCostTableViewCell: UITableViewCell {
-    @IBOutlet weak var categoryImageView: UIView!
-    @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var mountLabel: UILabel!
-    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var categoryImageView: UIImageView!
+    
+    @IBOutlet weak var outCategoryLabel: UILabel!
+    @IBOutlet weak var outAmountLabel: UILabel!
+    @IBOutlet weak var outDetailLabel: UILabel!
+  
     
     override func awakeFromNib() {
         super.awakeFromNib()
