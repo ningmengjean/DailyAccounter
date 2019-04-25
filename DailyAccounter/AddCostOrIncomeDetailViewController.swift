@@ -139,7 +139,11 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
         pvc.modalPresentationStyle = .overCurrentContext
         selectedPerson = pvc.selectedItem
 
-        self.present(pvc, animated: true, completion: nil)
+        self.present(pvc, animated: true, completion: {
+            UIView.animate(withDuration: 0.25, animations: {
+                pvc.blurView.alpha = 1
+            }, completion: nil)
+        })
     }
     
     func presentCalenderViewController() {
@@ -152,7 +156,11 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
         pvc.sendSelectedDay = { day in
             self.numberKeyboardUIView.dateButton.titleLabel?.text = day
         }
-        self.present(pvc, animated: true, completion: nil)
+        self.present(pvc, animated: true, completion: {
+            UIView.animate(withDuration: 0.25, animations: {
+                pvc.blurView.alpha = 1
+            }, completion: nil)
+        })
     }
     
     func presentDetailViewController() {
@@ -164,8 +172,11 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
         pvc.sendDetailText = { text in
             self.detailText = text
         }
-      
-        self.present(pvc, animated: true, completion: nil)
+        self.present(pvc, animated: true, completion: {
+            UIView.animate(withDuration: 0.25, animations: {
+                pvc.blurView.alpha = 1
+            }, completion: nil)
+        })
     }
     
     func touchConformButton() {

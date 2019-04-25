@@ -20,6 +20,7 @@ class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITable
     var headerButtonView = UIView()
     
     @objc func dismissViewController() {
+        blurView.alpha = 0
         dismiss(animated: true, completion: nil)
     }
     
@@ -31,7 +32,8 @@ class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        blurView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        self.blurView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        blurView.alpha = 0
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissViewController))
         blurView.addGestureRecognizer(tapRecognizer)
         tableView.backgroundColor = .white

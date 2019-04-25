@@ -10,25 +10,26 @@ import UIKit
 
 class DetailViewController: UIViewController,UITextFieldDelegate {
     
-    var visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
     var textField = UITextField()
     var textFieldFrameY = CGFloat()
     var detailText: String?
     var sendDetailText: ((String?) -> Void)?
+    var blurView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        visualEffectView.frame = self.view.bounds
+        blurView.frame = self.view.bounds
+        self.blurView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        blurView.alpha = 0
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissViewController))
+        blurView.addGestureRecognizer(tapRecognizer)
+        self.view.addSubview(blurView)
         self.textField.frame = CGRect(x: 0, y: UIScreen.main.bounds.height-80, width: UIScreen.main.bounds.width, height: 80)
         textField.placeholder = "Detail:"
         textField.textAlignment = .left
-        textField.backgroundColor = UIColor.lightGray
+        textField.backgroundColor = UIColor.white
         textField.delegate = self
-        self.view.addSubview(visualEffectView)
         self.view.addSubview(textField)
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissViewController))
-        visualEffectView.addGestureRecognizer(tapRecognizer)
     }
     
     @objc func dismissViewController() {
@@ -37,6 +38,7 @@ class DetailViewController: UIViewController,UITextFieldDelegate {
             detailText = textField.text
             sendDetailText(detailText)
         }
+        blurView.alpha = 0
         dismiss(animated: true, completion: nil)
     }
     

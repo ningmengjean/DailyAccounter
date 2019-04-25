@@ -11,21 +11,23 @@ import FSCalendar
 
 class CalenderViewController: UIViewController {
     
-    var visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
     var calenderView = UIView()
     fileprivate weak var calendar: FSCalendar!
     var selectedDay = String()
     var sendSelectedDay: ((String) -> Void)?
+    var blurView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        visualEffectView.frame = self.view.bounds
-        self.view.addSubview(visualEffectView)
+        blurView.frame = self.view.bounds
+        self.blurView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        blurView.alpha = 0
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissViewController))
+        blurView.addGestureRecognizer(tapRecognizer)
+        self.view.addSubview(blurView)
         calenderView.frame = CGRect(x: 0, y: UIScreen.main.bounds.height-350, width: UIScreen.main.bounds.width, height: 350)
         calenderView.backgroundColor = .white
         self.view.addSubview(calenderView)
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissViewController))
-        visualEffectView.addGestureRecognizer(tapRecognizer)
         
         let calendar = FSCalendar(frame: CGRect(x: 0, y: UIScreen.main.bounds.height-350, width: UIScreen.main.bounds.width, height: 350))
         calendar.dataSource = self as? FSCalendarDataSource
@@ -40,6 +42,7 @@ class CalenderViewController: UIViewController {
         if let sendSelectdDay = self.sendSelectedDay {
             sendSelectdDay(selectedDay)
         }
+        blurView.alpha = 0
         dismiss(animated: true, completion: nil)
     }
     
