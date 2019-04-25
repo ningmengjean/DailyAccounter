@@ -13,22 +13,21 @@ import RealmSwift
 class MainViewController: UIViewController, DailyCostTableViewCellDelegate{
     
     func sendCostItemDetailToEdit() {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let pvc = storyboard.instantiateViewController(withIdentifier: "AddCostOrIncomeDetailViewController") as! AddCostOrIncomeDetailViewController
-//        guard let editIndexPath = editIndexPath else {
-//            return
-//        }
-//        print(editIndexPath)
-//        let editDetailAmount = dicByDaySorted[editIndexPath.section].value[editIndexPath.row - 1]
-//        pvc.categoryLabel.text = editDetailAmount.category
-//        pvc.categoryImageView.image = UIImage(named: editDetailAmount.category!)
-//        pvc.digitLabel.text = String(editDetailAmount.amount)
-//        pvc.detailText = editDetailAmount.detail
-//        pvc.numberKeyboardUIView.dateButton.titleLabel?.text = editDetailAmount.date
-//        pvc.segmentedControl.selectedSegmentIndex = 1
-////        pvc.selectedPerson = editDetailAmount.persons
-//        present(pvc, animated: true, completion: nil)
-        print("kjdfljsof")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let pvc = storyboard.instantiateViewController(withIdentifier: "AddCostOrIncomeDetailViewController") as! AddCostOrIncomeDetailViewController
+        guard let editIndexPath = editIndexPath else {
+            return
+        }
+//        pvc.selectedPerson = editDetailAmount.persons
+        present(pvc, animated: false, completion: {
+            let editDetailAmount = self.dicByDaySorted[editIndexPath.section].value[editIndexPath.row - 1]
+            pvc.categoryLabel?.text = editDetailAmount.category
+            pvc.categoryImageView?.image = UIImage(named: editDetailAmount.category ?? "食品")
+            pvc.digitLabel?.text = String(editDetailAmount.amount)
+            pvc.detailText = editDetailAmount.detail ?? ""
+            pvc.numberKeyboardUIView.dateButton.titleLabel?.text = editDetailAmount.date
+            pvc.segmentedControl?.selectedSegmentIndex = 1
+        })
     }
     
   
@@ -126,6 +125,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let detailAmount = dicByDaySorted[indexPath.section].value[indexPath.row - 1]
         if detailAmount.isCost == true {
             costCell.configureDailyCostTableViewCell(detailAmount: detailAmount)
+            costCell.delegate = self
             return costCell
         } else {
             incomeCell.configureDailyIncomeTableViewCell(detailAmount: detailAmount)

@@ -36,6 +36,7 @@
 		72DC8B37224F42D700F5CD91 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DC8B36224F42D700F5CD91 /* DetailViewController.swift */; };
 		72DC8B3A22534EB900F5CD91 /* DailyCostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DC8B3822534EB900F5CD91 /* DailyCostTableViewCell.swift */; };
 		72DC8B3B22534EB900F5CD91 /* DailyCostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72DC8B3922534EB900F5CD91 /* DailyCostTableViewCell.xib */; };
+		72DEAC142271FB5500BFC121 /* UINavigationControllerExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DEAC132271FB5500BFC121 /* UINavigationControllerExtention.swift */; };
 		72F728912223D3E1004520DA /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F728902223D3E1004520DA /* Member.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		72DC8B36224F42D700F5CD91 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		72DC8B3822534EB900F5CD91 /* DailyCostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCostTableViewCell.swift; sourceTree = "<group>"; };
 		72DC8B3922534EB900F5CD91 /* DailyCostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCostTableViewCell.xib; sourceTree = "<group>"; };
+		72DEAC132271FB5500BFC121 /* UINavigationControllerExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtention.swift; sourceTree = "<group>"; };
 		72F728902223D3E1004520DA /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		E1ECA3F2A82E785D5B03B460 /* Pods-DailyAccounter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DailyAccounter.release.xcconfig"; path = "Pods/Target Support Files/Pods-DailyAccounter/Pods-DailyAccounter.release.xcconfig"; sourceTree = "<group>"; };
 		EBB95B635FB6EE1BB642C10B /* Pods_DailyAccounter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DailyAccounter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +105,7 @@
 				72925F7721E88686003C1F39 /* AlertService.swift */,
 				72DC8B34224F3A8600F5CD91 /* DateExtention.swift */,
 				72B238E02267621D0062FA24 /* ArrayExtention.swift */,
+				72DEAC132271FB5500BFC121 /* UINavigationControllerExtention.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				7280E89A225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift in Sources */,
 				72B238E12267621D0062FA24 /* ArrayExtention.swift in Sources */,
 				72CE694622009390001E3260 /* SetDefaultMemberViewController.swift in Sources */,
+				72DEAC142271FB5500BFC121 /* UINavigationControllerExtention.swift in Sources */,
 				72C3275821DDF40C00C4456A /* RealmService.swift in Sources */,
 				720D4F6222588B1D00C834DB /* DailyIncomeTableViewCell.swift in Sources */,
 				72A21D2421F05BAE00143C5F /* EditMemberViewController.swift in Sources */,
