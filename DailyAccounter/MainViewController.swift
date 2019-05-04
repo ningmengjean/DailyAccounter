@@ -10,26 +10,22 @@ import UIKit
 import RealmSwift
 
 
-class MainViewController: UIViewController, DailyCostTableViewCellDelegate{
+class MainViewController: UIViewController, DailyCostTableViewCellDelegate {
     
-    func sendCostItemDetailToEdit() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let pvc = storyboard.instantiateViewController(withIdentifier: "AddCostOrIncomeDetailViewController") as! AddCostOrIncomeDetailViewController
-        guard let editIndexPath = editIndexPath else {
-            return
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "pushToAddCostOrIncomeDetailViewController"{
+            let pvc = segue.destination as! AddCostOrIncomeDetailViewController
+            guard let editIndexPath = editIndexPath else {
+                return
+            }
+            let editCostAmount = self.dicByDaySorted[editIndexPath.section].value[editIndexPath.row - 1]
+            pvc.needToEditCostAmount = editCostAmount
         }
-//        pvc.selectedPerson = editDetailAmount.persons
-        present(pvc, animated: false, completion: {
-            let editDetailAmount = self.dicByDaySorted[editIndexPath.section].value[editIndexPath.row - 1]
-            pvc.categoryLabel?.text = editDetailAmount.category
-            pvc.categoryImageView?.image = UIImage(named: editDetailAmount.category ?? "食品")
-            pvc.digitLabel?.text = String(editDetailAmount.amount)
-            pvc.detailText = editDetailAmount.detail ?? ""
-            pvc.numberKeyboardUIView.dateButton.titleLabel?.text = editDetailAmount.date
-            pvc.segmentedControl?.selectedSegmentIndex = 1
-        })
     }
     
+    func sendCostItemDetailToEdit(_ sender: UIButton) {
+        performSegue(withIdentifier: "pushToAddCostOrIncomeDetailViewController", sender: sender)
+    }
   
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -83,6 +79,14 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate{
         tableView.allowsMultipleSelection = false
         self.tableView.sectionHeaderHeight = UITableView.automaticDimension
         self.tableView.estimatedSectionHeaderHeight = 60.0
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(pushToAddCostOrIncomeDetailViewController))
+    }
+    
+    @objc func pushToAddCostOrIncomeDetailViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let pvc = storyboard.instantiateViewController(withIdentifier: "AddCostOrIncomeDetailViewController") as! AddCostOrIncomeDetailViewController
+        pvc.needToEditCostAmount = nil
+        self.navigationController?.pushViewController(pvc, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,6 +97,7 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate{
         dicByDaySorted = dicByDay.sorted(by:{ $0.0 > $1.0})
         month = returnMonthPoint()
         tableView.reloadData()
+        print(amountResultsArr)
     }
 }
 

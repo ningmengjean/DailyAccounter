@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DailyCostTableViewCellDelegate: class {
-    func sendCostItemDetailToEdit()
+    func sendCostItemDetailToEdit(_ sender: UIButton)
 }
 
 class DailyCostTableViewCell: UITableViewCell {
@@ -20,7 +20,8 @@ class DailyCostTableViewCell: UITableViewCell {
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
     @IBAction func toAddCostOrIncomeViewController(_ sender: UIButton) {
-        delegate?.sendCostItemDetailToEdit()
+        delegate?.sendCostItemDetailToEdit(sender)
+        hideDeleteAndEditButton()
     }
     
     @IBAction func deleteCostItem(_ sender: UIButton) {

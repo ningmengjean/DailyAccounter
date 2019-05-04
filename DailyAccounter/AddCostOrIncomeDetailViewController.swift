@@ -18,20 +18,6 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
   
     @IBOutlet weak var digitLabel: UILabel!
     
-    var detailText: String?
-    var selectedPerson = [String]()
-    
-    func savePersonCost(arr: [String]?, cost: Float) {
-        if arr?.count != 0 {
-            for name in arr! {
-                let person = PersonCost()
-                person.name = name
-                person.perPersonCost = cost/Float((arr!.count))
-                RealmService.shared.saveObject(person)
-            }
-        }
-    }
-    
     @IBOutlet weak var costCollectionView: UICollectionView! {
         didSet {
             costCollectionView.delegate = self
@@ -56,6 +42,21 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
         }
     }
     
+    var detailText: String?
+    var selectedPerson = [String]()
+    var needToEditCostAmount: Amount?
+    
+    func savePersonCost(arr: [String]?, cost: Float) {
+        if arr?.count != 0 {
+            for name in arr! {
+                let person = PersonCost()
+                person.name = name
+                person.perPersonCost = cost/Float((arr!.count))
+                RealmService.shared.saveObject(person)
+            }
+        }
+    }
+    
     let numberKeyboardUIView = gk_initViewFromNib(withType: NumberKeyboardUIView.self)
     
     override func viewDidLoad() {
@@ -65,18 +66,29 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
         numberKeyboardUIView.delegate = self
         numberKeyboardUIView.frame = CGRect(x: 0, y: self.view.bounds.height, width:self.view.bounds.width, height: 290)
         numberKeyboardUIView.backgroundColor = UIColor.lightGray
+        numberKeyboardUIView.dateButton.setTitle(Amount.defaultDay(), for: .normal)
         self.view.insertSubview(numberKeyboardUIView, aboveSubview: incomeCollectionView)
         self.modalPresentationStyle = .currentContext
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(touchBackButton))
+        if needToEditCostAmount != nil {
+            categoryLabel.text = needToEditCostAmount!.category
+            digitLabel.text = String(needToEditCostAmount!.amount)
+            detailText = needToEditCostAmount!.detail
+            numberKeyboardUIView.dateButton.setTitle(needToEditCostAmount?.date, for: .normal)
+            categoryImageView.image = UIImage(named: needToEditCostAmount!.category ?? "食品")
+            self.segmentedControl.selectedSegmentIndex = 1
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showNumberKeyboardUIView()
+        needToEditCostAmount = nil
     }
-
-     var costCategory = ["食品","生活费","彩妆","儿童用品","衣服","旅游"]
-     var incomeCategory = ["工资","生活费","红包","零花钱","兼职","投资收入","奖金","报销","现金","退款","其它"]
-     var peopleInTheMiddleOfTyping = false
+    
+    var costCategory = ["食品","生活费","彩妆","儿童用品","衣服","旅游"]
+    var incomeCategory = ["工资","生活费","红包","零花钱","兼职","投资收入","奖金","报销","现金","退款","其它"]
+    var peopleInTheMiddleOfTyping = false
     
     func showNumberKeyboardUIView() {
         UIView.animate(withDuration: 0.2, delay: 0, options:.transitionCurlUp ,animations: {
@@ -153,8 +165,8 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
         pvc.view.isOpaque = false
         pvc.modalPresentationStyle = .overCurrentContext
         
-        pvc.sendSelectedDay = { day in
-            self.numberKeyboardUIView.dateButton.titleLabel?.text = day
+        pvc.sendSelectedDay = { [weak self] day in
+            self?.numberKeyboardUIView.dateButton.titleLabel?.text = day
         }
         self.present(pvc, animated: true, completion: {
             UIView.animate(withDuration: 0.25, animations: {
@@ -168,6 +180,7 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
         let pvc = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         pvc.view.backgroundColor = UIColor.clear
         pvc.view.isOpaque = false
+        pvc.textField.text = detailText
         pvc.modalPresentationStyle = .overCurrentContext
         pvc.sendDetailText = { text in
             self.detailText = text
@@ -188,6 +201,40 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
             let action = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(action)
             present(alert, animated: true, completion: nil)
+        } else if needToEditCostAmount != nil {
+            if segmentedControl.selectedSegmentIndex == 0 {
+                guard let changeIncome = needToEditCostAmount else { return }
+//                changeIncome.id = self.needToEditCostAmount!.id
+                RealmService.shared.update() {
+                    changeIncome.category = self.categoryLabel.text
+                    changeIncome.date = self.numberKeyboardUIView.dateButton.titleLabel?.text
+                    changeIncome.detail = self.detailText
+                    changeIncome.amount = Float(self.digitLabel.text!)!
+                    changeIncome.isCost = false
+//                    self.savePersonCost(arr: self.selectedPerson, cost: Float(self.digitLabel.text!)!)
+//                    let persons = RealmService.shared.object(PersonCost.self)?.toArray(ofType: PersonCost.self)
+//                    for person in persons! {
+//                        changeIncome.persons.append(person)
+//                    }
+                    return changeIncome
+                }
+            } else {
+                guard let changeCost = needToEditCostAmount else { return }
+//                changeCost.id = self.needToEditCostAmount!.id
+                RealmService.shared.update() {
+                    changeCost.category = self.categoryLabel.text
+                    changeCost.date = self.numberKeyboardUIView.dateButton.titleLabel?.text
+                    changeCost.detail = self.detailText
+                    changeCost.amount = Float(self.digitLabel.text!)!
+                    changeCost.isCost = true
+                    //                    self.savePersonCost(arr: self.selectedPerson, cost: Float(self.digitLabel.text!)!)
+//                    let persons = RealmService.shared.object(PersonCost.self)?.toArray(ofType: PersonCost.self)
+//                    for person in persons! {
+//                        changeCost.persons.append(person)
+//                    }
+                    return changeCost
+                }
+            }
         } else {
             if segmentedControl.selectedSegmentIndex == 0 {
                 let newIncome = Amount()
@@ -196,6 +243,7 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
                 newIncome.detail = detailText
                 newIncome.amount = Float(digitLabel.text!)!
                 newIncome.isCost = false
+                newIncome.id = newIncome.incrementID()
                 savePersonCost(arr: selectedPerson, cost: Float(digitLabel.text!)!)
                 let persons = RealmService.shared.object(PersonCost.self)?.toArray(ofType: PersonCost.self)
                 for person in persons! {
@@ -209,6 +257,7 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
                 newCost.detail = detailText
                 newCost.amount = Float(digitLabel.text!)!
                 newCost.isCost = true
+                newCost.id = newCost.incrementID()
                 savePersonCost(arr: selectedPerson, cost: Float(digitLabel.text!)!)
                 let persons = RealmService.shared.object(PersonCost.self)?.toArray(ofType: PersonCost.self)
                 for person in persons! {
@@ -218,6 +267,11 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
             }
             navigationController?.popViewController(animated: true)
         }
+    }
+    
+    @objc func touchBackButton() {
+        needToEditCostAmount = nil
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

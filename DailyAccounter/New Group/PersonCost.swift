@@ -18,4 +18,6 @@ class PersonCost: Object {
         self.name = person
         self.perPersonCost = perPersonCost
     }
+    let amounts = LinkingObjects(fromType: Amount.self, property: "persons")
 }
+

@@ -24,11 +24,7 @@ import UIKit
 
 class NumberKeyboardUIView: UIView {
     
-    @IBOutlet weak var dateButton: UIButton! {
-        didSet {
-            dateButton.setTitle(Amount.defaultDay(), for: .normal) 
-        }
-    }
+    @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var personButton: UIButton!
     @IBOutlet weak var detailButton: UIButton!
     
