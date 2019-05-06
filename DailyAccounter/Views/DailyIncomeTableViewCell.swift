@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol DailyIncomeTableViewCellDelegate: class {
+    func sendIncomeItemDetailToEdit(_ sender: UIButton)
+}
+
 class DailyIncomeTableViewCell: UITableViewCell {
     @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet weak var inCategory: UILabel!
@@ -15,7 +19,12 @@ class DailyIncomeTableViewCell: UITableViewCell {
     @IBOutlet weak var inDetail: UILabel!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
+    @IBAction func toAddCostOrIncomeViewController(_ sender: UIButton) {
+        delegate?.sendIncomeItemDetailToEdit(sender)
+        hideDeleteAndEditButton()
+    }
     var isShowEdit = false
+    weak var delegate: DailyIncomeTableViewCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()

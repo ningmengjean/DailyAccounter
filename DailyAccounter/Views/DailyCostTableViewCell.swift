@@ -10,6 +10,7 @@ import UIKit
 
 protocol DailyCostTableViewCellDelegate: class {
     func sendCostItemDetailToEdit(_ sender: UIButton)
+    func deleteCostItem(_ sender: UIButton)
 }
 
 class DailyCostTableViewCell: UITableViewCell {
@@ -25,6 +26,7 @@ class DailyCostTableViewCell: UITableViewCell {
     }
     
     @IBAction func deleteCostItem(_ sender: UIButton) {
+        delegate?.deleteCostItem(sender)
     }
     
     var isShowEdit = false

@@ -45,6 +45,7 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
     var detailText: String?
     var selectedPerson = [String]()
     var needToEditCostAmount: Amount?
+    var needToEditIncomeAmount: Amount?
     
     func savePersonCost(arr: [String]?, cost: Float) {
         if arr?.count != 0 {
@@ -77,13 +78,19 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
             numberKeyboardUIView.dateButton.setTitle(needToEditCostAmount?.date, for: .normal)
             categoryImageView.image = UIImage(named: needToEditCostAmount!.category ?? "食品")
             self.segmentedControl.selectedSegmentIndex = 1
+        } else if needToEditIncomeAmount != nil {
+            categoryLabel.text = needToEditIncomeAmount!.category
+            digitLabel.text = String(needToEditIncomeAmount!.amount)
+            detailText = needToEditIncomeAmount!.detail
+            numberKeyboardUIView.dateButton.setTitle(needToEditIncomeAmount?.date, for: .normal)
+            categoryImageView.image = UIImage(named: needToEditIncomeAmount!.category ?? "食品")
+            self.segmentedControl.selectedSegmentIndex = 0
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         showNumberKeyboardUIView()
-        needToEditCostAmount = nil
     }
     
     var costCategory = ["食品","生活费","彩妆","儿童用品","衣服","旅游"]
@@ -150,7 +157,7 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
         pvc.view.isOpaque = false
         pvc.modalPresentationStyle = .overCurrentContext
         selectedPerson = pvc.selectedItem
-
+        
         self.present(pvc, animated: true, completion: {
             UIView.animate(withDuration: 0.25, animations: {
                 pvc.blurView.alpha = 1
@@ -201,37 +208,35 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
             let action = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(action)
             present(alert, animated: true, completion: nil)
-        } else if needToEditCostAmount != nil {
+        } else if needToEditCostAmount != nil || needToEditIncomeAmount != nil {
             if segmentedControl.selectedSegmentIndex == 0 {
-                guard let changeIncome = needToEditCostAmount else { return }
-//                changeIncome.id = self.needToEditCostAmount!.id
+                guard let changeIncome = needToEditCostAmount ?? needToEditIncomeAmount else { return }
                 RealmService.shared.update() {
                     changeIncome.category = self.categoryLabel.text
                     changeIncome.date = self.numberKeyboardUIView.dateButton.titleLabel?.text
                     changeIncome.detail = self.detailText
                     changeIncome.amount = Float(self.digitLabel.text!)!
                     changeIncome.isCost = false
-//                    self.savePersonCost(arr: self.selectedPerson, cost: Float(self.digitLabel.text!)!)
-//                    let persons = RealmService.shared.object(PersonCost.self)?.toArray(ofType: PersonCost.self)
-//                    for person in persons! {
-//                        changeIncome.persons.append(person)
-//                    }
+                    self.savePersonCost(arr: self.selectedPerson, cost: Float(self.digitLabel.text!)!)
+                    let persons = RealmService.shared.object(PersonCost.self)?.toArray(ofType: PersonCost.self)
+                    for person in persons! {
+                        changeIncome.persons.append(person)
+                    }
                     return changeIncome
                 }
             } else {
-                guard let changeCost = needToEditCostAmount else { return }
-//                changeCost.id = self.needToEditCostAmount!.id
+                guard let changeCost = needToEditCostAmount ?? needToEditIncomeAmount else { return }
                 RealmService.shared.update() {
                     changeCost.category = self.categoryLabel.text
                     changeCost.date = self.numberKeyboardUIView.dateButton.titleLabel?.text
                     changeCost.detail = self.detailText
                     changeCost.amount = Float(self.digitLabel.text!)!
                     changeCost.isCost = true
-                    //                    self.savePersonCost(arr: self.selectedPerson, cost: Float(self.digitLabel.text!)!)
-//                    let persons = RealmService.shared.object(PersonCost.self)?.toArray(ofType: PersonCost.self)
-//                    for person in persons! {
-//                        changeCost.persons.append(person)
-//                    }
+                    self.savePersonCost(arr: self.selectedPerson, cost: Float(self.digitLabel.text!)!)
+                    let persons = RealmService.shared.object(PersonCost.self)?.toArray(ofType: PersonCost.self)
+                    for person in persons! {
+                        changeCost.persons.append(person)
+                    }
                     return changeCost
                 }
             }
@@ -265,12 +270,13 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
                 }
                 RealmService.shared.saveObject(newCost)
             }
-            navigationController?.popViewController(animated: true)
         }
+         navigationController?.popViewController(animated: true)
     }
     
     @objc func touchBackButton() {
         needToEditCostAmount = nil
+        needToEditIncomeAmount = nil
         self.navigationController?.popViewController(animated: true)
     }
 }

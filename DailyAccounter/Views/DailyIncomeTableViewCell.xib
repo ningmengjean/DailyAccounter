@@ -66,6 +66,9 @@
                             <constraint firstAttribute="height" constant="25" id="eHg-tp-Guo"/>
                         </constraints>
                         <state key="normal" title="edit" image="edit"/>
+                        <connections>
+                            <action selector="toAddCostOrIncomeViewController:" destination="6xj-wP-kDi" eventType="touchUpInside" id="vx7-uK-pwc"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

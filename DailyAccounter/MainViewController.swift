@@ -10,21 +10,37 @@ import UIKit
 import RealmSwift
 
 
-class MainViewController: UIViewController, DailyCostTableViewCellDelegate {
-    
+class MainViewController: UIViewController, DailyCostTableViewCellDelegate,DailyIncomeTableViewCellDelegate {
+ 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "pushToAddCostOrIncomeDetailViewController"{
             let pvc = segue.destination as! AddCostOrIncomeDetailViewController
-            guard let editIndexPath = editIndexPath else {
-                return
+            if let editCostIndexPath = editCostIndexPath {
+                let editCostAmount = self.dicByDaySorted[editCostIndexPath.section].value[editCostIndexPath.row - 1]
+                pvc.needToEditCostAmount = editCostAmount
+            } else if let editIncomeIndexPath = editIncomeIndexPath {
+                let editIncomeAmount = self.dicByDaySorted[editIncomeIndexPath.section].value[editIncomeIndexPath.row - 1]
+                pvc.needToEditIncomeAmount = editIncomeAmount
             }
-            let editCostAmount = self.dicByDaySorted[editIndexPath.section].value[editIndexPath.row - 1]
-            pvc.needToEditCostAmount = editCostAmount
         }
     }
     
     func sendCostItemDetailToEdit(_ sender: UIButton) {
+        month = []
         performSegue(withIdentifier: "pushToAddCostOrIncomeDetailViewController", sender: sender)
+    }
+    
+    func sendIncomeItemDetailToEdit(_ sender: UIButton) {
+        month = []
+        performSegue(withIdentifier: "pushToAddCostOrIncomeDetailViewController", sender: sender)
+    }
+    
+    func deleteCostItem(_ sender: UIButton) {
+//        guard let deleteCostItemIndexPath = deleteCostItemIndexPath else { return }
+//        let deleteCostItem = dicByDaySorted[deleteCostItemIndexPath.section].value[deleteCostItemIndexPath.row - 1]
+//        RealmService.shared.delete(deleteCostItem)
+//        amountResultsArr = RealmService.shared.object(Amount.self)?.toArray(ofType: Amount.self)
+//        tableView.reloadData()
     }
   
     @IBOutlet weak var tableView: UITableView! {
@@ -34,15 +50,25 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate {
         }
     }
     
-    var amountResultsArr: [Amount]?
+    var amountResultsArr: [Amount]? {
+        didSet{
+            tableView.reloadData()
+        }
+    }
     var dicByDay = [String: [Amount]]()
     var dicByDaySorted = [(key: String, value: [Amount])]()
     var totalIncome: Float = 0.0
     var totalCost: Float = 0.0
     var isMonthPoint: Bool = false
-    var month = [Int]()
+    var month = [Int?]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     var monthArr = [Int]()
-    var editIndexPath: IndexPath?
+    var editCostIndexPath: IndexPath?
+    var editIncomeIndexPath: IndexPath?
+    var deleteCostItemIndexPath: IndexPath?
     
     func sortAmountResultsByDay(arr: [Amount]) {
         var dailyIncome: Float = 0.0
@@ -80,12 +106,14 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate {
         self.tableView.sectionHeaderHeight = UITableView.automaticDimension
         self.tableView.estimatedSectionHeaderHeight = 60.0
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(pushToAddCostOrIncomeDetailViewController))
+        tableView.layoutSubviews()
     }
     
     @objc func pushToAddCostOrIncomeDetailViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let pvc = storyboard.instantiateViewController(withIdentifier: "AddCostOrIncomeDetailViewController") as! AddCostOrIncomeDetailViewController
         pvc.needToEditCostAmount = nil
+        month = []
         self.navigationController?.pushViewController(pvc, animated: true)
     }
     
@@ -97,7 +125,6 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate {
         dicByDaySorted = dicByDay.sorted(by:{ $0.0 > $1.0})
         month = returnMonthPoint()
         tableView.reloadData()
-        print(amountResultsArr)
     }
 }
 
@@ -134,6 +161,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             return costCell
         } else {
             incomeCell.configureDailyIncomeTableViewCell(detailAmount: detailAmount)
+            incomeCell.delegate = self
             return incomeCell
         }
     }
@@ -142,25 +170,30 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let costCell = tableView.cellForRow(at: indexPath) as? DailyCostTableViewCell
         if costCell?.isShowEdit == false {
             costCell?.showDeleteAndEditButton()
-            editIndexPath = indexPath
+            editCostIndexPath = indexPath
+            deleteCostItemIndexPath = indexPath
         } else {
             costCell?.hideDeleteAndEditButton()
-            editIndexPath = nil
+            editCostIndexPath = nil
+            deleteCostItemIndexPath = nil
         }
         let incomeCell = tableView.cellForRow(at: indexPath) as? DailyIncomeTableViewCell
         if incomeCell?.isShowEdit == false {
             incomeCell?.showDeleteAndEditButton()
+            editIncomeIndexPath = indexPath
         } else {
             incomeCell?.hideDeleteAndEditButton()
+            editIncomeIndexPath = nil
         }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let costCell = tableView.cellForRow(at: indexPath) as? DailyCostTableViewCell
         costCell?.hideDeleteAndEditButton()
-        editIndexPath = nil
+        editCostIndexPath = nil
         let incomeCell = tableView.cellForRow(at: indexPath) as? DailyIncomeTableViewCell
         incomeCell?.hideDeleteAndEditButton()
+        editIncomeIndexPath = nil
     }
     
     func monthString(str: String) -> Int {
@@ -171,7 +204,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         return Int(mySubstring)!
     }
     
-    func returnMonthPoint() -> [Int] {
+    func returnMonthPoint() -> [Int?] {
         for amount in dicByDaySorted {
             monthArr.append(monthString(str: amount.key))
         }
@@ -202,9 +235,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let invisibleHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: 0))
         invisibleHeaderView.backgroundColor = .clear
         for point in month {
-            if section == 0 {
-                return invisibleHeaderView
-            } else if section == point {
+          if section == point {
                 monthLabel.text = String(monthArr[section]).suffix(2)+"月"
                 return monthPointView
             }
@@ -214,9 +245,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         for point in month {
-            if section == 0 {
-                return 0
-            } else if section == point {
+            if section == point {
                 return 60
             }
         }
