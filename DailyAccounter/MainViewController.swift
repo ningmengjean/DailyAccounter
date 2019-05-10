@@ -12,6 +12,14 @@ import RealmSwift
 
 class MainViewController: UIViewController, DailyCostTableViewCellDelegate,DailyIncomeTableViewCellDelegate {
  
+    @IBOutlet weak var incomeLabel: UILabel!
+    @IBOutlet weak var incomeAmountLabel: UILabel!
+    @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var monthlyBackView: UIView!
+    @IBOutlet weak var costLabel: UILabel!
+    @IBOutlet weak var costAmountLabel: UILabel!
+    @IBOutlet weak var monthlyDataView: UIView!
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "pushToAddCostOrIncomeDetailViewController"{
             let pvc = segue.destination as! AddCostOrIncomeDetailViewController
@@ -36,11 +44,15 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
     }
     
     func deleteCostItem(_ sender: UIButton) {
-//        guard let deleteCostItemIndexPath = deleteCostItemIndexPath else { return }
-//        let deleteCostItem = dicByDaySorted[deleteCostItemIndexPath.section].value[deleteCostItemIndexPath.row - 1]
-//        RealmService.shared.delete(deleteCostItem)
-//        amountResultsArr = RealmService.shared.object(Amount.self)?.toArray(ofType: Amount.self)
-//        tableView.reloadData()
+        guard let deleteCostItemIndexPath = deleteCostItemIndexPath else { return }
+        let deleteCostItem = dicByDaySorted[deleteCostItemIndexPath.section].value[deleteCostItemIndexPath.row - 1]
+        RealmService.shared.delete(deleteCostItem)
+    }
+    
+    func deleteIncomeItem(_ sender: UIButton) {
+        guard let deleteIncomeItemIndexPath = deleteIncomeItemIndexPath else { return }
+        let deleteIncomeItem = dicByDaySorted[deleteIncomeItemIndexPath.section].value[deleteIncomeItemIndexPath.row - 1]
+        RealmService.shared.delete(deleteIncomeItem)
     }
   
     @IBOutlet weak var tableView: UITableView! {
@@ -50,25 +62,21 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
         }
     }
     
-    var amountResultsArr: [Amount]? {
-        didSet{
-            tableView.reloadData()
-        }
-    }
+    var amountResultsArr: [Amount]?
     var dicByDay = [String: [Amount]]()
     var dicByDaySorted = [(key: String, value: [Amount])]()
     var totalIncome: Float = 0.0
     var totalCost: Float = 0.0
     var isMonthPoint: Bool = false
-    var month = [Int?]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    var month = [Int?]()
     var monthArr = [Int]()
     var editCostIndexPath: IndexPath?
     var editIncomeIndexPath: IndexPath?
     var deleteCostItemIndexPath: IndexPath?
+    var deleteIncomeItemIndexPath: IndexPath?
+    var notificationToken: NotificationToken? = nil
+    var currentDate: String?
+    let monthlyAmount = MonthlyAmount()
     
     func sortAmountResultsByDay(arr: [Amount]) {
         var dailyIncome: Float = 0.0
@@ -96,6 +104,7 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadViewIfNeeded()
         tableView.register(UINib(nibName: "DailyIncomeTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "DailyIncomeTableViewCell")
         tableView.register(UINib(nibName: "DailyCostTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "DailyCostTableViewCell")
         tableView.register(UINib(nibName: "DailyBillSummaryTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "DailyBillSummaryTableViewCell")
@@ -106,7 +115,34 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
         self.tableView.sectionHeaderHeight = UITableView.automaticDimension
         self.tableView.estimatedSectionHeaderHeight = 60.0
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(pushToAddCostOrIncomeDetailViewController))
-        tableView.layoutSubviews()
+        
+        let size:CGFloat = 60.0
+        monthlyBackView?.layer.cornerRadius = size/2
+        monthlyBackView?.backgroundColor = .lightGray
+        monthLabel?.backgroundColor = UIColor.black.withAlphaComponent(0)
+        monthlyDataView.backgroundColor = .clear
+       
+        let realm = try! Realm()
+        let results = realm.objects(Amount.self)
+        
+        // Observe Results Notifications
+        notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
+            guard let tableView = self?.tableView else { return }
+            switch changes {
+            case .initial,.update:
+                // Query results have changed, so apply them to the UITableView
+                self?.amountResultsArr = RealmService.shared.object(Amount.self)?.toArray(ofType: Amount.self)
+                self?.dicByDay = [String: [Amount]]()
+                self?.sortAmountResultsByDay(arr: self?.amountResultsArr ?? [])
+                self?.dicByDaySorted = self?.dicByDay.sorted(by:{ $0.0 > $1.0}) ?? []
+                self?.month = self?.returnMonthPoint() ?? []
+                self?.currentDate = self?.dicByDaySorted.first?.value.first?.date
+                tableView.reloadData()
+            case .error(let error):
+                // An error occurred while opening the Realm file on the background worker thread
+                fatalError("\(error)")
+            }
+        }
     }
     
     @objc func pushToAddCostOrIncomeDetailViewController() {
@@ -115,16 +151,6 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
         pvc.needToEditCostAmount = nil
         month = []
         self.navigationController?.pushViewController(pvc, animated: true)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        amountResultsArr = RealmService.shared.object(Amount.self)?.toArray(ofType: Amount.self)
-        dicByDay = [String: [Amount]]()
-        sortAmountResultsByDay(arr: amountResultsArr ?? [])
-        dicByDaySorted = dicByDay.sorted(by:{ $0.0 > $1.0})
-        month = returnMonthPoint()
-        tableView.reloadData()
     }
 }
 
@@ -181,9 +207,11 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         if incomeCell?.isShowEdit == false {
             incomeCell?.showDeleteAndEditButton()
             editIncomeIndexPath = indexPath
+            deleteIncomeItemIndexPath = indexPath
         } else {
             incomeCell?.hideDeleteAndEditButton()
             editIncomeIndexPath = nil
+            deleteIncomeItemIndexPath = nil
         }
     }
     
@@ -205,6 +233,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func returnMonthPoint() -> [Int?] {
+        monthArr = []
         for amount in dicByDaySorted {
             monthArr.append(monthString(str: amount.key))
         }
@@ -234,8 +263,12 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         monthPointView.addSubview(monthLabel)
         let invisibleHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: 0))
         invisibleHeaderView.backgroundColor = .clear
+        
         for point in month {
-          if section == point {
+            if section == 0 {
+                monthLabel.text = ""
+                return monthPointView
+            } else if section == point {
                 monthLabel.text = String(monthArr[section]).suffix(2)+"月"
                 return monthPointView
             }
@@ -245,11 +278,44 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         for point in month {
-            if section == point {
+            if section == 0 {
+                return 80
+            } else if section == point {
                 return 60
             }
         }
         return 0
+    }
+    
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let tableView = scrollView as? UITableView else {return}
+        let visibleSection = tableView.indexPathsForVisibleRows!.map{$0.section}.first
+        
+        if let visibleSection = visibleSection {
+            let date = dicByDaySorted[visibleSection].key
+            let start = date.startIndex
+            let end = date.index(date.endIndex, offsetBy: -3)
+            let range = start..<end
+            let visibleDate = String(date[range])
+            if visibleDate != currentDate {
+                monthlyAmount.countMonthlyAmount(month: visibleDate)
+                incomeLabel.text = String(visibleDate.suffix(2))+"月收入"
+                incomeAmountLabel.text = String(monthlyAmount.monthlyIncome)
+                monthLabel.text = String(visibleDate.suffix(2))+"月"
+                costLabel.text = String(visibleDate.suffix(2))+"月支出"
+                costAmountLabel.text = String(monthlyAmount.monthlyCost)
+            } else {
+                guard let currentDate = currentDate else { return }
+                monthlyAmount.countMonthlyAmount(month: currentDate)
+                incomeLabel.text = String(currentDate.suffix(2))+"月收入"
+                incomeAmountLabel.text = String(monthlyAmount.monthlyIncome)
+                monthLabel.text = String(currentDate.suffix(2))+"月"
+                costLabel.text = String(currentDate.suffix(2))+"月支出"
+                costAmountLabel.text = String(monthlyAmount.monthlyCost)
+            }
+        }
     }
 }
 

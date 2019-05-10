@@ -78,6 +78,8 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
             numberKeyboardUIView.dateButton.setTitle(needToEditCostAmount?.date, for: .normal)
             categoryImageView.image = UIImage(named: needToEditCostAmount!.category ?? "食品")
             self.segmentedControl.selectedSegmentIndex = 1
+            self.costCollectionView.isHidden = false
+            self.incomeCollectionView.isHidden = true 
         } else if needToEditIncomeAmount != nil {
             categoryLabel.text = needToEditIncomeAmount!.category
             digitLabel.text = String(needToEditIncomeAmount!.amount)

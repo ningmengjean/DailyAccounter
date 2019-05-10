@@ -10,6 +10,7 @@ import UIKit
 
 protocol DailyIncomeTableViewCellDelegate: class {
     func sendIncomeItemDetailToEdit(_ sender: UIButton)
+    func deleteIncomeItem(_ sender: UIButton)
 }
 
 class DailyIncomeTableViewCell: UITableViewCell {
@@ -23,6 +24,10 @@ class DailyIncomeTableViewCell: UITableViewCell {
         delegate?.sendIncomeItemDetailToEdit(sender)
         hideDeleteAndEditButton()
     }
+    @IBAction func deleteIncomeItem(_ sender: UIButton) {
+        delegate?.deleteIncomeItem(sender)
+    }
+    
     var isShowEdit = false
     weak var delegate: DailyIncomeTableViewCellDelegate?
 

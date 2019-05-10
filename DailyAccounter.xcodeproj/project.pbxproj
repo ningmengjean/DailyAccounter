@@ -10,6 +10,7 @@
 		60356BCD049B7BE5A59C65F6 /* Pods_DailyAccounter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92D69859DBAADC8411A10D42 /* Pods_DailyAccounter.framework */; };
 		720D4F6222588B1D00C834DB /* DailyIncomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720D4F6022588B1D00C834DB /* DailyIncomeTableViewCell.swift */; };
 		720D4F6322588B1D00C834DB /* DailyIncomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 720D4F6122588B1D00C834DB /* DailyIncomeTableViewCell.xib */; };
+		722B8EC32282B1770063B8E2 /* MonthlyAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722B8EC22282B1770063B8E2 /* MonthlyAmount.swift */; };
 		725EFA75224CB98E00C88A31 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725EFA74224CB98E00C88A31 /* CalenderViewController.swift */; };
 		7280E897225D99EE00B349A7 /* PersonCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7280E896225D99EE00B349A7 /* PersonCost.swift */; };
 		7280E89A225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7280E898225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		720D4F6022588B1D00C834DB /* DailyIncomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyIncomeTableViewCell.swift; sourceTree = "<group>"; };
 		720D4F6122588B1D00C834DB /* DailyIncomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyIncomeTableViewCell.xib; sourceTree = "<group>"; };
+		722B8EC22282B1770063B8E2 /* MonthlyAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyAmount.swift; sourceTree = "<group>"; };
 		725EFA74224CB98E00C88A31 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
 		7280E896225D99EE00B349A7 /* PersonCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCost.swift; sourceTree = "<group>"; };
 		7280E898225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBillSummaryTableViewCell.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 		7213968C224760AF00BB377D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				722B8EC22282B1770063B8E2 /* MonthlyAmount.swift */,
 				728C9E6421188BF100AFD98D /* AccountData.swift */,
 				72F728902223D3E1004520DA /* Member.swift */,
 				7280E896225D99EE00B349A7 /* PersonCost.swift */,
@@ -346,6 +349,7 @@
 				72CE694622009390001E3260 /* SetDefaultMemberViewController.swift in Sources */,
 				72DEAC142271FB5500BFC121 /* UINavigationControllerExtention.swift in Sources */,
 				72C3275821DDF40C00C4456A /* RealmService.swift in Sources */,
+				722B8EC32282B1770063B8E2 /* MonthlyAmount.swift in Sources */,
 				720D4F6222588B1D00C834DB /* DailyIncomeTableViewCell.swift in Sources */,
 				72A21D2421F05BAE00143C5F /* EditMemberViewController.swift in Sources */,
 				728C9E8D2121B5DF00AFD98D /* NumberKeyboardUIView.swift in Sources */,
@@ -499,7 +503,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HZ5666T235;
 				INFOPLIST_FILE = DailyAccounter/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ping.DailyAccounter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -515,7 +522,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HZ5666T235;
 				INFOPLIST_FILE = DailyAccounter/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ping.DailyAccounter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

@@ -58,6 +58,9 @@
                             <constraint firstAttribute="height" constant="25" id="Afp-83-BFd"/>
                         </constraints>
                         <state key="normal" title="delete" image="delete"/>
+                        <connections>
+                            <action selector="deleteIncomeItem:" destination="6xj-wP-kDi" eventType="touchUpInside" id="DB9-5v-6qg"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XMz-vL-hV7">
                         <rect key="frame" x="361" y="22.5" width="25" height="25"/>
