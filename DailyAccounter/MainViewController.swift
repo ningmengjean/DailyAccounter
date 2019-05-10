@@ -9,7 +9,6 @@
 import UIKit
 import RealmSwift
 
-
 class MainViewController: UIViewController, DailyCostTableViewCellDelegate,DailyIncomeTableViewCellDelegate {
  
     @IBOutlet weak var incomeLabel: UILabel!
@@ -78,6 +77,11 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
     var currentDate: String?
     let monthlyAmount = MonthlyAmount()
     
+    func scrollToFirstRow() {
+        let indexPath = IndexPath(row: 0, section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
+    
     func sortAmountResultsByDay(arr: [Amount]) {
         var dailyIncome: Float = 0.0
         var dailyCost: Float = 0.0
@@ -120,8 +124,11 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
         monthlyBackView?.layer.cornerRadius = size/2
         monthlyBackView?.backgroundColor = .lightGray
         monthLabel?.backgroundColor = UIColor.black.withAlphaComponent(0)
-        monthlyDataView.backgroundColor = .clear
-       
+        monthlyDataView.backgroundColor = UIColor.black.withAlphaComponent(0.01)
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         let realm = try! Realm()
         let results = realm.objects(Amount.self)
         
@@ -136,15 +143,15 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
                 self?.sortAmountResultsByDay(arr: self?.amountResultsArr ?? [])
                 self?.dicByDaySorted = self?.dicByDay.sorted(by:{ $0.0 > $1.0}) ?? []
                 self?.month = self?.returnMonthPoint() ?? []
-                self?.currentDate = self?.dicByDaySorted.first?.value.first?.date
+                self?.currentDate = String(self?.dicByDaySorted.first?.value.first?.date?.dropLast(3) ?? "")
                 tableView.reloadData()
+                self?.scrollToFirstRow()
             case .error(let error):
                 // An error occurred while opening the Realm file on the background worker thread
                 fatalError("\(error)")
             }
         }
     }
-    
     @objc func pushToAddCostOrIncomeDetailViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let pvc = storyboard.instantiateViewController(withIdentifier: "AddCostOrIncomeDetailViewController") as! AddCostOrIncomeDetailViewController
@@ -287,12 +294,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         return 0
     }
     
-    
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let tableView = scrollView as? UITableView else {return}
         let visibleSection = tableView.indexPathsForVisibleRows!.map{$0.section}.first
-        
+
         if let visibleSection = visibleSection {
             let date = dicByDaySorted[visibleSection].key
             let start = date.startIndex
