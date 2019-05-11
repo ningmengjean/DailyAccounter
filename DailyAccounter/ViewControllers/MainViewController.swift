@@ -18,6 +18,28 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
     @IBOutlet weak var costLabel: UILabel!
     @IBOutlet weak var costAmountLabel: UILabel!
     @IBOutlet weak var monthlyDataView: UIView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+        }
+    }
+    
+    var amountResultsArr: [Amount]?
+    var dicByDay = [String: [Amount]]()
+    var dicByDaySorted = [(key: String, value: [Amount])]()
+    var totalIncome: Float = 0.0
+    var totalCost: Float = 0.0
+    var isMonthPoint: Bool = false
+    var month = [Int?]()
+    var monthArr = [Int]()
+    var editCostIndexPath: IndexPath?
+    var editIncomeIndexPath: IndexPath?
+    var deleteCostItemIndexPath: IndexPath?
+    var deleteIncomeItemIndexPath: IndexPath?
+    var notificationToken: NotificationToken? = nil
+    var currentDate: String?
+    let monthlyAmount = MonthlyAmount()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "pushToAddCostOrIncomeDetailViewController"{
@@ -53,29 +75,6 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
         let deleteIncomeItem = dicByDaySorted[deleteIncomeItemIndexPath.section].value[deleteIncomeItemIndexPath.row - 1]
         RealmService.shared.delete(deleteIncomeItem)
     }
-  
-    @IBOutlet weak var tableView: UITableView! {
-        didSet {
-            tableView.delegate = self
-            tableView.dataSource = self
-        }
-    }
-    
-    var amountResultsArr: [Amount]?
-    var dicByDay = [String: [Amount]]()
-    var dicByDaySorted = [(key: String, value: [Amount])]()
-    var totalIncome: Float = 0.0
-    var totalCost: Float = 0.0
-    var isMonthPoint: Bool = false
-    var month = [Int?]()
-    var monthArr = [Int]()
-    var editCostIndexPath: IndexPath?
-    var editIncomeIndexPath: IndexPath?
-    var deleteCostItemIndexPath: IndexPath?
-    var deleteIncomeItemIndexPath: IndexPath?
-    var notificationToken: NotificationToken? = nil
-    var currentDate: String?
-    let monthlyAmount = MonthlyAmount()
     
     func scrollToFirstRow() {
         let indexPath = IndexPath(row: 0, section: 0)
@@ -125,8 +124,8 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
         monthlyBackView?.backgroundColor = .lightGray
         monthLabel?.backgroundColor = UIColor.black.withAlphaComponent(0)
         monthlyDataView.backgroundColor = UIColor.black.withAlphaComponent(0.01)
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let realm = try! Realm()
@@ -136,7 +135,7 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
         notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
             guard let tableView = self?.tableView else { return }
             switch changes {
-            case .initial,.update:
+            case .update:
                 // Query results have changed, so apply them to the UITableView
                 self?.amountResultsArr = RealmService.shared.object(Amount.self)?.toArray(ofType: Amount.self)
                 self?.dicByDay = [String: [Amount]]()
@@ -146,12 +145,29 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
                 self?.currentDate = String(self?.dicByDaySorted.first?.value.first?.date?.dropLast(3) ?? "")
                 tableView.reloadData()
                 self?.scrollToFirstRow()
+            case .initial:
+                self?.amountResultsArr = RealmService.shared.object(Amount.self)?.toArray(ofType: Amount.self)
+                self?.dicByDay = [String: [Amount]]()
+                self?.sortAmountResultsByDay(arr: self?.amountResultsArr ?? [])
+                self?.dicByDaySorted = self?.dicByDay.sorted(by:{ $0.0 > $1.0}) ?? []
+                self?.month = self?.returnMonthPoint() ?? []
+                self?.currentDate = String(self?.dicByDaySorted.first?.value.first?.date?.dropLast(3) ?? "")
+                guard let currentDate = self?.currentDate else { return }
+                self?.monthlyAmount.countMonthlyAmount(month: currentDate)
+                self?.incomeLabel.text = String(currentDate.suffix(2))+"月收入"
+                self?.incomeAmountLabel.text = String((self?.monthlyAmount.monthlyIncome)!)
+                self?.monthLabel.text = String(currentDate.suffix(2))+"月"
+                self?.costLabel.text = String(currentDate.suffix(2))+"月支出"
+                self?.costAmountLabel.text = String((self?.monthlyAmount.monthlyCost)!)
+                self?.tableView.reloadData()
+                self?.scrollToFirstRow()
             case .error(let error):
                 // An error occurred while opening the Realm file on the background worker thread
                 fatalError("\(error)")
             }
         }
     }
+    
     @objc func pushToAddCostOrIncomeDetailViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let pvc = storyboard.instantiateViewController(withIdentifier: "AddCostOrIncomeDetailViewController") as! AddCostOrIncomeDetailViewController

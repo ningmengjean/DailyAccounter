@@ -11,6 +11,9 @@
 		720D4F6222588B1D00C834DB /* DailyIncomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720D4F6022588B1D00C834DB /* DailyIncomeTableViewCell.swift */; };
 		720D4F6322588B1D00C834DB /* DailyIncomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 720D4F6122588B1D00C834DB /* DailyIncomeTableViewCell.xib */; };
 		722B8EC32282B1770063B8E2 /* MonthlyAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722B8EC22282B1770063B8E2 /* MonthlyAmount.swift */; };
+		722B8ECC22855A530063B8E2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722B8ECB22855A530063B8E2 /* TabBarController.swift */; };
+		722B8ECE22855CB40063B8E2 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722B8ECD22855CB40063B8E2 /* ChartViewController.swift */; };
+		722B8ED12285705C0063B8E2 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722B8ED02285705C0063B8E2 /* DatePickerView.swift */; };
 		725EFA75224CB98E00C88A31 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725EFA74224CB98E00C88A31 /* CalenderViewController.swift */; };
 		7280E897225D99EE00B349A7 /* PersonCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7280E896225D99EE00B349A7 /* PersonCost.swift */; };
 		7280E89A225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7280E898225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift */; };
@@ -45,7 +48,10 @@
 		720D4F6022588B1D00C834DB /* DailyIncomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyIncomeTableViewCell.swift; sourceTree = "<group>"; };
 		720D4F6122588B1D00C834DB /* DailyIncomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyIncomeTableViewCell.xib; sourceTree = "<group>"; };
 		722B8EC22282B1770063B8E2 /* MonthlyAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyAmount.swift; sourceTree = "<group>"; };
-		725EFA74224CB98E00C88A31 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
+		722B8ECB22855A530063B8E2 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		722B8ECD22855CB40063B8E2 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		722B8ED02285705C0063B8E2 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		725EFA74224CB98E00C88A31 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalenderViewController.swift; path = ../CalenderViewController.swift; sourceTree = "<group>"; };
 		7280E896225D99EE00B349A7 /* PersonCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCost.swift; sourceTree = "<group>"; };
 		7280E898225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBillSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		7280E899225F204B00B349A7 /* DailyBillSummaryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyBillSummaryTableViewCell.xib; sourceTree = "<group>"; };
@@ -64,11 +70,11 @@
 		728C9E8C2121B5DF00AFD98D /* NumberKeyboardUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberKeyboardUIView.swift; sourceTree = "<group>"; };
 		728C9E8E2121B60D00AFD98D /* NumberKeyboardUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberKeyboardUIView.xib; sourceTree = "<group>"; };
 		72925F7721E88686003C1F39 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
-		72A21D2321F05BAE00143C5F /* EditMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMemberViewController.swift; sourceTree = "<group>"; };
+		72A21D2321F05BAE00143C5F /* EditMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditMemberViewController.swift; path = ../EditMemberViewController.swift; sourceTree = "<group>"; };
 		72B238E02267621D0062FA24 /* ArrayExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtention.swift; sourceTree = "<group>"; };
 		72C3275721DDF40C00C4456A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		72C3275921DE249000C4456A /* AddPersonTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonTableViewController.swift; sourceTree = "<group>"; };
-		72CE694522009390001E3260 /* SetDefaultMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDefaultMemberViewController.swift; sourceTree = "<group>"; };
+		72CE694522009390001E3260 /* SetDefaultMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetDefaultMemberViewController.swift; path = ../SetDefaultMemberViewController.swift; sourceTree = "<group>"; };
 		72DC8B34224F3A8600F5CD91 /* DateExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtention.swift; sourceTree = "<group>"; };
 		72DC8B36224F42D700F5CD91 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		72DC8B3822534EB900F5CD91 /* DailyCostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCostTableViewCell.swift; sourceTree = "<group>"; };
@@ -138,8 +144,26 @@
 				720D4F6122588B1D00C834DB /* DailyIncomeTableViewCell.xib */,
 				7280E898225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift */,
 				7280E899225F204B00B349A7 /* DailyBillSummaryTableViewCell.xib */,
+				722B8ED02285705C0063B8E2 /* DatePickerView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		722B8EC82285598B0063B8E2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				728C9E522118717400AFD98D /* MainViewController.swift */,
+				728C9E84211B27BA00AFD98D /* AddCostOrIncomeDetailViewController.swift */,
+				725EFA74224CB98E00C88A31 /* CalenderViewController.swift */,
+				72DC8B36224F42D700F5CD91 /* DetailViewController.swift */,
+				72CE694522009390001E3260 /* SetDefaultMemberViewController.swift */,
+				72A21D2321F05BAE00143C5F /* EditMemberViewController.swift */,
+				72C3275921DE249000C4456A /* AddPersonTableViewController.swift */,
+				728C9E8A21203ECB00AFD98D /* ManageMembersViewController.swift */,
+				722B8ECB22855A530063B8E2 /* TabBarController.swift */,
+				722B8ECD22855CB40063B8E2 /* ChartViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		728C9E442118717400AFD98D = {
@@ -167,15 +191,8 @@
 				7213968C224760AF00BB377D /* Models */,
 				7213968B2247609800BB377D /* Services */,
 				728C9E502118717400AFD98D /* AppDelegate.swift */,
-				728C9E522118717400AFD98D /* MainViewController.swift */,
-				728C9E84211B27BA00AFD98D /* AddCostOrIncomeDetailViewController.swift */,
+				722B8EC82285598B0063B8E2 /* ViewControllers */,
 				728C9E542118717400AFD98D /* Main.storyboard */,
-				725EFA74224CB98E00C88A31 /* CalenderViewController.swift */,
-				72DC8B36224F42D700F5CD91 /* DetailViewController.swift */,
-				72CE694522009390001E3260 /* SetDefaultMemberViewController.swift */,
-				72A21D2321F05BAE00143C5F /* EditMemberViewController.swift */,
-				72C3275921DE249000C4456A /* AddPersonTableViewController.swift */,
-				728C9E8A21203ECB00AFD98D /* ManageMembersViewController.swift */,
 				728C9E572118717700AFD98D /* Assets.xcassets */,
 				728C9E592118717700AFD98D /* LaunchScreen.storyboard */,
 				728C9E5C2118717700AFD98D /* Info.plist */,
@@ -342,6 +359,8 @@
 				725EFA75224CB98E00C88A31 /* CalenderViewController.swift in Sources */,
 				728C9E532118717400AFD98D /* MainViewController.swift in Sources */,
 				72DC8B37224F42D700F5CD91 /* DetailViewController.swift in Sources */,
+				722B8ECE22855CB40063B8E2 /* ChartViewController.swift in Sources */,
+				722B8ECC22855A530063B8E2 /* TabBarController.swift in Sources */,
 				72DC8B3A22534EB900F5CD91 /* DailyCostTableViewCell.swift in Sources */,
 				72F728912223D3E1004520DA /* Member.swift in Sources */,
 				7280E89A225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift in Sources */,
@@ -353,6 +372,7 @@
 				720D4F6222588B1D00C834DB /* DailyIncomeTableViewCell.swift in Sources */,
 				72A21D2421F05BAE00143C5F /* EditMemberViewController.swift in Sources */,
 				728C9E8D2121B5DF00AFD98D /* NumberKeyboardUIView.swift in Sources */,
+				722B8ED12285705C0063B8E2 /* DatePickerView.swift in Sources */,
 				728C9E6521188BF100AFD98D /* AccountData.swift in Sources */,
 				728C9E512118717400AFD98D /* AppDelegate.swift in Sources */,
 				72C3275B21DE249000C4456A /* AddPersonTableViewController.swift in Sources */,
