@@ -14,6 +14,9 @@
 		722B8ECC22855A530063B8E2 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722B8ECB22855A530063B8E2 /* TabBarController.swift */; };
 		722B8ECE22855CB40063B8E2 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722B8ECD22855CB40063B8E2 /* ChartViewController.swift */; };
 		722B8ED12285705C0063B8E2 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722B8ED02285705C0063B8E2 /* DatePickerView.swift */; };
+		722B8ED3228962430063B8E2 /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 722B8ED2228962430063B8E2 /* DatePickerView.xib */; };
+		725EE0B5228BCFA300F38687 /* PieChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725EE0B4228BCFA300F38687 /* PieChartsView.swift */; };
+		725EE0B7228BF99100F38687 /* PieChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725EE0B6228BF99100F38687 /* PieChartModel.swift */; };
 		725EFA75224CB98E00C88A31 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725EFA74224CB98E00C88A31 /* CalenderViewController.swift */; };
 		7280E897225D99EE00B349A7 /* PersonCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7280E896225D99EE00B349A7 /* PersonCost.swift */; };
 		7280E89A225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7280E898225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift */; };
@@ -36,6 +39,9 @@
 		72C3275821DDF40C00C4456A /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C3275721DDF40C00C4456A /* RealmService.swift */; };
 		72C3275B21DE249000C4456A /* AddPersonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C3275921DE249000C4456A /* AddPersonTableViewController.swift */; };
 		72CE694622009390001E3260 /* SetDefaultMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72CE694522009390001E3260 /* SetDefaultMemberViewController.swift */; };
+		72D578A8228FD74300491A42 /* CategoryChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D578A6228FD74300491A42 /* CategoryChartTableViewCell.swift */; };
+		72D578A9228FD74300491A42 /* CategoryChartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72D578A7228FD74300491A42 /* CategoryChartTableViewCell.xib */; };
+		72D578AB2293A2CF00491A42 /* ImageExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D578AA2293A2CF00491A42 /* ImageExtention.swift */; };
 		72DC8B35224F3A8600F5CD91 /* DateExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DC8B34224F3A8600F5CD91 /* DateExtention.swift */; };
 		72DC8B37224F42D700F5CD91 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DC8B36224F42D700F5CD91 /* DetailViewController.swift */; };
 		72DC8B3A22534EB900F5CD91 /* DailyCostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DC8B3822534EB900F5CD91 /* DailyCostTableViewCell.swift */; };
@@ -51,6 +57,9 @@
 		722B8ECB22855A530063B8E2 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		722B8ECD22855CB40063B8E2 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		722B8ED02285705C0063B8E2 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		722B8ED2228962430063B8E2 /* DatePickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
+		725EE0B4228BCFA300F38687 /* PieChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartsView.swift; sourceTree = "<group>"; };
+		725EE0B6228BF99100F38687 /* PieChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartModel.swift; sourceTree = "<group>"; };
 		725EFA74224CB98E00C88A31 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalenderViewController.swift; path = ../CalenderViewController.swift; sourceTree = "<group>"; };
 		7280E896225D99EE00B349A7 /* PersonCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCost.swift; sourceTree = "<group>"; };
 		7280E898225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBillSummaryTableViewCell.swift; sourceTree = "<group>"; };
@@ -75,6 +84,9 @@
 		72C3275721DDF40C00C4456A /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		72C3275921DE249000C4456A /* AddPersonTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonTableViewController.swift; sourceTree = "<group>"; };
 		72CE694522009390001E3260 /* SetDefaultMemberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SetDefaultMemberViewController.swift; path = ../SetDefaultMemberViewController.swift; sourceTree = "<group>"; };
+		72D578A6228FD74300491A42 /* CategoryChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryChartTableViewCell.swift; sourceTree = "<group>"; };
+		72D578A7228FD74300491A42 /* CategoryChartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryChartTableViewCell.xib; sourceTree = "<group>"; };
+		72D578AA2293A2CF00491A42 /* ImageExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtention.swift; sourceTree = "<group>"; };
 		72DC8B34224F3A8600F5CD91 /* DateExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtention.swift; sourceTree = "<group>"; };
 		72DC8B36224F42D700F5CD91 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		72DC8B3822534EB900F5CD91 /* DailyCostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCostTableViewCell.swift; sourceTree = "<group>"; };
@@ -110,6 +122,7 @@
 		7213968B2247609800BB377D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				72D578AA2293A2CF00491A42 /* ImageExtention.swift */,
 				72C3275721DDF40C00C4456A /* RealmService.swift */,
 				72925F7721E88686003C1F39 /* AlertService.swift */,
 				72DC8B34224F3A8600F5CD91 /* DateExtention.swift */,
@@ -134,6 +147,8 @@
 		7213968D224760EE00BB377D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				72D578A6228FD74300491A42 /* CategoryChartTableViewCell.swift */,
+				72D578A7228FD74300491A42 /* CategoryChartTableViewCell.xib */,
 				728C9E8C2121B5DF00AFD98D /* NumberKeyboardUIView.swift */,
 				728C9E8E2121B60D00AFD98D /* NumberKeyboardUIView.xib */,
 				728C9E86211C1B3600AFD98D /* CategoryCollectionViewCell.swift */,
@@ -145,6 +160,7 @@
 				7280E898225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift */,
 				7280E899225F204B00B349A7 /* DailyBillSummaryTableViewCell.xib */,
 				722B8ED02285705C0063B8E2 /* DatePickerView.swift */,
+				722B8ED2228962430063B8E2 /* DatePickerView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -164,6 +180,15 @@
 				722B8ECD22855CB40063B8E2 /* ChartViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		725EE0B3228BCF8600F38687 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				725EE0B4228BCFA300F38687 /* PieChartsView.swift */,
+				725EE0B6228BF99100F38687 /* PieChartModel.swift */,
+			);
+			path = Charts;
 			sourceTree = "<group>";
 		};
 		728C9E442118717400AFD98D = {
@@ -187,6 +212,7 @@
 		728C9E4F2118717400AFD98D /* DailyAccounter */ = {
 			isa = PBXGroup;
 			children = (
+				725EE0B3228BCF8600F38687 /* Charts */,
 				7213968D224760EE00BB377D /* Views */,
 				7213968C224760AF00BB377D /* Models */,
 				7213968B2247609800BB377D /* Services */,
@@ -272,7 +298,9 @@
 			files = (
 				720D4F6322588B1D00C834DB /* DailyIncomeTableViewCell.xib in Resources */,
 				72DC8B3B22534EB900F5CD91 /* DailyCostTableViewCell.xib in Resources */,
+				72D578A9228FD74300491A42 /* CategoryChartTableViewCell.xib in Resources */,
 				728C9E89211C1B3600AFD98D /* CategoryCollectionViewCell.xib in Resources */,
+				722B8ED3228962430063B8E2 /* DatePickerView.xib in Resources */,
 				728C9E5B2118717700AFD98D /* LaunchScreen.storyboard in Resources */,
 				728C9E582118717700AFD98D /* Assets.xcassets in Resources */,
 				7280E89B225F204B00B349A7 /* DailyBillSummaryTableViewCell.xib in Resources */,
@@ -350,6 +378,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72D578AB2293A2CF00491A42 /* ImageExtention.swift in Sources */,
+				725EE0B5228BCFA300F38687 /* PieChartsView.swift in Sources */,
 				72925F7821E88686003C1F39 /* AlertService.swift in Sources */,
 				728C9E85211B27BA00AFD98D /* AddCostOrIncomeDetailViewController.swift in Sources */,
 				72DC8B35224F3A8600F5CD91 /* DateExtention.swift in Sources */,
@@ -368,8 +398,10 @@
 				72CE694622009390001E3260 /* SetDefaultMemberViewController.swift in Sources */,
 				72DEAC142271FB5500BFC121 /* UINavigationControllerExtention.swift in Sources */,
 				72C3275821DDF40C00C4456A /* RealmService.swift in Sources */,
+				725EE0B7228BF99100F38687 /* PieChartModel.swift in Sources */,
 				722B8EC32282B1770063B8E2 /* MonthlyAmount.swift in Sources */,
 				720D4F6222588B1D00C834DB /* DailyIncomeTableViewCell.swift in Sources */,
+				72D578A8228FD74300491A42 /* CategoryChartTableViewCell.swift in Sources */,
 				72A21D2421F05BAE00143C5F /* EditMemberViewController.swift in Sources */,
 				728C9E8D2121B5DF00AFD98D /* NumberKeyboardUIView.swift in Sources */,
 				722B8ED12285705C0063B8E2 /* DatePickerView.swift in Sources */,

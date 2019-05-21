@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" id="QaI-ZT-Qat" customClass="DatePickerView" customModule="DailyAccounter">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQ9-Ez-9e6">
+                    <rect key="frame" x="186" y="30" width="42" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPE-0Z-Htz">
+                    <rect key="frame" x="151" y="32.5" width="15" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="15" id="Aux-4l-x6k"/>
+                        <constraint firstAttribute="height" constant="15" id="gtD-NP-n1e"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="PreButton"/>
+                    <connections>
+                        <action selector="goToPreDate:" destination="QaI-ZT-Qat" eventType="touchUpInside" id="g6T-dw-B5y"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ir-hA-6hk">
+                    <rect key="frame" x="248" y="32.5" width="15" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="15" id="s7F-Hy-fbK"/>
+                        <constraint firstAttribute="height" constant="15" id="saH-0U-o3J"/>
+                    </constraints>
+                    <state key="normal" title="NextButton"/>
+                    <connections>
+                        <action selector="goToNextDate:" destination="QaI-ZT-Qat" eventType="touchUpInside" id="5JP-Wu-lha"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kUQ-5L-FfD">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="f6k-pV-2yj"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="l1f-7W-Q6L"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wr5-S0-Tb2">
+                    <rect key="frame" x="0.0" y="79" width="414" height="1"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="MNg-dV-vWJ"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejR-H3-g2U">
+                    <rect key="frame" x="374" y="56" width="20" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="Mpa-ju-M2q"/>
+                        <constraint firstAttribute="height" constant="15" id="SOV-bD-mZu"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="exchangeIncomeOrCost:" destination="QaI-ZT-Qat" eventType="touchUpInside" id="NNY-lN-r45"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Wr5-S0-Tb2" secondAttribute="bottom" id="CDy-Lu-dFH"/>
+                <constraint firstItem="3Ir-hA-6hk" firstAttribute="centerY" secondItem="QaI-ZT-Qat" secondAttribute="centerY" id="KHh-V1-pV8"/>
+                <constraint firstItem="xPE-0Z-Htz" firstAttribute="centerY" secondItem="QaI-ZT-Qat" secondAttribute="centerY" id="N6h-rA-Kct"/>
+                <constraint firstItem="kUQ-5L-FfD" firstAttribute="top" secondItem="QaI-ZT-Qat" secondAttribute="top" id="ONu-fD-suI"/>
+                <constraint firstItem="TQ9-Ez-9e6" firstAttribute="centerX" secondItem="QaI-ZT-Qat" secondAttribute="centerX" id="WbH-vn-nEk"/>
+                <constraint firstItem="Wr5-S0-Tb2" firstAttribute="top" secondItem="ejR-H3-g2U" secondAttribute="bottom" constant="8" id="ZrN-9T-WWg"/>
+                <constraint firstAttribute="trailing" secondItem="Wr5-S0-Tb2" secondAttribute="trailing" id="cfz-5B-qN1"/>
+                <constraint firstItem="TQ9-Ez-9e6" firstAttribute="centerY" secondItem="QaI-ZT-Qat" secondAttribute="centerY" id="mSL-mj-BKP"/>
+                <constraint firstItem="kUQ-5L-FfD" firstAttribute="leading" secondItem="QaI-ZT-Qat" secondAttribute="leading" id="qfV-Ax-qkP"/>
+                <constraint firstItem="3Ir-hA-6hk" firstAttribute="leading" secondItem="TQ9-Ez-9e6" secondAttribute="trailing" constant="20" id="uew-4t-CFK"/>
+                <constraint firstItem="Wr5-S0-Tb2" firstAttribute="leading" secondItem="QaI-ZT-Qat" secondAttribute="leading" id="urk-z8-fAn"/>
+                <constraint firstItem="TQ9-Ez-9e6" firstAttribute="leading" secondItem="xPE-0Z-Htz" secondAttribute="trailing" constant="20" id="xoS-mZ-wCd"/>
+                <constraint firstAttribute="trailing" secondItem="kUQ-5L-FfD" secondAttribute="trailing" id="yIM-52-Uzp"/>
+                <constraint firstAttribute="trailing" secondItem="ejR-H3-g2U" secondAttribute="trailing" constant="20" id="zEq-VU-n7D"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="dateLabel" destination="TQ9-Ez-9e6" id="ng0-di-Dq7"/>
+                <outlet property="exchangeButton" destination="ejR-H3-g2U" id="59L-o3-X5T"/>
+                <outlet property="nextButton" destination="3Ir-hA-6hk" id="L6Z-2T-lkV"/>
+                <outlet property="preButton" destination="xPE-0Z-Htz" id="oPx-Wm-Wy8"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="284.59821428571428"/>
+        </view>
+    </objects>
+</document>
