@@ -1,5 +1,5 @@
 //
-//  PieChartModel.swift
+//  PieChartsModel.swift
 //  DailyAccounter
 //
 //  Created by wangchi on 2019/5/15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PieChartModel {
+class PieChartsModel {
     
     var totalMonthlyIncome: Float = 0.0
     var totalMonthlyCost: Float = 0.0

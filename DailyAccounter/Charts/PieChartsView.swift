@@ -21,7 +21,7 @@ class PieChartsView: PieChartView {
         legend.horizontalAlignment = Legend.HorizontalAlignment.center
         legend.verticalAlignment = Legend.VerticalAlignment.bottom 
         legend.orientation = Legend.Orientation.horizontal //水平布局
-        legend.formSize = 12
+        legend.formSize = 14
         self.setExtraOffsets(left: 5, top: 5, right: 5, bottom: 0)
         self.backgroundColor = UIColor.clear
         self.holeColor = UIColor.white
@@ -35,7 +35,7 @@ class PieChartsView: PieChartView {
         self.chartDescription = description
     }
     
-    let pieChartModel = PieChartModel()
+    let pieChartModel = PieChartsModel()
     let datePickerView = DatePickerView()
     var values = [String : [Amount]]()
     

@@ -16,6 +16,7 @@ protocol switchShowIncomeOrCostChartDelegate: class {
 protocol RefreshChartsDelegate: class {
     func refreshCostCharts()
     func refreshIncomeCharts()
+    func refreshAnnualCharts()
 }
 
 class DatePickerView: UIView {
@@ -68,6 +69,9 @@ class DatePickerView: UIView {
             let preYear = currentDate.dateByAdding(years: -1)
             dateLabel.text = preYear.toFormattedYearString()
             currentDate = preYear
+            lineChartsModel.countAnnualCostAmount(year: dateLabel.text!)
+            lineChartsModel.countAnnualIncomeAmount(year: dateLabel.text!)
+            refreshDelegate?.refreshAnnualCharts()
         }
     }
     @IBAction func goToNextDate(_ sender: UIButton) {
@@ -87,6 +91,9 @@ class DatePickerView: UIView {
             let nextYear = currentDate.dateByAdding(years: 1)
             dateLabel.text = nextYear.toFormattedYearString()
             currentDate = nextYear
+            lineChartsModel.countAnnualCostAmount(year: dateLabel.text!)
+            lineChartsModel.countAnnualIncomeAmount(year: dateLabel.text!)
+            refreshDelegate?.refreshAnnualCharts()
         }
     }
     @IBAction func exchangeIncomeOrCost(_ sender: UIButton) {
@@ -96,6 +103,7 @@ class DatePickerView: UIView {
     var currentDate = Date()
     weak var delegate: switchShowIncomeOrCostChartDelegate?
     weak var refreshDelegate: RefreshChartsDelegate?
-    var pieChartModel = PieChartModel()
+    var pieChartModel = PieChartsModel()
     var showCost = true
+    var lineChartsModel = LineChartsModel()
 }

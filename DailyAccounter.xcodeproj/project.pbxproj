@@ -15,8 +15,12 @@
 		722B8ECE22855CB40063B8E2 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722B8ECD22855CB40063B8E2 /* ChartViewController.swift */; };
 		722B8ED12285705C0063B8E2 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722B8ED02285705C0063B8E2 /* DatePickerView.swift */; };
 		722B8ED3228962430063B8E2 /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 722B8ED2228962430063B8E2 /* DatePickerView.xib */; };
+		72498D3A22952D5B00A68675 /* UIColorExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72498D3922952D5B00A68675 /* UIColorExtention.swift */; };
+		72498D3C2295391300A68675 /* LineChartsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72498D3B2295391300A68675 /* LineChartsModel.swift */; };
+		72498D412296899800A68675 /* AnnualCostAndIncomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72498D3F2296899800A68675 /* AnnualCostAndIncomeTableViewCell.swift */; };
+		72498D422296899800A68675 /* AnnualCostAndIncomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72498D402296899800A68675 /* AnnualCostAndIncomeTableViewCell.xib */; };
 		725EE0B5228BCFA300F38687 /* PieChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725EE0B4228BCFA300F38687 /* PieChartsView.swift */; };
-		725EE0B7228BF99100F38687 /* PieChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725EE0B6228BF99100F38687 /* PieChartModel.swift */; };
+		725EE0B7228BF99100F38687 /* PieChartsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725EE0B6228BF99100F38687 /* PieChartsModel.swift */; };
 		725EFA75224CB98E00C88A31 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725EFA74224CB98E00C88A31 /* CalenderViewController.swift */; };
 		7280E897225D99EE00B349A7 /* PersonCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7280E896225D99EE00B349A7 /* PersonCost.swift */; };
 		7280E89A225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7280E898225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift */; };
@@ -42,6 +46,7 @@
 		72D578A8228FD74300491A42 /* CategoryChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D578A6228FD74300491A42 /* CategoryChartTableViewCell.swift */; };
 		72D578A9228FD74300491A42 /* CategoryChartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72D578A7228FD74300491A42 /* CategoryChartTableViewCell.xib */; };
 		72D578AB2293A2CF00491A42 /* ImageExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D578AA2293A2CF00491A42 /* ImageExtention.swift */; };
+		72D578AD2293EB9D00491A42 /* LineChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D578AC2293EB9D00491A42 /* LineChartsView.swift */; };
 		72DC8B35224F3A8600F5CD91 /* DateExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DC8B34224F3A8600F5CD91 /* DateExtention.swift */; };
 		72DC8B37224F42D700F5CD91 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DC8B36224F42D700F5CD91 /* DetailViewController.swift */; };
 		72DC8B3A22534EB900F5CD91 /* DailyCostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DC8B3822534EB900F5CD91 /* DailyCostTableViewCell.swift */; };
@@ -58,8 +63,12 @@
 		722B8ECD22855CB40063B8E2 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		722B8ED02285705C0063B8E2 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		722B8ED2228962430063B8E2 /* DatePickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerView.xib; sourceTree = "<group>"; };
+		72498D3922952D5B00A68675 /* UIColorExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtention.swift; sourceTree = "<group>"; };
+		72498D3B2295391300A68675 /* LineChartsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartsModel.swift; sourceTree = "<group>"; };
+		72498D3F2296899800A68675 /* AnnualCostAndIncomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnualCostAndIncomeTableViewCell.swift; sourceTree = "<group>"; };
+		72498D402296899800A68675 /* AnnualCostAndIncomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnnualCostAndIncomeTableViewCell.xib; sourceTree = "<group>"; };
 		725EE0B4228BCFA300F38687 /* PieChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartsView.swift; sourceTree = "<group>"; };
-		725EE0B6228BF99100F38687 /* PieChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartModel.swift; sourceTree = "<group>"; };
+		725EE0B6228BF99100F38687 /* PieChartsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartsModel.swift; sourceTree = "<group>"; };
 		725EFA74224CB98E00C88A31 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalenderViewController.swift; path = ../CalenderViewController.swift; sourceTree = "<group>"; };
 		7280E896225D99EE00B349A7 /* PersonCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCost.swift; sourceTree = "<group>"; };
 		7280E898225F204B00B349A7 /* DailyBillSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBillSummaryTableViewCell.swift; sourceTree = "<group>"; };
@@ -87,6 +96,7 @@
 		72D578A6228FD74300491A42 /* CategoryChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryChartTableViewCell.swift; sourceTree = "<group>"; };
 		72D578A7228FD74300491A42 /* CategoryChartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryChartTableViewCell.xib; sourceTree = "<group>"; };
 		72D578AA2293A2CF00491A42 /* ImageExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtention.swift; sourceTree = "<group>"; };
+		72D578AC2293EB9D00491A42 /* LineChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartsView.swift; sourceTree = "<group>"; };
 		72DC8B34224F3A8600F5CD91 /* DateExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtention.swift; sourceTree = "<group>"; };
 		72DC8B36224F42D700F5CD91 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		72DC8B3822534EB900F5CD91 /* DailyCostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCostTableViewCell.swift; sourceTree = "<group>"; };
@@ -128,6 +138,7 @@
 				72DC8B34224F3A8600F5CD91 /* DateExtention.swift */,
 				72B238E02267621D0062FA24 /* ArrayExtention.swift */,
 				72DEAC132271FB5500BFC121 /* UINavigationControllerExtention.swift */,
+				72498D3922952D5B00A68675 /* UIColorExtention.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -161,6 +172,8 @@
 				7280E899225F204B00B349A7 /* DailyBillSummaryTableViewCell.xib */,
 				722B8ED02285705C0063B8E2 /* DatePickerView.swift */,
 				722B8ED2228962430063B8E2 /* DatePickerView.xib */,
+				72498D3F2296899800A68675 /* AnnualCostAndIncomeTableViewCell.swift */,
+				72498D402296899800A68675 /* AnnualCostAndIncomeTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -186,7 +199,9 @@
 			isa = PBXGroup;
 			children = (
 				725EE0B4228BCFA300F38687 /* PieChartsView.swift */,
-				725EE0B6228BF99100F38687 /* PieChartModel.swift */,
+				725EE0B6228BF99100F38687 /* PieChartsModel.swift */,
+				72D578AC2293EB9D00491A42 /* LineChartsView.swift */,
+				72498D3B2295391300A68675 /* LineChartsModel.swift */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -302,6 +317,7 @@
 				728C9E89211C1B3600AFD98D /* CategoryCollectionViewCell.xib in Resources */,
 				722B8ED3228962430063B8E2 /* DatePickerView.xib in Resources */,
 				728C9E5B2118717700AFD98D /* LaunchScreen.storyboard in Resources */,
+				72498D422296899800A68675 /* AnnualCostAndIncomeTableViewCell.xib in Resources */,
 				728C9E582118717700AFD98D /* Assets.xcassets in Resources */,
 				7280E89B225F204B00B349A7 /* DailyBillSummaryTableViewCell.xib in Resources */,
 				728C9E8F2121B60D00AFD98D /* NumberKeyboardUIView.xib in Resources */,
@@ -390,6 +406,7 @@
 				728C9E532118717400AFD98D /* MainViewController.swift in Sources */,
 				72DC8B37224F42D700F5CD91 /* DetailViewController.swift in Sources */,
 				722B8ECE22855CB40063B8E2 /* ChartViewController.swift in Sources */,
+				72498D3A22952D5B00A68675 /* UIColorExtention.swift in Sources */,
 				722B8ECC22855A530063B8E2 /* TabBarController.swift in Sources */,
 				72DC8B3A22534EB900F5CD91 /* DailyCostTableViewCell.swift in Sources */,
 				72F728912223D3E1004520DA /* Member.swift in Sources */,
@@ -398,15 +415,18 @@
 				72CE694622009390001E3260 /* SetDefaultMemberViewController.swift in Sources */,
 				72DEAC142271FB5500BFC121 /* UINavigationControllerExtention.swift in Sources */,
 				72C3275821DDF40C00C4456A /* RealmService.swift in Sources */,
-				725EE0B7228BF99100F38687 /* PieChartModel.swift in Sources */,
+				725EE0B7228BF99100F38687 /* PieChartsModel.swift in Sources */,
 				722B8EC32282B1770063B8E2 /* MonthlyAmount.swift in Sources */,
 				720D4F6222588B1D00C834DB /* DailyIncomeTableViewCell.swift in Sources */,
+				72498D3C2295391300A68675 /* LineChartsModel.swift in Sources */,
 				72D578A8228FD74300491A42 /* CategoryChartTableViewCell.swift in Sources */,
 				72A21D2421F05BAE00143C5F /* EditMemberViewController.swift in Sources */,
 				728C9E8D2121B5DF00AFD98D /* NumberKeyboardUIView.swift in Sources */,
 				722B8ED12285705C0063B8E2 /* DatePickerView.swift in Sources */,
+				72D578AD2293EB9D00491A42 /* LineChartsView.swift in Sources */,
 				728C9E6521188BF100AFD98D /* AccountData.swift in Sources */,
 				728C9E512118717400AFD98D /* AppDelegate.swift in Sources */,
+				72498D412296899800A68675 /* AnnualCostAndIncomeTableViewCell.swift in Sources */,
 				72C3275B21DE249000C4456A /* AddPersonTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
