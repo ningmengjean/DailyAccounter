@@ -29,14 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             RealmService.shared.saveObject(member1)
             RealmService.shared.saveObject(member2)
         }
-//        let tabBarViewController = UITabBarController()
-//        let navigationController = UINavigationController()
-//        let tabBarItem = UITabBarItem(title: "报表", image: UIImage(named: "pie"), tag: 1)
-//        tabBarViewController.tabBarItem = tabBarItem
-//        let vc = MainViewController()
-//        tabBarViewController.addChild(navigationController)
-//        navigationController.addChild(vc)
-//        window?.rootViewController = tabBarViewController
         
         return true
     }

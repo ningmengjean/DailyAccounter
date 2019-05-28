@@ -137,18 +137,22 @@ class ChartViewController: UIViewController, RefreshChartsDelegate, switchShowIn
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        pieChartModel.countMonthlyCostAmount(month: datePickerView.dateLabel.text!)
-        pieChartsView.values = pieChartModel.costCategoryAmountArray
-        tableViewValues = pieChartsView.values
-        if pieChartsView.values.count == 0 {
-            noDataView.isHidden = false
+        if segmentedControl.selectedSegmentIndex == 0 {
+            pieChartModel.countMonthlyCostAmount(month: datePickerView.dateLabel.text!)
+            pieChartsView.values = pieChartModel.costCategoryAmountArray
+            tableViewValues = pieChartsView.values
+            if pieChartsView.values.count == 0 {
+                noDataView.isHidden = false
+            } else {
+                noDataView.isHidden = true
+                pieChartsView.setupChart()
+                pieChartsView.loadChartData()
+                tableView.reloadData()
+            }
+            pieChartsView.centerText = "总支出"
         } else {
-            noDataView.isHidden = true
-            pieChartsView.setupChart()
-            pieChartsView.loadChartData()
-            tableView.reloadData()
+            refreshAnnualCharts()
         }
-        pieChartsView.centerText = "总支出"
     }
 }
 

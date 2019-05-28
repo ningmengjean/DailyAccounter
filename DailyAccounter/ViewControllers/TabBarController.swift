@@ -14,12 +14,14 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
+            }
     
     func addChildController() {
-        let vc1 = MainViewController()
-        let vc2 = ChartViewController()
+      
     }
+    
+   
+    
     /*
     // MARK: - Navigation
 
