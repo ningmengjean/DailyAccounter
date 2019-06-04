@@ -160,7 +160,7 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
                 self?.costLabel.text = String(currentDate.suffix(2))+"月支出"
                 self?.costAmountLabel.text = String((self?.monthlyAmount.monthlyCost)!)
                 self?.tableView.reloadData()
-                self?.scrollToFirstRow()
+                
             case .error(let error):
                 // An error occurred while opening the Realm file on the background worker thread
                 fatalError("\(error)")
@@ -311,9 +311,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let tableView = scrollView as? UITableView else {return}
-        let visibleSection = tableView.indexPathsForVisibleRows!.map{$0.section}.first
-
+        guard let tableView = scrollView as? UITableView else { return }
+        let visibleSection = tableView.indexPathsForVisibleRows?.map{$0.section}.first
+        
         if let visibleSection = visibleSection {
             let date = dicByDaySorted[visibleSection].key
             let start = date.startIndex

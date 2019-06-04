@@ -160,6 +160,10 @@ extension ChartViewController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if segmentedControl.selectedSegmentIndex == 0 {
+            if pieChartsView.values.count == 0 {
+                noDataView.isHidden = false
+                return 0
+            }
             return tableViewValues.keys.count
         } else {
             return 12
