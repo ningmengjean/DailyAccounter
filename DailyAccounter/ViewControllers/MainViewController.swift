@@ -25,11 +25,20 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
         }
     }
     
+    @IBAction func pushToAddCostOrIncomeDetailViewController(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let pvc = storyboard.instantiateViewController(withIdentifier: "AddCostOrIncomeDetailViewController") as! AddCostOrIncomeDetailViewController
+        pvc.needToEditCostAmount = nil
+        pvc.needToEditIncomeAmount = nil
+        month = []
+        self.navigationController?.pushViewController(pvc, animated: true)
+    }
+    
     var amountResultsArr: [Amount]?
     var dicByDay = [String: [Amount]]()
     var dicByDaySorted = [(key: String, value: [Amount])]()
-    var totalIncome: Float = 0.0
-    var totalCost: Float = 0.0
+    var totalIncome = 0.0
+    var totalCost = 0.0
     var isMonthPoint: Bool = false
     var month = [Int?]()
     var monthArr = [Int]()
@@ -82,8 +91,8 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
     }
     
     func sortAmountResultsByDay(arr: [Amount]) {
-        var dailyIncome: Float = 0.0
-        var dailyCost: Float = 0.0
+        var dailyIncome = 0.0
+        var dailyCost = 0.0
         for amount in arr {
             if dicByDay[amount.date!] == nil {
                dicByDay[amount.date!] = [amount]
@@ -117,8 +126,6 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
         tableView.allowsMultipleSelection = false
         self.tableView.sectionHeaderHeight = UITableView.automaticDimension
         self.tableView.estimatedSectionHeaderHeight = 60.0
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(pushToAddCostOrIncomeDetailViewController))
-        
         let size:CGFloat = 60.0
         monthlyBackView?.layer.cornerRadius = size/2
         monthlyBackView?.backgroundColor = .lightGray
@@ -144,7 +151,13 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
                 self?.month = self?.returnMonthPoint() ?? []
                 self?.currentDate = String(self?.dicByDaySorted.first?.value.first?.date?.dropLast(3) ?? "")
                 tableView.reloadData()
-                self?.scrollToFirstRow()
+                if self?.amountResultsArr?.count != 0 {
+                    self?.scrollToFirstRow()
+                    self?.scrollViewDidScroll(self!.tableView)
+                } else {
+                    self?.incomeAmountLabel.text = "0"
+                    self?.costAmountLabel.text = "0"
+                }
             case .initial:
                 self?.amountResultsArr = RealmService.shared.object(Amount.self)?.toArray(ofType: Amount.self)
                 self?.dicByDay = [String: [Amount]]()
@@ -166,14 +179,6 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
                 fatalError("\(error)")
             }
         }
-    }
-    
-    @objc func pushToAddCostOrIncomeDetailViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let pvc = storyboard.instantiateViewController(withIdentifier: "AddCostOrIncomeDetailViewController") as! AddCostOrIncomeDetailViewController
-        pvc.needToEditCostAmount = nil
-        month = []
-        self.navigationController?.pushViewController(pvc, animated: true)
     }
 }
 
@@ -207,10 +212,12 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         if detailAmount.isCost == true {
             costCell.configureDailyCostTableViewCell(detailAmount: detailAmount)
             costCell.delegate = self
+            costCell.hideDeleteAndEditButton()
             return costCell
         } else {
             incomeCell.configureDailyIncomeTableViewCell(detailAmount: detailAmount)
             incomeCell.delegate = self
+            incomeCell.hideDeleteAndEditButton()
             return incomeCell
         }
     }
@@ -289,7 +296,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         
         for point in month {
             if section == 0 {
-                monthLabel.text = ""
                 return monthPointView
             } else if section == point {
                 monthLabel.text = String(monthArr[section]).suffix(2)+"月"

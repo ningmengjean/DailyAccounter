@@ -10,14 +10,14 @@ import Foundation
 
 class PieChartsModel {
     
-    var totalMonthlyIncome: Float = 0.0
-    var totalMonthlyCost: Float = 0.0
+    var totalMonthlyIncome = 0.0
+    var totalMonthlyCost = 0.0
     var costCategoryAmountArray = [String:[Amount]]()
     var incomeCategoryAmountArray = [String:[Amount]]()
     
     func countMonthlyCostAmount(month: String) {
         let predicate = NSPredicate(format: "date BEGINSWITH %@ AND isCost = true", month)
-        var monthlyCost: Float = 0.0
+        var monthlyCost = 0.0
         var costCategoryAmountArray = [String:[Amount]]()
         if let monthlyCostAmounts = RealmService.shared.object(Amount.self)?.filter(predicate).sorted(byKeyPath: "date" ).toArray(ofType: Amount.self) {
             for amount in monthlyCostAmounts {
@@ -35,7 +35,7 @@ class PieChartsModel {
     
     func countMonthlyIncomeAmount(month: String) {
         let predicate = NSPredicate(format: "date BEGINSWITH %@ AND isCost = False", month)
-        var monthlyIncome: Float = 0.0
+        var monthlyIncome = 0.0
         var incomeCategoryAmountArray = [String:[Amount]]()
         if let monthlyIncomeAmounts = RealmService.shared.object(Amount.self)?.filter(predicate).sorted(byKeyPath: "date" ).toArray(ofType: Amount.self) {
             for amount in monthlyIncomeAmounts {

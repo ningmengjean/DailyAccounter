@@ -118,7 +118,7 @@
                     <navigationItem key="navigationItem" id="oCi-6A-BCF">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="DaP-RM-W4u">
                             <connections>
-                                <segue destination="CLG-pn-Xur" kind="push" identifier="pushToAddCostOrIncomeDetailViewController" id="QX0-4Z-JGf"/>
+                                <action selector="pushToAddCostOrIncomeDetailViewController:" destination="BYZ-38-t0r" id="OVu-er-7Y5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -131,6 +131,7 @@
                         <outlet property="monthlyBackView" destination="YcO-Uf-A4Y" id="a3d-OI-72v"/>
                         <outlet property="monthlyDataView" destination="x4N-dT-ZhL" id="Zhm-uu-n0V"/>
                         <outlet property="tableView" destination="gqG-fI-Xu3" id="U5r-xo-0cM"/>
+                        <segue destination="CLG-pn-Xur" kind="show" identifier="pushToAddCostOrIncomeDetailViewController" id="lll-sO-rhe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

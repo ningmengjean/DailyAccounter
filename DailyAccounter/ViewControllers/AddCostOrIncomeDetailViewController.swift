@@ -217,7 +217,7 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
                     changeIncome.category = self.categoryLabel.text
                     changeIncome.date = self.numberKeyboardUIView.dateButton.titleLabel?.text
                     changeIncome.detail = self.detailText
-                    changeIncome.amount = Float(self.digitLabel.text!)!
+                    changeIncome.amount = Double(Float(self.digitLabel.text!)!)
                     changeIncome.isCost = false
                     self.savePersonCost(arr: self.selectedPerson, cost: Float(self.digitLabel.text!)!)
                     let persons = RealmService.shared.object(PersonCost.self)?.toArray(ofType: PersonCost.self)
@@ -232,7 +232,7 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
                     changeCost.category = self.categoryLabel.text
                     changeCost.date = self.numberKeyboardUIView.dateButton.titleLabel?.text
                     changeCost.detail = self.detailText
-                    changeCost.amount = Float(self.digitLabel.text!)!
+                    changeCost.amount = Double(self.digitLabel.text!)!
                     changeCost.isCost = true
                     self.savePersonCost(arr: self.selectedPerson, cost: Float(self.digitLabel.text!)!)
                     let persons = RealmService.shared.object(PersonCost.self)?.toArray(ofType: PersonCost.self)
@@ -248,7 +248,7 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
                 newIncome.category = categoryLabel.text
                 newIncome.date = self.numberKeyboardUIView.dateButton.titleLabel?.text
                 newIncome.detail = detailText
-                newIncome.amount = Float(digitLabel.text!)!
+                newIncome.amount = Double(digitLabel.text!)!
                 newIncome.isCost = false
                 newIncome.id = newIncome.incrementID()
                 savePersonCost(arr: selectedPerson, cost: Float(digitLabel.text!)!)
@@ -262,7 +262,7 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
                 newCost.category = categoryLabel.text
                 newCost.date = self.numberKeyboardUIView.dateButton.titleLabel?.text
                 newCost.detail = detailText
-                newCost.amount = Float(digitLabel.text!)!
+                newCost.amount = Double(digitLabel.text!)!
                 newCost.isCost = true
                 newCost.id = newCost.incrementID()
                 savePersonCost(arr: selectedPerson, cost: Float(digitLabel.text!)!)

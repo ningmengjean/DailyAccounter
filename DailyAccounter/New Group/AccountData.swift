@@ -11,14 +11,14 @@ import RealmSwift
 
 class Amount: Object {
     @objc dynamic var date: String? = Amount.defaultDay()
-    @objc dynamic var amount: Float = 0.0
+    @objc dynamic var amount: Double = 0.0
     @objc dynamic var detail: String?
     @objc dynamic var category: String?
     @objc dynamic var isCost: Bool = false
     @objc dynamic var id: Int = 0
     let persons = List<PersonCost>()
     
-    convenience init(date: String?, amount: Float, detail: String?, category: String?, isCost: Bool, costPerPerson: Float, id: Int) {
+    convenience init(date: String?, amount: Double, detail: String?, category: String?, isCost: Bool, costPerPerson: Float, id: Int) {
         self.init()
         self.date = date
         self.amount = amount

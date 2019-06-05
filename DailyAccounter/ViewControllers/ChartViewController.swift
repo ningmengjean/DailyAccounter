@@ -212,7 +212,24 @@ extension ChartViewController: UITableViewDelegate,UITableViewDataSource {
             return lineChartsView
         }
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 300
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if segmentedControl.selectedSegmentIndex == 1 {
+            let footerCell = tableView.dequeueReusableCell(withIdentifier: "AnnualCostAndIncomeTableViewCell") as! AnnualCostAndIncomeTableViewCell
+            footerCell.monthLabel.text = "总计"
+            footerCell.costLabel.text = String(lineChartsModel.annualTotalCost)
+            footerCell.incomeLabel.text = String(lineChartsModel.annualTotalIncome)
+            footerCell.differenceLabel.text = String(lineChartsModel.annualTotalIncome - lineChartsModel.annualTotalCost)
+            return footerCell
+        }
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 44
     }
 }

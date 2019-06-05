@@ -11,13 +11,13 @@ import RealmSwift
 
 class MonthlyAmount {
     
-    var monthlyIncome: Float = 0.0
-    var monthlyCost: Float = 0.0
+    var monthlyIncome = 0.0
+    var monthlyCost = 0.0
     
     func countMonthlyAmount(month: String) {
         let predicate = NSPredicate(format: "date BEGINSWITH %@", month)
-        var monthlyIncome: Float = 0.0
-        var monthlyCost: Float = 0.0
+        var monthlyIncome = 0.0
+        var monthlyCost = 0.0
         if let monthlyAmounts = RealmService.shared.object(Amount.self)?.filter(predicate).toArray(ofType: Amount.self) {
             for amount in monthlyAmounts {
                 if amount.isCost {
