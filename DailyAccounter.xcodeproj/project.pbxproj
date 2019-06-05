@@ -19,6 +19,8 @@
 		72498D3C2295391300A68675 /* LineChartsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72498D3B2295391300A68675 /* LineChartsModel.swift */; };
 		72498D412296899800A68675 /* AnnualCostAndIncomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72498D3F2296899800A68675 /* AnnualCostAndIncomeTableViewCell.swift */; };
 		72498D422296899800A68675 /* AnnualCostAndIncomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72498D402296899800A68675 /* AnnualCostAndIncomeTableViewCell.xib */; };
+		7252C72A22A7B64000A465E6 /* MainViewControllerFooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7252C72822A7B64000A465E6 /* MainViewControllerFooterTableViewCell.swift */; };
+		7252C72B22A7B64000A465E6 /* MainViewControllerFooterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7252C72922A7B64000A465E6 /* MainViewControllerFooterTableViewCell.xib */; };
 		725EE0B5228BCFA300F38687 /* PieChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725EE0B4228BCFA300F38687 /* PieChartsView.swift */; };
 		725EE0B7228BF99100F38687 /* PieChartsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725EE0B6228BF99100F38687 /* PieChartsModel.swift */; };
 		725EFA75224CB98E00C88A31 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725EFA74224CB98E00C88A31 /* CalenderViewController.swift */; };
@@ -67,6 +69,8 @@
 		72498D3B2295391300A68675 /* LineChartsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartsModel.swift; sourceTree = "<group>"; };
 		72498D3F2296899800A68675 /* AnnualCostAndIncomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnualCostAndIncomeTableViewCell.swift; sourceTree = "<group>"; };
 		72498D402296899800A68675 /* AnnualCostAndIncomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnnualCostAndIncomeTableViewCell.xib; sourceTree = "<group>"; };
+		7252C72822A7B64000A465E6 /* MainViewControllerFooterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerFooterTableViewCell.swift; sourceTree = "<group>"; };
+		7252C72922A7B64000A465E6 /* MainViewControllerFooterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewControllerFooterTableViewCell.xib; sourceTree = "<group>"; };
 		725EE0B4228BCFA300F38687 /* PieChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartsView.swift; sourceTree = "<group>"; };
 		725EE0B6228BF99100F38687 /* PieChartsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartsModel.swift; sourceTree = "<group>"; };
 		725EFA74224CB98E00C88A31 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalenderViewController.swift; path = ../CalenderViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 				722B8ED2228962430063B8E2 /* DatePickerView.xib */,
 				72498D3F2296899800A68675 /* AnnualCostAndIncomeTableViewCell.swift */,
 				72498D402296899800A68675 /* AnnualCostAndIncomeTableViewCell.xib */,
+				7252C72822A7B64000A465E6 /* MainViewControllerFooterTableViewCell.swift */,
+				7252C72922A7B64000A465E6 /* MainViewControllerFooterTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -315,6 +321,7 @@
 				72DC8B3B22534EB900F5CD91 /* DailyCostTableViewCell.xib in Resources */,
 				72D578A9228FD74300491A42 /* CategoryChartTableViewCell.xib in Resources */,
 				728C9E89211C1B3600AFD98D /* CategoryCollectionViewCell.xib in Resources */,
+				7252C72B22A7B64000A465E6 /* MainViewControllerFooterTableViewCell.xib in Resources */,
 				722B8ED3228962430063B8E2 /* DatePickerView.xib in Resources */,
 				728C9E5B2118717700AFD98D /* LaunchScreen.storyboard in Resources */,
 				72498D422296899800A68675 /* AnnualCostAndIncomeTableViewCell.xib in Resources */,
@@ -420,6 +427,7 @@
 				720D4F6222588B1D00C834DB /* DailyIncomeTableViewCell.swift in Sources */,
 				72498D3C2295391300A68675 /* LineChartsModel.swift in Sources */,
 				72D578A8228FD74300491A42 /* CategoryChartTableViewCell.swift in Sources */,
+				7252C72A22A7B64000A465E6 /* MainViewControllerFooterTableViewCell.swift in Sources */,
 				72A21D2421F05BAE00143C5F /* EditMemberViewController.swift in Sources */,
 				728C9E8D2121B5DF00AFD98D /* NumberKeyboardUIView.swift in Sources */,
 				722B8ED12285705C0063B8E2 /* DatePickerView.swift in Sources */,

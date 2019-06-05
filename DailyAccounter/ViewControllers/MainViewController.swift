@@ -120,6 +120,7 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
         tableView.register(UINib(nibName: "DailyIncomeTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "DailyIncomeTableViewCell")
         tableView.register(UINib(nibName: "DailyCostTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "DailyCostTableViewCell")
         tableView.register(UINib(nibName: "DailyBillSummaryTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "DailyBillSummaryTableViewCell")
+        tableView.register(UINib(nibName: "MainViewControllerFooterTableViewCell", bundle: Bundle.main), forCellReuseIdentifier: "MainViewControllerFooterTableViewCell")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100.0
         tableView.separatorStyle = .none
@@ -312,6 +313,21 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             } else if section == point {
                 return 60
             }
+        }
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == dicByDaySorted.count - 1 {
+            let footerCell = tableView.dequeueReusableCell(withIdentifier: "MainViewControllerFooterTableViewCell") as! MainViewControllerFooterTableViewCell
+            return footerCell
+        }
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == dicByDaySorted.count - 1 {
+            return 44
         }
         return 0
     }
