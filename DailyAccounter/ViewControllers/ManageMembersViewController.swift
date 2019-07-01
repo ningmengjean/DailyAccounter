@@ -70,8 +70,10 @@ class ManageMembersViewController: UIViewController, UITableViewDelegate, UITabl
     @objc func touchMemberButton(_ sender: UINavigationItem)  {
         textField.resignFirstResponder()
         let memberResults = RealmService.shared.object(Member.self)
-        self.delegate?.getMemberList(arr: memberResults)
-        dismiss(animated: true, completion: nil)
+        
+        dismiss(animated: true, completion: {
+            self.delegate?.getMemberList(arr: memberResults)
+        })
     }
     
     @objc func touchDefaultButton(_ sender: UINavigationItem) {

@@ -49,7 +49,7 @@ class DailyCostTableViewCell: UITableViewCell {
         categoryImageView.image = UIImage(named:detailAmount.category ?? "食品")
         outAmountLabel.text = String(format: "%.2f",detailAmount.amount)
         outCategoryLabel.text = detailAmount.category
-        outDetailLabel.text = detailAmount.detail
+        outDetailLabel.text = detailAmount.detail ?? "食品"
     }
     
     func showDeleteAndEditButton() {

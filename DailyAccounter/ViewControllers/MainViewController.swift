@@ -127,6 +127,7 @@ class MainViewController: UIViewController, DailyCostTableViewCellDelegate,Daily
         tableView.allowsMultipleSelection = false
         self.tableView.sectionHeaderHeight = UITableView.automaticDimension
         self.tableView.estimatedSectionHeaderHeight = 60.0
+        self.tableView.sectionFooterHeight = 0
         let size:CGFloat = 60.0
         monthlyBackView?.layer.cornerRadius = size/2
         monthlyBackView?.backgroundColor = .lightGray
@@ -322,9 +323,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
             let footerCell = tableView.dequeueReusableCell(withIdentifier: "MainViewControllerFooterTableViewCell") as! MainViewControllerFooterTableViewCell
             return footerCell
         }
-        return UITableViewCell()
+        
+        return nil
     }
-    
+
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == dicByDaySorted.count - 1 {
             return 44

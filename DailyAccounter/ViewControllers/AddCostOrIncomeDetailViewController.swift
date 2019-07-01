@@ -202,9 +202,9 @@ class AddCostOrIncomeDetailViewController: UIViewController, NumberKeyboardUIVie
     }
     
     func touchConformButton() {
-        if digitLabel.text == "0" {
+        if digitLabel.text == "0" || categoryLabel.text == "" {
             let alert = UIAlertController(
-                title: "Amount can't be 0",
+                title: "收入支出类型不能为空且金额不能为零",
                 message: nil,
                 preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -307,11 +307,10 @@ extension AddCostOrIncomeDetailViewController: UICollectionViewDataSource, UICol
         }
         
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! CategoryCollectionViewCell
-        guard let text = cell.categoryLabel.text, let image = cell.categoryImageView.image else {
-            return
-        }
+        guard let text = cell.categoryLabel.text, let image = cell.categoryImageView.image else { return }
         categoryLabel.text = text
         categoryImageView.image = image
         collectionView.deselectItem(at: indexPath, animated: true)

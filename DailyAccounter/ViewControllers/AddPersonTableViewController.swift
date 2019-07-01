@@ -38,6 +38,7 @@ class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITable
         blurView.addGestureRecognizer(tapRecognizer)
         tableView.backgroundColor = .white
         headerButtonView.backgroundColor = .white
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +49,6 @@ class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITable
         tableView.backgroundColor = UIColor.white
         tableView.frame = CGRect(x: 0, y: max(UIScreen.main.bounds.height / 3, UIScreen.main.bounds.height -  CGFloat(44*memberList.count)), width: UIScreen.main.bounds.width, height: min(UIScreen.main.bounds.height * 2 / 3, CGFloat(44*memberList.count)))
         self.view.addSubview(tableView)
-        
         let frame = tableView.frame
         let editButton = UIButton(frame: CGRect(x:8, y: 8, width: 80, height: 50))
         editButton.setTitle("Edite", for: .normal)
@@ -69,15 +69,18 @@ class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITable
         headerButtonView.addSubview(editButton)
         headerButtonView.addSubview(titleLabel)
         headerButtonView.addSubview(completeButton)
-       
+        
         self.view.addSubview(headerButtonView)
         headerButtonView.translatesAutoresizingMaskIntoConstraints = false
         headerButtonView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         headerButtonView.bottomAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
         headerButtonView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         headerButtonView.heightAnchor.constraint(equalToConstant: 66).isActive = true
-        
         tableView.reloadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("disappear")
     }
     
     override func viewDidLayoutSubviews(){
@@ -129,6 +132,7 @@ class AddPersonTableViewController: UIViewController,UITableViewDelegate,UITable
         let controller = self.storyboard!.instantiateViewController(withIdentifier: "ManageMembersViewController") as! ManageMembersViewController
         let nav: UINavigationController = UINavigationController(rootViewController: controller)
         controller.delegate = self
+        controller.modalPresentationStyle = .fullScreen
         self.present(nav, animated: true, completion: nil)
     }
     

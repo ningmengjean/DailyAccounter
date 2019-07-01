@@ -47,7 +47,7 @@ class DailyIncomeTableViewCell: UITableViewCell {
     func configureDailyIncomeTableViewCell(detailAmount: Amount) {
         categoryImageView.image = UIImage(named: detailAmount.category ?? "工资")
         inAmount.text = String(format: "%.2f",detailAmount.amount)
-        inCategory.text = detailAmount.category
+        inCategory.text = detailAmount.category ?? "工资"
         inDetail.text = detailAmount.detail
     }
     
