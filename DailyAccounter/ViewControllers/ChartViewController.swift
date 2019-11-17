@@ -166,7 +166,7 @@ extension ChartViewController: UITableViewDelegate,UITableViewDataSource {
             }
             return tableViewValues.keys.count
         } else {
-            return 12
+            return 1
            
         }
     }

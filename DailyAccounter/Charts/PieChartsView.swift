@@ -51,7 +51,7 @@ class PieChartsView: PieChartView {
     
         }
         
-        let dataSet = PieChartDataSet(values: dataValues, label: "")
+        let dataSet = PieChartDataSet(entries: dataValues, label: "")
         dataSet.xValuePosition = .insideSlice
         dataSet.yValuePosition = .outsideSlice
         dataSet.valueTextColor = .darkGray
